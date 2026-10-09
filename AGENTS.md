@@ -106,4 +106,4 @@ Your reading order:
 
 ### 4.2 Security & Secrets
 - Never commit `.env` files, API keys, or database connection strings.
-- Read secrets server-side exclusively via environment variables (`VERCEL_ENV`, `DATABASE_URL`, `GEMINI_API_KEY`, `LANGFUSE_SECRET_KEY`).
+- Read secrets server-side exclusively via environment variables (`VERCEL_ENV`, `DATABASE_URL`, `GEMINI_API_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_BASE_URL`).

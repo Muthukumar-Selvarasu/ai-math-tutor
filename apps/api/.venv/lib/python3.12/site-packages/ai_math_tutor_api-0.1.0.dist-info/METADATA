@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: ai-math-tutor-api
+Version: 0.1.0
+Summary: SolvePath Backend API
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.111.0
+Requires-Dist: uvicorn>=0.30.1
+Requires-Dist: pydantic>=2.7.4
+Requires-Dist: pydantic-settings>=2.3.4
+Requires-Dist: sqlalchemy>=2.0.30
+Requires-Dist: alembic>=1.13.1
+Requires-Dist: asyncpg>=0.29.0
+Requires-Dist: psycopg2-binary>=2.9.9
+Requires-Dist: sympy>=1.12
+Requires-Dist: langfuse>=2.35.0
+Requires-Dist: google-generativeai>=0.5.4
+Requires-Dist: pgvector>=0.2.5
+Provides-Extra: dev
+Requires-Dist: pytest>=8.2.2; extra == "dev"
+Requires-Dist: ruff>=0.4.8; extra == "dev"
+Requires-Dist: mypy>=1.10.0; extra == "dev"

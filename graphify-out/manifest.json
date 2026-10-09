@@ -1,0 +1,32 @@
+{
+  ".agents/skills/github-issues/SKILL.md": {
+    "mtime": 1791535719.7120917,
+    "seen": 1791537834.6352682,
+    "ast_hash": "10e45b18e08848d8c989c409fb3d1361",
+    "semantic_hash": ""
+  },
+  ".agents/skills/task-commits/SKILL.md": {
+    "mtime": 1791535256.6561074,
+    "seen": 1791537834.6352699,
+    "ast_hash": "bdc15b372e18218dbe59344369872acd",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1791537791.315434,
+    "seen": 1791537834.635272,
+    "ast_hash": "46a624476a96d8a6d7419a090d8efbca",
+    "semantic_hash": ""
+  },
+  "PRD.md": {
+    "mtime": 1791535551.169643,
+    "seen": 1791537834.635272,
+    "ast_hash": "bf159f8da062d70df15f7f4d4a09f6ba",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1791537819.4425673,
+    "seen": 1791537834.635273,
+    "ast_hash": "7e6f02709520fc90deb9692952ca2a73",
+    "semantic_hash": ""
+  }
+}

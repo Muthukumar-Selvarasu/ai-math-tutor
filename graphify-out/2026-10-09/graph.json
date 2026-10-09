@@ -4,54 +4,6 @@
   "graph": {},
   "nodes": [
     {
-      "id": "prd_12_1_tutor_behavioural_policy",
-      "label": "12.1 Tutor behavioural policy",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "12.1 tutor behavioural policy",
-      "source_file": "PRD.md",
-      "source_location": "L1388"
-    },
-    {
-      "id": "prd_12_2_high_stakes_decision_boundary",
-      "label": "12.2 High-stakes decision boundary",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "12.2 high-stakes decision boundary",
-      "source_file": "PRD.md",
-      "source_location": "L1412"
-    },
-    {
-      "id": "prd_12_3_input_safety",
-      "label": "12.3 Input safety",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "12.3 input safety",
-      "source_file": "PRD.md",
-      "source_location": "L1425"
-    },
-    {
-      "id": "prd_12_safety_and_policy_requirements",
-      "label": "12. Safety and policy requirements",
-      "_origin": "ast",
-      "community": 0,
-      "community_name": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "12. safety and policy requirements",
-      "source_file": "PRD.md",
-      "source_location": "L1386"
-    },
-    {
       "id": "prd_13_1_recommendation_types",
       "label": "13.1 Recommendation types",
       "_origin": "ast",
@@ -122,6 +74,18 @@
       "norm_label": "16. repository, environments, and configuration",
       "source_file": "PRD.md",
       "source_location": "L1693"
+    },
+    {
+      "id": "prd_19_capstone_demonstration_scenario",
+      "label": "19. Capstone demonstration scenario",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "19. capstone demonstration scenario",
+      "source_file": "PRD.md",
+      "source_location": "L1966"
     },
     {
       "id": "prd_1_executive_summary",
@@ -220,52 +184,52 @@
       "source_location": "L85"
     },
     {
-      "id": "prd_4_1_mvp_goals",
-      "label": "4.1 MVP goals",
+      "id": "prd_3_1_vision_statement",
+      "label": "3.1 Vision statement",
       "_origin": "ast",
       "community": 0,
       "community_name": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "4.1 mvp goals",
+      "norm_label": "3.1 vision statement",
       "source_file": "PRD.md",
-      "source_location": "L162"
+      "source_location": "L136"
     },
     {
-      "id": "prd_4_2_product_success_metrics",
-      "label": "4.2 Product success metrics",
+      "id": "prd_3_2_product_promise",
+      "label": "3.2 Product promise",
       "_origin": "ast",
       "community": 0,
       "community_name": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "4.2 product success metrics",
+      "norm_label": "3.2 product promise",
       "source_file": "PRD.md",
-      "source_location": "L175"
+      "source_location": "L140"
     },
     {
-      "id": "prd_4_3_evaluation_metrics",
-      "label": "4.3 Evaluation metrics",
+      "id": "prd_3_3_non_goals",
+      "label": "3.3 Non-goals",
       "_origin": "ast",
       "community": 0,
       "community_name": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "4.3 evaluation metrics",
+      "norm_label": "3.3 non-goals",
       "source_file": "PRD.md",
-      "source_location": "L192"
+      "source_location": "L152"
     },
     {
-      "id": "prd_4_goals_and_success_metrics",
-      "label": "4. Goals and success metrics",
+      "id": "prd_3_product_vision",
+      "label": "3. Product vision",
       "_origin": "ast",
       "community": 0,
       "community_name": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "4. goals and success metrics",
+      "norm_label": "3. product vision",
       "source_file": "PRD.md",
-      "source_location": "L160"
+      "source_location": "L134"
     },
     {
       "id": "prd_7_1_mvp_in_scope",
@@ -304,6 +268,18 @@
       "source_location": "L621"
     },
     {
+      "id": "prd_demonstration_flow",
+      "label": "Demonstration flow",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "demonstration flow",
+      "source_file": "PRD.md",
+      "source_location": "L1976"
+    },
+    {
       "id": "prd_locked_technology_stack_summary",
       "label": "Locked technology stack (summary)",
       "_origin": "ast",
@@ -316,6 +292,18 @@
       "source_location": "L14"
     },
     {
+      "id": "prd_scenario_title",
+      "label": "Scenario title",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "scenario title",
+      "source_file": "PRD.md",
+      "source_location": "L1968"
+    },
+    {
       "id": "prd_solvepath_multi_agent_socratic_mathematics_tutor",
       "label": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
       "_origin": "ast",
@@ -326,6 +314,18 @@
       "norm_label": "solvepath \u2014 multi-agent socratic mathematics tutor",
       "source_file": "PRD.md",
       "source_location": "L3"
+    },
+    {
+      "id": "prd_student_problem",
+      "label": "Student problem",
+      "_origin": "ast",
+      "community": 0,
+      "community_name": "SolvePath \u2014 Multi-Agent Socratic Mathematics Tutor",
+      "file_type": "document",
+      "node_kind": "heading",
+      "norm_label": "student problem",
+      "source_file": "PRD.md",
+      "source_location": "L1972"
     },
     {
       "id": "prd_table_of_contents",
@@ -892,52 +892,52 @@
       "source_location": "L207"
     },
     {
-      "id": "prd_19_capstone_demonstration_scenario",
-      "label": "19. Capstone demonstration scenario",
+      "id": "prd_12_1_tutor_behavioural_policy",
+      "label": "12.1 Tutor behavioural policy",
       "_origin": "ast",
       "community": 15,
-      "community_name": "19. Capstone demonstration scenario",
+      "community_name": "12. Safety and policy requirements",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "19. capstone demonstration scenario",
+      "norm_label": "12.1 tutor behavioural policy",
       "source_file": "PRD.md",
-      "source_location": "L1966"
+      "source_location": "L1388"
     },
     {
-      "id": "prd_demonstration_flow",
-      "label": "Demonstration flow",
+      "id": "prd_12_2_high_stakes_decision_boundary",
+      "label": "12.2 High-stakes decision boundary",
       "_origin": "ast",
       "community": 15,
-      "community_name": "19. Capstone demonstration scenario",
+      "community_name": "12. Safety and policy requirements",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "demonstration flow",
+      "norm_label": "12.2 high-stakes decision boundary",
       "source_file": "PRD.md",
-      "source_location": "L1976"
+      "source_location": "L1412"
     },
     {
-      "id": "prd_scenario_title",
-      "label": "Scenario title",
+      "id": "prd_12_3_input_safety",
+      "label": "12.3 Input safety",
       "_origin": "ast",
       "community": 15,
-      "community_name": "19. Capstone demonstration scenario",
+      "community_name": "12. Safety and policy requirements",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "scenario title",
+      "norm_label": "12.3 input safety",
       "source_file": "PRD.md",
-      "source_location": "L1968"
+      "source_location": "L1425"
     },
     {
-      "id": "prd_student_problem",
-      "label": "Student problem",
+      "id": "prd_12_safety_and_policy_requirements",
+      "label": "12. Safety and policy requirements",
       "_origin": "ast",
       "community": 15,
-      "community_name": "19. Capstone demonstration scenario",
+      "community_name": "12. Safety and policy requirements",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "student problem",
+      "norm_label": "12. safety and policy requirements",
       "source_file": "PRD.md",
-      "source_location": "L1972"
+      "source_location": "L1386"
     },
     {
       "id": "prd_17_1_pipelines",
@@ -988,52 +988,52 @@
       "source_location": "L1769"
     },
     {
-      "id": "prd_3_1_vision_statement",
-      "label": "3.1 Vision statement",
+      "id": "prd_4_1_mvp_goals",
+      "label": "4.1 MVP goals",
       "_origin": "ast",
       "community": 17,
-      "community_name": "3. Product vision",
+      "community_name": "4. Goals and success metrics",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "3.1 vision statement",
+      "norm_label": "4.1 mvp goals",
       "source_file": "PRD.md",
-      "source_location": "L136"
+      "source_location": "L162"
     },
     {
-      "id": "prd_3_2_product_promise",
-      "label": "3.2 Product promise",
+      "id": "prd_4_2_product_success_metrics",
+      "label": "4.2 Product success metrics",
       "_origin": "ast",
       "community": 17,
-      "community_name": "3. Product vision",
+      "community_name": "4. Goals and success metrics",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "3.2 product promise",
+      "norm_label": "4.2 product success metrics",
       "source_file": "PRD.md",
-      "source_location": "L140"
+      "source_location": "L175"
     },
     {
-      "id": "prd_3_3_non_goals",
-      "label": "3.3 Non-goals",
+      "id": "prd_4_3_evaluation_metrics",
+      "label": "4.3 Evaluation metrics",
       "_origin": "ast",
       "community": 17,
-      "community_name": "3. Product vision",
+      "community_name": "4. Goals and success metrics",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "3.3 non-goals",
+      "norm_label": "4.3 evaluation metrics",
       "source_file": "PRD.md",
-      "source_location": "L152"
+      "source_location": "L192"
     },
     {
-      "id": "prd_3_product_vision",
-      "label": "3. Product vision",
+      "id": "prd_4_goals_and_success_metrics",
+      "label": "4. Goals and success metrics",
       "_origin": "ast",
       "community": 17,
-      "community_name": "3. Product vision",
+      "community_name": "4. Goals and success metrics",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "3. product vision",
+      "norm_label": "4. goals and success metrics",
       "source_file": "PRD.md",
-      "source_location": "L134"
+      "source_location": "L160"
     },
     {
       "id": "prd_8_10_fr_10_transfer_question",
@@ -1992,18 +1992,6 @@
       "source_location": "L1"
     },
     {
-      "id": "agents_skills_task_commits_skill_commit_message_format",
-      "label": "Commit message format",
-      "_origin": "ast",
-      "community": 8,
-      "community_name": "Task commits",
-      "file_type": "document",
-      "node_kind": "heading",
-      "norm_label": "commit message format",
-      "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L26"
-    },
-    {
       "id": "agents_skills_task_commits_skill_commit_unit",
       "label": "Commit unit",
       "_origin": "ast",
@@ -2013,7 +2001,7 @@
       "node_kind": "heading",
       "norm_label": "commit unit",
       "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L20"
+      "source_location": "L19"
     },
     {
       "id": "agents_skills_task_commits_skill_commit_when_all_of_these_are_true",
@@ -2025,7 +2013,7 @@
       "node_kind": "heading",
       "norm_label": "commit when all of these are true",
       "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L38"
+      "source_location": "L25"
     },
     {
       "id": "agents_skills_task_commits_skill_do_not_commit_when",
@@ -2037,7 +2025,7 @@
       "node_kind": "heading",
       "norm_label": "do not commit when",
       "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L46"
+      "source_location": "L32"
     },
     {
       "id": "agents_skills_task_commits_skill_examples",
@@ -2049,7 +2037,7 @@
       "node_kind": "heading",
       "norm_label": "examples",
       "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L61"
+      "source_location": "L46"
     },
     {
       "id": "agents_skills_task_commits_skill_rhythm",
@@ -2061,7 +2049,7 @@
       "node_kind": "heading",
       "norm_label": "rhythm",
       "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L54"
+      "source_location": "L39"
     },
     {
       "id": "agents_skills_task_commits_skill_task_commits",
@@ -2073,7 +2061,7 @@
       "node_kind": "heading",
       "norm_label": "task commits",
       "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L14"
+      "source_location": "L13"
     },
     {
       "id": "prd_15_1_technology_stack",
@@ -2466,7 +2454,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L14",
+      "source_location": "L13",
       "weight": 1.0
     },
     {
@@ -2477,18 +2465,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L20",
-      "weight": 1.0
-    },
-    {
-      "source": "agents_skills_task_commits_skill_task_commits",
-      "target": "agents_skills_task_commits_skill_commit_message_format",
-      "relation": "contains",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L26",
+      "source_location": "L19",
       "weight": 1.0
     },
     {
@@ -2499,7 +2476,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L38",
+      "source_location": "L25",
       "weight": 1.0
     },
     {
@@ -2510,7 +2487,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L46",
+      "source_location": "L32",
       "weight": 1.0
     },
     {
@@ -2521,7 +2498,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L54",
+      "source_location": "L39",
       "weight": 1.0
     },
     {
@@ -2532,7 +2509,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": ".agents/skills/task-commits/SKILL.md",
-      "source_location": "L61",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -4099,5 +4076,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "72b986bc386ba0121c30aa280a65fff23b1b7311"
+  "built_at_commit": "e5632abc64382381e8b672d7576187d0446c7618"
 }

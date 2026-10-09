@@ -1,17 +1,17 @@
 # Graph Report - ai-math-tutor  (2026-10-09)
 
 ## Corpus Check
-- 5 files · ~18,562 words
+- 5 files · ~18,424 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 1 file(s) not represented in the graph (top: (none) 1)
 
 ## Summary
-- 179 nodes · 176 edges · 18 communities
+- 178 nodes · 175 edges · 18 communities
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `72b986bc`
+- Built from commit: `e5632abc`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,9 +31,9 @@
 - 11. Non-functional requirements
 - 14. Evaluation plan
 - 5. Users and personas
-- 19. Capstone demonstration scenario
+- 12. Safety and policy requirements
 - 17. CI/CD with GitHub Actions
-- 3. Product vision
+- 4. Goals and success metrics
 
 ## God Nodes (most connected - your core abstractions)
 1. `SolvePath — Multi-Agent Socratic Mathematics Tutor` - 26 edges
@@ -43,9 +43,9 @@
 5. `6. User stories` - 8 edges
 6. `6.5 Teacher and tutor stories` - 8 edges
 7. `18. Delivery roadmap` - 8 edges
-8. `Task commits` - 7 edges
-9. `9. Multi-agent design (Google ADK)` - 7 edges
-10. `15. Technical architecture` - 7 edges
+8. `9. Multi-agent design (Google ADK)` - 7 edges
+9. `15. Technical architecture` - 7 edges
+10. `Task commits` - 6 edges
 
 ## Surprising Connections (you probably didn't know these)
 - None detected - all connections are within the same source files.
@@ -54,7 +54,7 @@
 
 ### Community 0 - "SolvePath — Multi-Agent Socratic Mathematics Tutor"
 Cohesion: 0.07
-Nodes (28): 12.1 Tutor behavioural policy, 12.2 High-stakes decision boundary, 12.3 Input safety, 12. Safety and policy requirements, 13.1 Recommendation types, 13.2 Recommendation format, 13. Teacher intervention recommendations, 16.1 Proposed monorepo structure (+20 more)
+Nodes (28): 13.1 Recommendation types, 13.2 Recommendation format, 13. Teacher intervention recommendations, 16.1 Proposed monorepo structure, 16.2 Environment variables and secrets, 16. Repository, environments, and configuration, 19. Capstone demonstration scenario, 1. Executive summary (+20 more)
 
 ### Community 1 - "6.5 Teacher and tutor stories"
 Cohesion: 0.11
@@ -85,8 +85,8 @@ Cohesion: 0.25
 Nodes (8): 18. Delivery roadmap, Immediate starter backlog (first working session), Phase 0: Discovery, design, and project bootstrap, Phase 1: Tutor foundation, Phase 2: Socratic intelligence, Phase 3: Teacher operations, Phase 4: Governance and reliability, Phase 5: Deployment and showcase
 
 ### Community 8 - "Task commits"
-Cohesion: 0.25
-Nodes (7): Commit message format, Commit unit, Commit when all of these are true, Do not commit when, Examples, Rhythm, Task commits
+Cohesion: 0.29
+Nodes (6): Commit unit, Commit when all of these are true, Do not commit when, Examples, Rhythm, Task commits
 
 ### Community 9 - "15. Technical architecture"
 Cohesion: 0.29
@@ -112,33 +112,33 @@ Nodes (5): 14.1 Offline evaluation dataset, 14.2 Human evaluation rubric, 14.3 R
 Cohesion: 0.40
 Nodes (5): 5.1 Primary persona: Student, 5.2 Secondary persona: Tutor or teacher, 5.3 Secondary persona: Academic coordinator, 5.4 Administrative persona, 5. Users and personas
 
-### Community 15 - "19. Capstone demonstration scenario"
+### Community 15 - "12. Safety and policy requirements"
 Cohesion: 0.50
-Nodes (4): 19. Capstone demonstration scenario, Demonstration flow, Scenario title, Student problem
+Nodes (4): 12.1 Tutor behavioural policy, 12.2 High-stakes decision boundary, 12.3 Input safety, 12. Safety and policy requirements
 
 ### Community 16 - "17. CI/CD with GitHub Actions"
 Cohesion: 0.50
 Nodes (4): 17.1 Pipelines, 17.2 Gates, 17.3 Example production workflow (skeleton), 17. CI/CD with GitHub Actions
 
-### Community 17 - "3. Product vision"
+### Community 17 - "4. Goals and success metrics"
 Cohesion: 0.50
-Nodes (4): 3.1 Vision statement, 3.2 Product promise, 3.3 Non-goals, 3. Product vision
+Nodes (4): 4.1 MVP goals, 4.2 Product success metrics, 4.3 Evaluation metrics, 4. Goals and success metrics
 
 ## Knowledge Gaps
-- **141 isolated node(s):** `Core Principles`, `Title Format`, `Body Format`, `Create an Issue`, `View or List Issues` (+136 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 143 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **140 isolated node(s):** `Core Principles`, `Title Format`, `Body Format`, `Create an Issue`, `View or List Issues` (+135 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 142 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `SolvePath — Multi-Agent Socratic Mathematics Tutor` connect `SolvePath — Multi-Agent Socratic Mathematics Tutor` to `6.5 Teacher and tutor stories`, `8. Functional requirements`, `SolvePath — Multi-Agent Socratic Mathematics Tutor`, `18. Delivery roadmap`, `15. Technical architecture`, `9. Multi-agent design (Google ADK)`, `10. Data model`, `11. Non-functional requirements`, `14. Evaluation plan`, `5. Users and personas`, `19. Capstone demonstration scenario`, `17. CI/CD with GitHub Actions`, `3. Product vision`?**
-  _High betweenness centrality (0.698) - this node is a cross-community bridge._
+- **Why does `SolvePath — Multi-Agent Socratic Mathematics Tutor` connect `SolvePath — Multi-Agent Socratic Mathematics Tutor` to `6.5 Teacher and tutor stories`, `8. Functional requirements`, `SolvePath — Multi-Agent Socratic Mathematics Tutor`, `18. Delivery roadmap`, `15. Technical architecture`, `9. Multi-agent design (Google ADK)`, `10. Data model`, `11. Non-functional requirements`, `14. Evaluation plan`, `5. Users and personas`, `12. Safety and policy requirements`, `17. CI/CD with GitHub Actions`, `4. Goals and success metrics`?**
+  _High betweenness centrality (0.706) - this node is a cross-community bridge._
 - **Why does `6. User stories` connect `6.5 Teacher and tutor stories` to `SolvePath — Multi-Agent Socratic Mathematics Tutor`, `6.4 Student stories`?**
-  _High betweenness centrality (0.238) - this node is a cross-community bridge._
+  _High betweenness centrality (0.241) - this node is a cross-community bridge._
 - **Why does `8. Functional requirements` connect `8. Functional requirements` to `SolvePath — Multi-Agent Socratic Mathematics Tutor`?**
-  _High betweenness centrality (0.150) - this node is a cross-community bridge._
+  _High betweenness centrality (0.152) - this node is a cross-community bridge._
 - **What connects `Core Principles`, `Title Format`, `Body Format` to the rest of the system?**
-  _141 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _140 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `SolvePath — Multi-Agent Socratic Mathematics Tutor` be split into smaller, more focused modules?**
   _Cohesion score 0.07142857142857142 - nodes in this community are weakly interconnected._
 - **Should `6.5 Teacher and tutor stories` be split into smaller, more focused modules?**

@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 from typing import Optional, List
-from sqlalchemy import String, Integer, DateTime, ForeignKey, Text, Float, JSON
+from sqlalchemy import String, Integer, DateTime, ForeignKey, Text, Float, JSON, Boolean
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from pgvector.sqlalchemy import Vector
 
@@ -33,7 +33,16 @@ class Question(Base):
     title: Mapped[str] = mapped_column(String(255))
     content: Mapped[str] = mapped_column(Text)
     skill_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("skills.id"))
+    subskill: Mapped[Optional[str]] = mapped_column(String(255))
     difficulty: Mapped[int] = mapped_column(Integer, default=1)
+    validation_status: Mapped[str] = mapped_column(String(50), default="draft")
+    publication_status: Mapped[str] = mapped_column(String(50), default="draft")
+    accepted_answer_spec: Mapped[Optional[dict]] = mapped_column(JSON)
+    misconception_tags: Mapped[Optional[dict]] = mapped_column(JSON)
+    solution_path: Mapped[Optional[dict]] = mapped_column(JSON)
+    socratic_prompt_metadata: Mapped[Optional[dict]] = mapped_column(JSON)
+    diagram_requirement_flag: Mapped[bool] = mapped_column(default=False)
+    version_number: Mapped[int] = mapped_column(Integer, default=1)
 
 class Session(Base):
     __tablename__ = "sessions"

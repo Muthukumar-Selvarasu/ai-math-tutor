@@ -1,0 +1,962 @@
+[
+  {
+    "title": "Ratio Practice 1",
+    "content": "If the ratio of apples to oranges is 1:2 and there are 2 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "4",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 4)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 2",
+    "content": "If the ratio of apples to oranges is 2:3 and there are 4 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "6",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 5)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 3",
+    "content": "If the ratio of apples to oranges is 3:4 and there are 6 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "8",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 6)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 4",
+    "content": "If the ratio of apples to oranges is 4:5 and there are 8 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "10",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 7)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 5",
+    "content": "If the ratio of apples to oranges is 5:6 and there are 10 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "12",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 8)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 6",
+    "content": "If the ratio of apples to oranges is 6:7 and there are 12 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "14",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 9)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 7",
+    "content": "If the ratio of apples to oranges is 7:8 and there are 14 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "16",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 10)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 8",
+    "content": "If the ratio of apples to oranges is 8:9 and there are 16 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "18",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 11)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 9",
+    "content": "If the ratio of apples to oranges is 9:10 and there are 18 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "20",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 12)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 10",
+    "content": "If the ratio of apples to oranges is 10:11 and there are 20 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "22",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 13)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 11",
+    "content": "If the ratio of apples to oranges is 11:12 and there are 22 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "24",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 14)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 12",
+    "content": "If the ratio of apples to oranges is 12:13 and there are 24 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "26",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 15)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 13",
+    "content": "If the ratio of apples to oranges is 13:14 and there are 26 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "28",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 16)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 14",
+    "content": "If the ratio of apples to oranges is 14:15 and there are 28 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "30",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 17)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 15",
+    "content": "If the ratio of apples to oranges is 15:16 and there are 30 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "32",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 18)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 16",
+    "content": "If the ratio of apples to oranges is 16:17 and there are 32 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "34",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 19)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 17",
+    "content": "If the ratio of apples to oranges is 17:18 and there are 34 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "36",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 20)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 18",
+    "content": "If the ratio of apples to oranges is 18:19 and there are 36 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "38",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 21)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 19",
+    "content": "If the ratio of apples to oranges is 19:20 and there are 38 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "40",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 22)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 20",
+    "content": "If the ratio of apples to oranges is 20:21 and there are 40 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "42",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 23)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 21",
+    "content": "If the ratio of apples to oranges is 21:22 and there are 42 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "44",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 24)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 22",
+    "content": "If the ratio of apples to oranges is 22:23 and there are 44 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "46",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 25)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 23",
+    "content": "If the ratio of apples to oranges is 23:24 and there are 46 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "48",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 26)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 24",
+    "content": "If the ratio of apples to oranges is 24:25 and there are 48 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "50",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 27)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 25",
+    "content": "If the ratio of apples to oranges is 25:26 and there are 50 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "52",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 28)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 26",
+    "content": "If the ratio of apples to oranges is 26:27 and there are 52 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "54",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 29)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 27",
+    "content": "If the ratio of apples to oranges is 27:28 and there are 54 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "56",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 30)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 28",
+    "content": "If the ratio of apples to oranges is 28:29 and there are 56 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "58",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 31)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 29",
+    "content": "If the ratio of apples to oranges is 29:30 and there are 58 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "60",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 32)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 30",
+    "content": "If the ratio of apples to oranges is 30:31 and there are 60 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "62",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 33)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 31",
+    "content": "If the ratio of apples to oranges is 31:32 and there are 62 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "64",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 34)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 32",
+    "content": "If the ratio of apples to oranges is 32:33 and there are 64 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "66",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 35)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 33",
+    "content": "If the ratio of apples to oranges is 33:34 and there are 66 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "68",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 36)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 34",
+    "content": "If the ratio of apples to oranges is 34:35 and there are 68 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "70",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 37)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 35",
+    "content": "If the ratio of apples to oranges is 35:36 and there are 70 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "72",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 38)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 36",
+    "content": "If the ratio of apples to oranges is 36:37 and there are 72 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "74",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 39)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 37",
+    "content": "If the ratio of apples to oranges is 37:38 and there are 74 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "76",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 40)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 38",
+    "content": "If the ratio of apples to oranges is 38:39 and there are 76 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "78",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 41)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 39",
+    "content": "If the ratio of apples to oranges is 39:40 and there are 78 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "80",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 42)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  },
+  {
+    "title": "Ratio Practice 40",
+    "content": "If the ratio of apples to oranges is 40:41 and there are 80 apples, how many oranges are there?",
+    "skill_name": "Ratio and proportional reasoning",
+    "subskill": "Equivalent ratios",
+    "difficulty": 1,
+    "accepted_answer_spec": {
+      "value": "82",
+      "format": "integer"
+    },
+    "misconception_tags": {
+      "additive_interpretation": "Student might add 2 instead of multiplying by 2 (e.g. 43)."
+    },
+    "solution_path": {
+      "steps": [
+        "Find the multiplier for apples",
+        "Apply the multiplier to oranges"
+      ]
+    },
+    "socratic_prompt_metadata": {
+      "level_1": "What is the relationship between the ratio of apples and the actual number of apples?"
+    },
+    "diagram_requirement_flag": false
+  }
+]

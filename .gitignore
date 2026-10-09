@@ -1,2 +1,6 @@
 .DS_Store
-idea/
+.env
+.env.local
+.env.*
+node_modules/
+__pycache__/

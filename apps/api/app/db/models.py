@@ -43,6 +43,17 @@ class Question(Base):
     socratic_prompt_metadata: Mapped[Optional[dict]] = mapped_column(JSON)
     diagram_requirement_flag: Mapped[bool] = mapped_column(default=False)
     version_number: Mapped[int] = mapped_column(Integer, default=1)
+    embedding: Mapped[Optional[List[float]]] = mapped_column(Vector(1536))
+
+class LearnerModel(Base):
+    __tablename__ = "learner_models"
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
+    user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id"))
+    skill_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("skills.id"))
+    mastery_score: Mapped[float] = mapped_column(Float, default=0.5)
+    confidence_score: Mapped[float] = mapped_column(Float, default=0.1)
+    attempts: Mapped[int] = mapped_column(Integer, default=0)
+    last_updated: Mapped[datetime] = mapped_column(default=datetime.utcnow)
 
 class Session(Base):
     __tablename__ = "sessions"

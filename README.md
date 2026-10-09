@@ -167,30 +167,54 @@ ai-math-tutor/
 
 ## 🗺️ Delivery Roadmap
 
-- [ ] **Phase 0: Project Bootstrap & Foundation (Current)**
+- [ ] **Phase 1: Project Bootstrap & Foundation**
   - Monorepo structure, linting, pre-commit hooks, CI workflow
   - Postgres + pgvector configuration, base Alembic migrations
   - Langfuse connection and Google ADK tracer bootstrap
-- [ ] **Phase 1: Tutor Foundation**
+- [ ] **Phase 2: Tutor Foundation**
   - Seed question bank schema & validated ratio items
   - SymPy verification engine & test suite
   - Practice interface & state machine session manager
-- [ ] **Phase 2: Socratic Intelligence**
+- [ ] **Phase 3: Socratic Intelligence**
   - Google ADK multi-agent pipeline (`SequentialAgent` + `LoopAgent`)
   - Misconception classification & pgvector exemplar matching
   - Dynamic hint policy & answer-leakage guards
-- [ ] **Phase 3: Educator Operations**
+- [ ] **Phase 4: Teacher Operations**
   - Longitudinal learner model rollups
   - Teacher cohort dashboard, student session replay, and intervention draft summaries
-- [ ] **Phase 4: Capstone Hardening & Evaluation**
+- [ ] **Phase 5: Governance and Reliability**
   - E2E automated evaluation harness & red-teaming checks
-  - Final documentation, threat model, and demonstration scenario
+  - Role-based authorization tests, audit-event viewer
+- [ ] **Phase 6: Capstone Presentation & Showcase**
+  - Final documentation, architecture diagram, threat model
+  - Demonstration scenario and demo video
+  - GitHub README and setup documentation
 
 ---
 
 ## 🤝 Development Standards & Workflow
 
-- **Issues & Tracking:** Deliverables and stories are managed strictly in accordance with PRD Section 6 using the `.agents/skills/github-issues` standard (`[STU-xx]`, `[EDU-xx]`, `[TECH-xx]`).
+### Issue Taxonomy and Tracking
+
+Deliverables and stories are managed strictly in accordance with PRD Section 6 using the `.agents/skills/github-issues` standard. We use specific prefixes and labels to categorize work:
+
+**Issue Prefixes:**
+- **`[STU-xx]` (Student Stories):** Features built for the learner (e.g., practice interface, Socratic chat).
+- **`[EDU-xx]` (Educator Stories):** Features built for teachers/tutors (e.g., dashboards, session replay).
+- **`[ADM-xx]` (Administrator Stories):** Features built for platform admins (e.g., RBAC, audit trails).
+- **`[TECH-xx]` (Technical Tasks):** Foundational infrastructure and backend work (e.g., CI/CD, database setup).
+
+**Epic Labels:**
+- **`epic:E1` (Guided practice and Socratic tutoring):** Core AI tutoring features, hints, and math verification.
+- **`epic:E2` (Learner progress and educator insight):** Dashboards, progress tracking, and cohort overviews.
+- **`epic:E3` (Review, replay, and human oversight):** Manual intervention, session replay, and content review.
+- **`epic:E4` (Governance, security, and platform operations):** Administrative controls, RBAC, and audit logs.
+- **`epic:tech`:** Supplementary label for technical infrastructure spanning multiple domains.
+
+**Milestones:**
+Milestones map to the chronologically sequential **Phases (Phase 1 through Phase 6)** of the Delivery Roadmap. While Epics group work by product area, Milestones group work by *when* it is executed.
+
+### Additional Standards
 - **Commit Cadence:** Granular, task-based commits adhering to `.agents/skills/task-commits`.
 - **Quality Gates:** Zero unapproved questions in student pools; deterministic tests must pass for all SymPy verifiers before merging.
 

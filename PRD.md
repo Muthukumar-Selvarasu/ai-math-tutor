@@ -1847,7 +1847,7 @@ jobs:
 
 ## 18. Delivery roadmap
 
-### Phase 0: Discovery, design, and project bootstrap
+### Phase 1: Discovery, design, and project bootstrap
 
 **Duration:** 1 week
 
@@ -1870,7 +1870,7 @@ Deliverables:
 - Langfuse project created; ADK tracing "hello world" confirmed
 - GitHub Actions `ci.yml` running on an empty but working skeleton
 
-### Phase 1: Tutor foundation
+### Phase 2: Tutor foundation
 
 **Duration:** 1–2 weeks
 
@@ -1885,7 +1885,7 @@ Deliverables:
 - Deterministic ratio/proportion verifier (SymPy) with test suite
 - Basic event logging (Postgres audit table)
 
-### Phase 2: Socratic intelligence
+### Phase 3: Socratic intelligence
 
 **Duration:** 1–2 weeks
 
@@ -1902,7 +1902,7 @@ Deliverables:
 - Learner-model updates
 - Langfuse traces, prompt versions, and first deterministic scores on every turn
 
-### Phase 3: Teacher operations
+### Phase 4: Teacher operations
 
 **Duration:** 1 week
 
@@ -1916,7 +1916,7 @@ Deliverables:
 - Item-quality review queue
 - Vercel Cron jobs: `learner-rollup`, `insight-drafts`, `item-quality-scan`, `embedding-sync`
 
-### Phase 4: Governance and reliability
+### Phase 5: Governance and reliability
 
 **Duration:** 1 week
 
@@ -1932,13 +1932,12 @@ Deliverables:
 - Error handling and retry policy
 - `retention-purge` job and retention policy
 
-### Phase 5: Deployment and showcase
+### Phase 6: Capstone Presentation & Showcase
 
 **Duration:** 1 week
 
 Deliverables:
 
-- Production deployment on Vercel using synthetic data
 - Complete CI/CD pipeline with eval and security gates
 - Threat model
 - Architecture diagram

@@ -11,7 +11,7 @@ requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]>=0.110.0",
     "pydantic>=2.7.0",
-    "sqlalchemy>=2.0.29",
+    "sqlalchemy[asyncio]>=2.0.29",
     "alembic>=1.13.1",
     "asyncpg>=0.29.0",
     "pgvector>=0.2.5",
@@ -35,3 +35,6 @@ target-version = "py312"
 [tool.black]
 line-length = 88
 target-version = ['py312']
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]

@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ai-math-tutor-api"
+version = "0.1.0"
+description = "SolvePath API - FastAPI + Google ADK"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi[standard]>=0.110.0",
+    "pydantic>=2.7.0",
+    "sqlalchemy>=2.0.29",
+    "alembic>=1.13.1",
+    "asyncpg>=0.29.0",
+    "pgvector>=0.2.5",
+    "sympy>=1.12",
+    "langfuse>=2.51.10",
+    "google-genai>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.1.1",
+    "pytest-asyncio>=0.23.6",
+    "ruff>=0.3.5",
+    "black>=24.3.0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.black]
+line-length = 88
+target-version = ['py312']

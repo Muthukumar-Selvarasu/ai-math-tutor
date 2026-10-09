@@ -42,6 +42,8 @@ class Question(Base):
     solution_path: Mapped[Optional[dict]] = mapped_column(JSON)
     socratic_prompt_metadata: Mapped[Optional[dict]] = mapped_column(JSON)
     diagram_requirement_flag: Mapped[bool] = mapped_column(default=False)
+    diagram_url: Mapped[Optional[str]] = mapped_column(String(1024))
+    diagram_alt_text: Mapped[Optional[str]] = mapped_column(Text)
     version_number: Mapped[int] = mapped_column(Integer, default=1)
     embedding: Mapped[Optional[List[float]]] = mapped_column(Vector(1536))
 

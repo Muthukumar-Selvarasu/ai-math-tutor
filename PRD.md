@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| **Document status** | Draft v1.1 for capstone MVP (tech stack aligned) |
+| **Document status** | Draft v1.2 for capstone MVP (tech stack aligned; user stories restructured) |
 | **Product type** | AI-powered educational technology platform |
 | **Primary audience** | Upper-primary mathematics learners, tutors, academic coordinators, and teachers |
 | **Initial market focus** | Australian Years 5–6 learners preparing for selective-entry style mathematics and quantitative-reasoning assessments |
@@ -266,40 +266,355 @@ The MVP should establish measurement infrastructure rather than claim educationa
 
 ## 6. User stories
 
-### 6.1 Student user stories
+### 6.1 Story conventions
 
-| ID | User story | Acceptance criteria |
+**Format.** Every story uses: *As a [role], I want [capability], so that [benefit].* The "so that" clause is mandatory because it states the intent, which lets engineers and designers make good trade-offs.
+
+**Quality check (INVEST).** Each story must be Independent where possible, Negotiable (describes the outcome, not the implementation), Valuable, Estimable, Small enough for one sprint, and Testable. Stories that fail "Small" are split before they enter a sprint.
+
+**Fields on every story.**
+
+| Field | Purpose |
+| --- | --- |
+| ID and title | Traceability to tickets, tests, and requirements |
+| Story statement | As a / I want / so that |
+| Epic | Groups related stories |
+| Priority | **P0** = must ship in MVP; **P1** = should ship in MVP; **P2** = post-MVP or stretch |
+| Linked requirements | Detailed specification in Section 8 |
+| Acceptance criteria | Given / When / Then; includes happy path, edge or failure case, permission rule, and audit event where relevant |
+| Dependencies | What must exist first |
+| Out of scope | Explicit boundary to prevent scope creep |
+| Success metric | How we know the story delivered value (see Section 4) |
+| Non-functional notes | Performance, accessibility, security, and privacy needs specific to the story |
+
+**Acceptance criteria style.** Criteria describe observable behaviour, not implementation. Where a criterion can be checked automatically (leakage, authorisation, schema validity), it must map to a test in the CI evaluation suite (Section 14 and Section 17).
+
+### 6.2 Epics
+
+| Epic | Name | Stories |
 | --- | --- | --- |
-| STU-01 | As a student, I want to attempt a mathematics question before receiving guidance | Tutor asks for an initial attempt unless student explicitly has no starting point |
-| STU-02 | As a student, I want one focused hint at a time | Each tutor response requests one clear next action |
-| STU-03 | As a student, I want the tutor to understand my working, not only my final answer | Student can submit text, numeric answers, equations, or selected reasoning options |
-| STU-04 | As a student, I want feedback on why my answer is incorrect | Feedback identifies the relevant conceptual or procedural issue without shaming language |
-| STU-05 | As a student, I want to see a full solution only after meaningful effort or configured support steps | Full solution is restricted by the hint policy |
-| STU-06 | As a student, I want to test whether I understood by trying a similar question | A transfer item is offered after supported completion |
-| STU-07 | As a student, I want to see my progress | Dashboard shows skills, recent practice, accuracy, hint dependency, and next recommended topic |
-| STU-08 | As a student, I want diagrams when they help solve the question | Diagram is accurate, labelled, accessible, and relevant to the task |
+| E1 | Guided practice and Socratic tutoring | STU-01, STU-02, STU-03, STU-04, STU-05, STU-06, STU-08 |
+| E2 | Learner progress and educator insight | STU-07, EDU-01, EDU-02, EDU-05, EDU-07 |
+| E3 | Review, replay, and human oversight | EDU-03, EDU-04, EDU-06 |
+| E4 | Governance, security, and platform operations | ADM-01, ADM-02, ADM-03, ADM-04, ADM-05 |
 
-### 6.2 Teacher and tutor user stories
+### 6.3 Definition of Ready and Definition of Done
 
-| ID | User story | Acceptance criteria |
-| --- | --- | --- |
-| EDU-01 | As a teacher, I want to see students needing review | Dashboard prioritises students using evidence such as repeated misconceptions, low transfer success, or high hint dependency |
-| EDU-02 | As a teacher, I want to understand why a student was flagged | Each flag includes linked assessment events, skills, timing, attempts, and tutor-session evidence |
-| EDU-03 | As a teacher, I want to replay a tutoring session | I can view the question, student responses, hint sequence, verifier results, and learner-model updates |
-| EDU-04 | As a teacher, I want to override a recommendation | Override is recorded with educator rationale and does not delete original evidence |
-| EDU-05 | As a teacher, I want groups of students with similar needs | System groups students by skill and misconception pattern, with clear confidence and evidence boundaries |
-| EDU-06 | As a teacher, I want to review content quality | I can view questions flagged for ambiguity, unexpected difficulty, invalid answers, or non-functional distractors |
-| EDU-07 | As a teacher, I want exportable intervention summaries | I can export or copy a student learning summary suitable for review and human-approved communication |
+**Definition of Ready (a story may enter a sprint when):**
 
-### 6.3 Platform administration user stories
+- The "so that" benefit and priority are stated.
+- Acceptance criteria are written in Given / When / Then form and agreed with the product owner.
+- Linked requirements and dependencies are identified and not blocked.
+- Any UX design or diagram reference needed is attached.
+- Test data needs are known (synthetic students, seed questions, evaluation cases).
+- The story is small enough to complete within one sprint.
 
-| ID | User story | Acceptance criteria |
-| --- | --- | --- |
-| ADM-01 | As an administrator, I want to manage roles | Student, parent, teacher, tutor, coordinator, and admin permissions are enforced |
-| ADM-02 | As an administrator, I want an audit trail | System records login, content view, AI request, tool call, recommendation, review, override, and export events |
-| ADM-03 | As an administrator, I want to review AI quality issues | I can view hallucination flags, verifier mismatches, answer leakage events, and user feedback |
-| ADM-04 | As an administrator, I want content publishing controls | Only validated and approved questions are available to students |
-| ADM-05 | As an administrator, I want model and prompt traceability | Every AI-generated tutor turn stores model family/version, prompt template version, policy version, and tool results; each is linkable to its Langfuse trace |
+**Definition of Done (a story is complete when):**
+
+- All acceptance criteria pass, with automated tests where the criterion is automatable.
+- Code is peer-reviewed and merged through the GitHub Actions pipeline with all required checks green.
+- Authorisation tests cover every role touched by the story.
+- Answer-leakage, schema, and verifier regression tests pass for any story touching tutoring behaviour.
+- Audit events and Langfuse traces are emitted for the behaviour described in the criteria.
+- Accessibility checks (keyboard, labels, contrast, diagram text alternatives) pass for any new UI.
+- Documentation (API, ADR, runbook, or user guidance) is updated where affected.
+- The change is deployed to a Vercel preview environment and verified with synthetic data only.
+- The product owner has accepted the story.
+
+### 6.4 Student stories
+
+#### STU-01: Attempt before guidance
+**As a** student, **I want** to attempt a question before receiving guidance, **so that** I practise recalling and applying the method myself.
+
+- **Epic:** E1 | **Priority:** P0 | **Linked requirements:** FR-03, FR-05, FR-06 (level 0)
+- **Acceptance criteria:**
+  - **Given** I open a published question, **when** the session starts, **then** the tutor asks for my first attempt or current thinking and shows no hint.
+  - **Given** I select "I am not sure where to start", **when** I submit, **then** the tutor moves to the next permitted hint level instead of refusing to help.
+  - **Given** I submit an attempt, **then** it is stored with attempt number, hint level at submission, and response duration, and an audit event is recorded.
+- **Dependencies:** Question delivery (FR-02), session state machine
+- **Out of scope:** Timed or exam-mode practice
+- **Success metric:** At least 90% of incorrect or uncertain attempts receive a question before any solution is shown
+- **Non-functional notes:** Question loads in under 2 seconds
+
+#### STU-02: One focused hint at a time
+**As a** student, **I want** one focused hint at a time, **so that** I am not overwhelmed and can act on each step.
+
+- **Epic:** E1 | **Priority:** P0 | **Linked requirements:** FR-05, FR-06, Section 9.5
+- **Acceptance criteria:**
+  - **Given** any tutor turn, **then** the message contains exactly one question or request, validated against the agent output schema.
+  - **Given** the Socratic Dialogue Agent returns more than one question or exceeds the hint level, **when** the Safety Guard checks it, **then** the turn is revised or replaced by the deterministic fallback prompt.
+  - **Given** a tutor turn is delivered, **then** hint level, model, prompt version, and policy version are stored and linked to the Langfuse trace.
+- **Dependencies:** Hint Policy Engine, Safety Guard
+- **Out of scope:** Multi-step lesson mode
+- **Success metric:** At least 95% of tutor prompts match the configured hint policy
+- **Non-functional notes:** Tutor response targets under 5 seconds, streamed where possible
+
+#### STU-03: Submit working, not only a final answer
+**As a** student, **I want** the tutor to understand my working, **so that** it can find where my reasoning went wrong rather than only marking the final answer.
+
+- **Epic:** E1 | **Priority:** P0 | **Linked requirements:** FR-03, FR-04
+- **Acceptance criteria:**
+  - **Given** I submit a numeric, fraction, decimal, percentage, free-text, or multiple-choice response, **then** it is accepted and parsed.
+  - **Given** I submit an equivalent answer in a different format (for example 3/4 and 0.75), **then** the verifier treats it as equivalent.
+  - **Given** my response cannot be parsed, **then** the tutor asks me to rephrase and does not mark me wrong.
+  - **Given** the verifier returns `cannot_verify`, **then** the tutor does not claim the answer is incorrect and the turn is flagged for review if ambiguity persists.
+- **Dependencies:** Deterministic verifier
+- **Out of scope:** Handwritten or image-based working
+- **Success metric:** At least 99% alignment between tutor feedback and verifier result for supported problem types
+- **Non-functional notes:** Deterministic answer check under 500 ms
+
+#### STU-04: Feedback on why my answer is incorrect
+**As a** student, **I want** feedback on why my answer is incorrect, **so that** I can fix my thinking and not just retry.
+
+- **Epic:** E1 | **Priority:** P0 | **Linked requirements:** FR-04, FR-07, Section 12.1
+- **Acceptance criteria:**
+  - **Given** my answer is incorrect and the misconception confidence is above the configured threshold, **then** the tutor addresses that misconception in plain, age-appropriate language.
+  - **Given** misconception confidence is below the threshold, **then** the tutor asks a diagnostic question and does not state the misconception as fact.
+  - **Given** any feedback, **then** it contains no shaming, comparative, or ability-labelling language (checked by the Safety Guard).
+- **Dependencies:** Misconception Classifier, verifier
+- **Out of scope:** Showing misconception codes to students
+- **Success metric:** Misconception labels agree with human reviewer judgement at the agreed evaluation threshold
+- **Non-functional notes:** Tutor language is plain English
+
+#### STU-05: Full solution only after meaningful effort
+**As a** student, **I want** to see a full worked solution only after meaningful effort or configured support steps, **so that** I learn the method instead of copying the answer.
+
+- **Epic:** E1 | **Priority:** P0 | **Linked requirements:** FR-05, FR-06, Section 12.1
+- **Acceptance criteria:**
+  - **Given** I ask for the answer below hint level 5, **when** the Hint Policy Engine evaluates the request, **then** the tutor gives the next permitted hint and does not reveal the answer.
+  - **Given** the policy conditions for level 5 are met, **when** I request the solution, **then** a worked solution is shown and a transfer question follows.
+  - **Given** a solution is shown, **then** the audit log records hint level, attempt count, and policy version.
+  - **Given** I try to bypass the policy through prompt injection, **then** the request is blocked and logged as a safety event.
+- **Dependencies:** Hint Policy Engine, Safety Guard
+- **Out of scope:** Teacher-configured per-student policy overrides
+- **Success metric:** Answer exposed before the permitted stage in fewer than 2% of sessions
+- **Non-functional notes:** Leakage check runs deterministically on every tutor turn
+
+#### STU-06: Test understanding with a similar question
+**As a** student, **I want** to try a similar question after finishing, **so that** I can check I can solve it without help.
+
+- **Epic:** E1 | **Priority:** P0 | **Linked requirements:** FR-10
+- **Acceptance criteria:**
+  - **Given** I complete a problem, **then** a near-transfer question is offered with different context or values, drawn only from approved questions.
+  - **Given** I start the transfer question, **then** no hints are given before my first independent attempt.
+  - **Given** I complete or decline the transfer question, **then** the outcome (correct, incorrect, or skipped) is recorded, and a skipped transfer does not raise learner confidence.
+- **Dependencies:** Question bank, pgvector candidate retrieval, learner model
+- **Out of scope:** Student choice of transfer difficulty
+- **Success metric:** At least 80% of completed sessions are followed by a transfer problem
+- **Non-functional notes:** Transfer item selection is deterministic after the pgvector shortlist
+
+#### STU-07: See my progress
+**As a** student, **I want** to see my progress, **so that** I know what to practise next and can see I am improving.
+
+- **Epic:** E2 | **Priority:** P1 | **Linked requirements:** FR-08, FR-11
+- **Acceptance criteria:**
+  - **Given** I open my dashboard, **then** I see recent sessions, current skills, independent success rate, hint usage trend, transfer results, and recommended next practice.
+  - **Given** any dashboard text, **then** it uses encouraging, non-comparative language and no labels such as "weak" or "low ability".
+  - **Given** I have no completed sessions, **then** I see a friendly empty state with a suggested first question.
+  - **Given** I am a student, **then** I can only see my own data.
+- **Dependencies:** Learner model, `learner-rollup` job
+- **Out of scope:** Leaderboards or peer comparison
+- **Success metric:** Baseline engagement measured; no target before pilot
+- **Non-functional notes:** Accessible charts with text alternatives
+
+#### STU-08: Diagrams that help
+**As a** student, **I want** diagrams when they help solve the question, **so that** I can see the relationships in the problem.
+
+- **Epic:** E1 | **Priority:** P1 | **Linked requirements:** FR-09
+- **Acceptance criteria:**
+  - **Given** a question requires a diagram, **then** an approved, validated SVG is shown with a text description.
+  - **Given** the diagram fails validation or has no approved version, **then** the question is withheld and flagged for review.
+  - **Given** I use a screen reader or keyboard only, **then** the diagram has a text alternative and meaning does not depend on colour alone.
+- **Dependencies:** Diagram service, Vercel Blob storage
+- **Out of scope:** Student-drawn diagrams
+- **Success metric:** 100% of served diagrams have a stored validation result and version
+- **Non-functional notes:** Meets the accessibility requirements in Section 11.4
+
+### 6.5 Teacher and tutor stories
+
+#### EDU-01: See students needing review
+**As a** teacher, **I want** to see which students need review, **so that** I spend my time where it matters most.
+
+- **Epic:** E2 | **Priority:** P0 | **Linked requirements:** FR-12
+- **Acceptance criteria:**
+  - **Given** I open the cohort view, **then** students are prioritised using evidence such as repeated misconceptions, low transfer success, or high hint dependency, with the reason shown.
+  - **Given** a student has too little evidence, **then** the view says "not enough evidence yet" instead of flagging them.
+  - **Given** I am a teacher, **then** I only see students assigned to me.
+- **Dependencies:** Learner model, cohort assignment
+- **Out of scope:** Automated notifications to parents or students
+- **Success metric:** Teacher review time per flagged student (measured in pilot)
+- **Non-functional notes:** Loads in under 3 seconds for 150 synthetic students
+
+#### EDU-02: Understand why a student was flagged
+**As a** teacher, **I want** every flag to show its evidence, **so that** I can judge it with my own professional knowledge.
+
+- **Epic:** E2 | **Priority:** P0 | **Linked requirements:** FR-12, FR-15, Section 13.2
+- **Acceptance criteria:**
+  - **Given** a flagged student, **then** the flag lists linked attempts, skills, timing, hint levels, and sessions.
+  - **Given** any recommendation, **then** it shows confidence, limitations, suggested action, and review status.
+  - **Given** a recommendation has low confidence, **then** it is labelled as such and not presented as established fact.
+- **Dependencies:** `insight-drafts` job, audit event store
+- **Out of scope:** Placement, grading, or admissions suggestions
+- **Success metric:** At least 95% of teacher-facing claims link to source events
+- **Non-functional notes:** Evidence links respect role-based access
+
+#### EDU-03: Replay a tutoring session
+**As a** teacher, **I want** to replay a tutoring session, **so that** I can see how the student's reasoning developed without reading raw transcripts.
+
+- **Epic:** E3 | **Priority:** P0 | **Linked requirements:** FR-13
+- **Acceptance criteria:**
+  - **Given** I open a session replay for my student, **then** I see question version, diagram version, student responses, verifier result, hint level, tutor output, misconception classification, and learner-model changes per turn.
+  - **Given** I am not assigned to the student, **when** I request the replay, **then** access is denied and the denial is logged.
+  - **Given** I am an administrator or authorised reviewer, **then** each turn also links to its Langfuse trace.
+- **Dependencies:** Persisted turns, audit events, Langfuse trace IDs
+- **Out of scope:** Editing past session records
+- **Success metric:** 100% of tutor turns are replayable
+- **Non-functional notes:** Student data in traces is pseudonymised
+
+#### EDU-04: Override a recommendation
+**As a** teacher, **I want** to override a recommendation, **so that** my professional judgement always has the final say.
+
+- **Epic:** E3 | **Priority:** P0 | **Linked requirements:** FR-12, FR-15, Section 12.2
+- **Acceptance criteria:**
+  - **Given** I override a recommendation, **then** a rationale is required.
+  - **Given** the override is saved, **then** the original recommendation and evidence remain stored and unchanged.
+  - **Given** the override is saved, **then** an audit event records who, when, and why.
+  - **Given** I do not hold the teacher role for this student, **then** I cannot override.
+- **Dependencies:** Recommendation records, RBAC, audit service
+- **Out of scope:** Bulk overrides
+- **Success metric:** 100% of overrides are audit-logged (critical regression test)
+- **Non-functional notes:** Override action is idempotent
+
+#### EDU-05: Group students with similar needs
+**As a** teacher, **I want** students grouped by skill and misconception pattern, **so that** I can plan small-group activities efficiently.
+
+- **Epic:** E2 | **Priority:** P1 | **Linked requirements:** FR-12, Section 13
+- **Acceptance criteria:**
+  - **Given** I open the groups view, **then** each group shows its skill, misconception pattern, number of students and attempts, and confidence.
+  - **Given** a group rests on very little evidence, **then** it carries a visible evidence-limit warning.
+  - **Given** I am a teacher, **then** groups contain only my assigned students.
+- **Dependencies:** Misconception events, `learner-rollup` job
+- **Out of scope:** Automatic scheduling of group sessions
+- **Success metric:** Teacher-rated usefulness in pilot feedback
+- **Non-functional notes:** Groups are recomputed by background job, not per page load
+
+#### EDU-06: Review content quality
+**As a** teacher, **I want** to see questions flagged for quality problems, **so that** confusing or incorrect items are fixed before they harm learning.
+
+- **Epic:** E3 | **Priority:** P1 | **Linked requirements:** FR-02, FR-14
+- **Acceptance criteria:**
+  - **Given** a question is flagged (answer-key inconsistency, ambiguity, unexpected difficulty, duplicate, and so on), **then** it appears in the review queue with the reason and supporting evidence.
+  - **Given** a content reviewer approves, rejects, or deprecates an item, **then** the decision is recorded and the item's publication status updates accordingly.
+  - **Given** an item is flagged, **then** it is not served to students until cleared.
+  - **Given** an item is modified, **then** it is not republished without approval.
+- **Dependencies:** `item-quality-scan` job, pgvector duplicate detection
+- **Out of scope:** Autonomous question regeneration for learners
+- **Success metric:** Time from flag to review decision
+- **Non-functional notes:** Only content reviewers and administrators can change publication status
+
+#### EDU-07: Export an intervention summary
+**As a** teacher, **I want** to export an intervention summary, **so that** I can prepare human-approved communication or notes.
+
+- **Epic:** E2 | **Priority:** P2 | **Linked requirements:** FR-12, Section 12.2
+- **Acceptance criteria:**
+  - **Given** I export a summary, **then** it is labelled as an AI-drafted summary requiring human review and includes evidence and limitations.
+  - **Given** I export, **then** an audit event records the export.
+  - **Given** an export, **then** nothing is sent to parents or students automatically.
+- **Dependencies:** Recommendation records, Vercel Blob (if stored)
+- **Out of scope:** Automated parent messaging
+- **Success metric:** Not applicable for MVP
+- **Non-functional notes:** Exports are not stored at publicly guessable URLs
+
+### 6.6 Platform administration stories
+
+#### ADM-01: Manage roles
+**As an** administrator, **I want** to manage roles and assignments, **so that** people only access the data their role and cohort allow.
+
+- **Epic:** E4 | **Priority:** P0 | **Linked requirements:** FR-01
+- **Acceptance criteria:**
+  - **Given** I assign a role or cohort, **then** server-side permissions reflect it immediately.
+  - **Given** a user requests data outside their scope, **then** the request is denied and logged.
+  - **Given** the Parent role, **then** it exists as reserved but grants no access in the MVP.
+- **Dependencies:** Identity provider, RBAC layer
+- **Out of scope:** Self-service role requests
+- **Success metric:** 100% of authorisation tests pass for all roles
+- **Non-functional notes:** Authorisation enforced in the API and database layer
+
+#### ADM-02: Audit trail
+**As an** administrator, **I want** an audit trail, **so that** every access, AI action, and human decision can be reviewed.
+
+- **Epic:** E4 | **Priority:** P0 | **Linked requirements:** FR-15
+- **Acceptance criteria:**
+  - **Given** any listed event (login, record access, question selection, attempt, verifier result, model call, tool call, hint decision, override, export, error), **then** an append-only audit record is created.
+  - **Given** I try to update or delete an audit record through the application, **then** the action is impossible.
+  - **Given** I search the audit viewer, **then** I can filter by user, student, event type, and time.
+- **Dependencies:** Audit service, append-only table
+- **Out of scope:** External SIEM integration
+- **Success metric:** Audit completeness at 100% of defined events
+- **Non-functional notes:** Audit writes must not be skippable by feature code
+
+#### ADM-03: Review AI quality issues
+**As an** administrator, **I want** to review AI quality issues, **so that** I can find and fix tutoring problems quickly.
+
+- **Epic:** E4 | **Priority:** P1 | **Linked requirements:** Section 11.2, Section 14.4
+- **Acceptance criteria:**
+  - **Given** a verifier mismatch, answer-leakage event, schema failure, or safety incident occurs, **then** it appears in the quality-issue list with a link to its trace.
+  - **Given** I mark an issue as triaged, **then** the decision and notes are recorded.
+- **Dependencies:** Langfuse scores, safety events
+- **Out of scope:** Automatic prompt rollback
+- **Success metric:** Mean time to triage flagged AI issues
+- **Non-functional notes:** Access limited to administrators and authorised reviewers
+
+#### ADM-04: Content publishing controls
+**As an** administrator, **I want** only validated and approved questions to be available to students, **so that** learners never see unreviewed content.
+
+- **Epic:** E4 | **Priority:** P0 | **Linked requirements:** FR-02, FR-14
+- **Acceptance criteria:**
+  - **Given** a question is draft, rejected, deprecated, flagged, or pending review, **then** it is never served to students.
+  - **Given** a question is published, **then** it has `validation_status = approved`, `publication_status = published`, and an enabled curriculum scope.
+  - **Given** vector search or the practice planner returns candidates, **then** unapproved items are filtered out.
+- **Dependencies:** Question versioning, review workflow
+- **Out of scope:** Bulk auto-publishing
+- **Success metric:** Zero unapproved questions delivered (critical regression test)
+- **Non-functional notes:** Publication status changes are audit-logged
+
+#### ADM-05: Model and prompt traceability
+**As an** administrator, **I want** every AI-generated tutor turn to record its model, prompt, and policy versions, **so that** I can explain and reproduce any tutoring decision.
+
+- **Epic:** E4 | **Priority:** P0 | **Linked requirements:** Section 9.6, Section 15.5
+- **Acceptance criteria:**
+  - **Given** a tutor turn is generated, **then** it stores model name and version, prompt template version, hint-policy version, tool results, and the Langfuse trace ID.
+  - **Given** I open a turn, **then** I can navigate from the stored record to its trace.
+  - **Given** a prompt or model changes, **then** the evaluation suite runs before production deployment.
+- **Dependencies:** Langfuse prompt management, CI evaluation gate
+- **Out of scope:** Automated A/B routing
+- **Success metric:** 100% of tutor turns have complete trace metadata
+- **Non-functional notes:** Trace data is pseudonymised
+
+### 6.7 Story summary and release map
+
+| ID | Title | Epic | Priority | Linked requirements |
+| --- | --- | --- | --- | --- |
+| STU-01 | Attempt before guidance | E1 | P0 | FR-03, FR-05, FR-06 |
+| STU-02 | One focused hint at a time | E1 | P0 | FR-05, FR-06 |
+| STU-03 | Submit working, not only a final answer | E1 | P0 | FR-03, FR-04 |
+| STU-04 | Feedback on why my answer is incorrect | E1 | P0 | FR-04, FR-07 |
+| STU-05 | Full solution only after meaningful effort | E1 | P0 | FR-05, FR-06 |
+| STU-06 | Test understanding with a similar question | E1 | P0 | FR-10 |
+| STU-07 | See my progress | E2 | P1 | FR-08, FR-11 |
+| STU-08 | Diagrams that help | E1 | P1 | FR-09 |
+| EDU-01 | See students needing review | E2 | P0 | FR-12 |
+| EDU-02 | Understand why a student was flagged | E2 | P0 | FR-12, FR-15 |
+| EDU-03 | Replay a tutoring session | E3 | P0 | FR-13 |
+| EDU-04 | Override a recommendation | E3 | P0 | FR-12, FR-15 |
+| EDU-05 | Group students with similar needs | E2 | P1 | FR-12 |
+| EDU-06 | Review content quality | E3 | P1 | FR-02, FR-14 |
+| EDU-07 | Export an intervention summary | E2 | P2 | FR-12 |
+| ADM-01 | Manage roles | E4 | P0 | FR-01 |
+| ADM-02 | Audit trail | E4 | P0 | FR-15 |
+| ADM-03 | Review AI quality issues | E4 | P1 | Sections 11.2, 14.4 |
+| ADM-04 | Content publishing controls | E4 | P0 | FR-02, FR-14 |
+| ADM-05 | Model and prompt traceability | E4 | P0 | Sections 9.6, 15.5 |
 
 ---
 
@@ -1737,6 +2052,7 @@ The MVP may be demonstrated when all of the following are true:
 - [ ] Vercel Cron jobs run on schedule, are idempotent, and report status.
 - [ ] All secrets are stored in Vercel Environment Variables; no secrets in the repository or client bundle.
 - [ ] GitHub Actions pipeline enforces lint, tests, evals, and deploy gates.
+- [ ] All P0 user stories meet the Definition of Done ([Section 6.3](#63-definition-of-ready-and-definition-of-done)).
 - [ ] Documentation includes architecture, threat model, evaluation report, and operational runbook.
 
 ---

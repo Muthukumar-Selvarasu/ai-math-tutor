@@ -69,6 +69,8 @@ class Turn(Base):
     session_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("sessions.id"))
     role: Mapped[str] = mapped_column(String(50))  # user, assistant, system
     content: Mapped[str] = mapped_column(Text)
+    model_metadata: Mapped[Optional[dict]] = mapped_column(JSON)
+    langfuse_trace_id: Mapped[Optional[str]] = mapped_column(String(255))
     created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
 
 class AuditEvent(Base):

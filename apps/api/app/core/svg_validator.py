@@ -1,5 +1,6 @@
 import re
 
+
 def sanitize_svg(svg_content: str) -> bool:
     """
     Validates and sanitizes an SVG. Returns True if valid and safe, False otherwise.

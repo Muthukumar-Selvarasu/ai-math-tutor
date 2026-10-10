@@ -32,6 +32,9 @@ dev = [
 line-length = 88
 target-version = "py312"
 
+[tool.ruff.lint]
+ignore = ["B008", "ASYNC230", "S110", "BLE001"]
+
 [tool.black]
 line-length = 88
 target-version = ['py312']

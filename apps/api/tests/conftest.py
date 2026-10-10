@@ -1,6 +1,6 @@
-import pytest
 import pytest_asyncio
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
+
 from app.db.models import Base
 
 # We use an in-memory SQLite DB for tests

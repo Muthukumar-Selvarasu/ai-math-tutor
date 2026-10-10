@@ -1,6 +1,5 @@
-import pytest
-import sympy
-from app.verifier.core import verify_equivalence, preprocess_expression
+from app.verifier.core import preprocess_expression, verify_equivalence
+
 
 def test_preprocess_expression():
     assert preprocess_expression("75%") == "75.0/100"

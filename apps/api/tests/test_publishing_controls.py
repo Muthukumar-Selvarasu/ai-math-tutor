@@ -1,6 +1,8 @@
 import pytest
 from sqlalchemy import select
+
 from app.db.models import Question
+
 
 @pytest.mark.asyncio
 async def test_student_query_filters_unapproved(async_session):

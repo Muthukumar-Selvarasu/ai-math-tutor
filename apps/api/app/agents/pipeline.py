@@ -1,6 +1,6 @@
-import json
 import logging
-from typing import Dict, Any, Optional
+from typing import Any
+
 
 # Assuming Google ADK module names for this mockup.
 # In a real environment, replace these with actual adk imports.
@@ -8,7 +8,7 @@ from typing import Dict, Any, Optional
 class BaseAgent:
     def __init__(self, name: str):
         self.name = name
-    def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
+    def run(self, state: dict[str, Any]) -> dict[str, Any]:
         return state
 
 class LlmAgent(BaseAgent):
@@ -21,7 +21,7 @@ class SequentialAgent(BaseAgent):
     def __init__(self, name: str, agents: list):
         super().__init__(name)
         self.agents = agents
-    def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
+    def run(self, state: dict[str, Any]) -> dict[str, Any]:
         for agent in self.agents:
             state = agent.run(state)
         return state
@@ -31,7 +31,7 @@ class LoopAgent(BaseAgent):
         super().__init__(name)
         self.agent = agent
         self.max_iterations = max_iterations
-    def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
+    def run(self, state: dict[str, Any]) -> dict[str, Any]:
         for _ in range(self.max_iterations):
             state = self.agent.run(state)
             if state.get("loop_exit_condition"):
@@ -44,7 +44,7 @@ class ProblemContextAgent(BaseAgent):
     def __init__(self):
         super().__init__("ProblemContextAgent")
         
-    def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
+    def run(self, state: dict[str, Any]) -> dict[str, Any]:
         # Load question context into state
         # In real impl, query DB here
         state["problem_context_loaded"] = True
@@ -54,7 +54,7 @@ class MathVerifierAgent(BaseAgent):
     def __init__(self):
         super().__init__("MathVerifierAgent")
         
-    def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
+    def run(self, state: dict[str, Any]) -> dict[str, Any]:
         # Call SymPy verifier core.py
         # Here we mock it
         student_response = state.get("student_response", "")
@@ -69,7 +69,7 @@ class HintPolicyEngine(BaseAgent):
     def __init__(self):
         super().__init__("HintPolicyEngine")
         
-    def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
+    def run(self, state: dict[str, Any]) -> dict[str, Any]:
         # Calculate allowed hint level
         state["hint_level_allowed"] = 1
         return state
@@ -78,7 +78,7 @@ class SafetyGuard(BaseAgent):
     def __init__(self):
         super().__init__("SafetyGuard")
         
-    def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
+    def run(self, state: dict[str, Any]) -> dict[str, Any]:
         # Check for answer leakage
         candidate_response = state.get("candidate_response", "")
         if "8" in candidate_response and state.get("hint_level_allowed", 0) < 5:
@@ -93,13 +93,13 @@ def create_tutoring_pipeline():
     student_state_agent = LlmAgent(
         name="StudentStateAgent",
         prompt="Estimate student understanding",
-        output_schema=Dict[str, Any]
+        output_schema=dict[str, Any]
     )
     
     misconception_classifier = LlmAgent(
         name="MisconceptionClassifierAgent",
         prompt="Classify misconception",
-        output_schema=Dict[str, Any]
+        output_schema=dict[str, Any]
     )
     
     socratic_dialogue = LlmAgent(

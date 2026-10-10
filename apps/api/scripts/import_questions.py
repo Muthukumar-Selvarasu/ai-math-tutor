@@ -3,15 +3,17 @@ import json
 import os
 import sys
 import uuid
+
 from pydantic import ValidationError
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
 from sqlalchemy import select
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
 # Add app to path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from app.db.models import Question, Skill
 from app.schemas.question import QuestionImportItem
+
 
 async def main():
     database_url = os.getenv("DATABASE_URL", "postgresql+asyncpg://postgres:postgres@localhost:5432/ai_math_tutor")
@@ -27,7 +29,7 @@ async def main():
         try:
             questions_data = json.load(f)
         except json.JSONDecodeError as e:
-            print(f"Failed to parse seed file: {str(e)}")
+            print(f"Failed to parse seed file: {e!s}")
             sys.exit(1)
 
     async with async_session() as session:

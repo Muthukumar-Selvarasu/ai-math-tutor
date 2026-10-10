@@ -1,6 +1,7 @@
-from fastapi import FastAPI, Depends
+from fastapi import Depends, FastAPI
 from fastapi.testclient import TestClient
-from app.core.auth import get_current_user, require_roles
+
+from app.core.auth import require_roles
 
 app = FastAPI()
 

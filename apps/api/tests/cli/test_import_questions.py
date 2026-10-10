@@ -1,8 +1,11 @@
-import pytest
 import json
 import os
+
+import pytest
 from pydantic import ValidationError
+
 from app.schemas.question import QuestionImportItem
+
 
 def test_seed_questions_validation():
     seed_file = os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'seed_questions.json')

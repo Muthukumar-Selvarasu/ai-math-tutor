@@ -1,14 +1,14 @@
-import re
+
 import sympy
-from typing import Any, Dict, Optional, Union
 from pydantic import BaseModel
+
 
 class VerifierResult(BaseModel):
     is_correct: bool
     is_equivalent: bool
     status: str  # 'verified' or 'cannot_verify'
-    error_reason: Optional[str] = None
-    feedback: Optional[str] = None
+    error_reason: str | None = None
+    feedback: str | None = None
 
 def preprocess_expression(expr_str: str) -> str:
     """Preprocess strings to handle percentages and ratios."""
@@ -33,7 +33,7 @@ def preprocess_expression(expr_str: str) -> str:
             
     return expr_str
 
-def verify_equivalence(student_response: str, expected_answer: str, tolerance: Optional[float] = None) -> VerifierResult:
+def verify_equivalence(student_response: str, expected_answer: str, tolerance: float | None = None) -> VerifierResult:
     """
     Verifies if a student response is mathematically equivalent to the expected answer.
     Never fails silently; uses fail-loud error handling to return 'cannot_verify' for unparseable input.
@@ -72,8 +72,8 @@ def verify_equivalence(student_response: str, expected_answer: str, tolerance: O
             is_correct=False,
             is_equivalent=False,
             status="cannot_verify",
-            error_reason=f"Failed to parse or evaluate expression: {str(e)}"
+            error_reason=f"Failed to parse or evaluate expression: {e!s}"
         )
     except Exception as e:
         # Fail loud on unexpected errors
-        raise RuntimeError(f"Unexpected verifier exception: {str(e)}") from e
+        raise RuntimeError(f"Unexpected verifier exception: {e!s}") from e

@@ -1,16 +1,17 @@
-import uuid
 import hashlib
-from typing import Optional
-from sqlalchemy.ext.asyncio import AsyncSession
+import uuid
+
 from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.models import Question
+
 
 async def get_transfer_question(
     db: AsyncSession,
     original_question_id: uuid.UUID,
     student_id: uuid.UUID
-) -> Optional[Question]:
+) -> Question | None:
     """
     Retrieves a near-transfer question using pgvector.
     Finds top-5 matching approved questions with similar skill,
@@ -44,7 +45,7 @@ async def get_transfer_question(
         
     # 3. Deterministic selection without LLM randomness
     # We hash the student_id and original_question_id to pick a stable index.
-    hash_input = f"{student_id}-{original_question_id}".encode('utf-8')
+    hash_input = f"{student_id}-{original_question_id}".encode()
     stable_hash = int(hashlib.md5(hash_input).hexdigest(), 16)
     selected_index = stable_hash % len(candidates)
     

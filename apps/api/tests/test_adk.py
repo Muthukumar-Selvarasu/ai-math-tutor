@@ -1,9 +1,7 @@
 import os
-import pytest
-from langfuse import observe
+
 from google import genai
-from google.genai import types
-from langfuse import Langfuse
+from langfuse import Langfuse, observe
 
 # Configure mock credentials for testing if they don't exist
 os.environ.setdefault("GEMINI_API_KEY", "mock_key")

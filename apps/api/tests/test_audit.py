@@ -1,8 +1,11 @@
-import pytest
 import uuid
+
+import pytest
+from sqlalchemy import select
+
 from app.core.audit import AuditLogger
 from app.db.models import AuditEvent
-from sqlalchemy import select
+
 
 @pytest.mark.asyncio
 async def test_audit_log_event(async_session):

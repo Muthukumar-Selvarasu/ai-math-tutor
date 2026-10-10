@@ -1,6 +1,6 @@
+from collections.abc import Callable
+
 from fastapi import Depends, HTTPException, Request, status
-from typing import Callable, List, Optional
-import os
 
 # For MVP, we will simulate a JWT token check based on Headers since we don't have Auth0 setup
 # In real prod, this will use pyjwt to verify against AUTH_JWKS_URL
@@ -24,7 +24,7 @@ def get_current_user(request: Request) -> UserContext:
         
     return UserContext(user_id=user_id, role=role)
 
-def require_roles(allowed_roles: List[str]) -> Callable:
+def require_roles(allowed_roles: list[str]) -> Callable:
     def role_checker(user: UserContext = Depends(get_current_user)):
         if user.role not in allowed_roles:
             # Here we would normally log the access violation to the audit table

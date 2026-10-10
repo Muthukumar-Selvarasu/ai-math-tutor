@@ -1,11 +1,12 @@
-import pytest
 import uuid
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import text
 
-from app.learner_model.updater import update_learner_mastery
+import pytest
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.db.models import Question
 from app.learner_model.transfer import get_transfer_question
-from app.db.models import User, Skill, Question, LearnerModel
+from app.learner_model.updater import update_learner_mastery
+
 
 @pytest.mark.asyncio
 async def test_update_learner_mastery_correct(async_session: AsyncSession):
@@ -84,7 +85,7 @@ async def test_get_transfer_question(async_session: AsyncSession):
         selected_q = await get_transfer_question(async_session, orig_q.id, student_id)
         assert selected_q is not None
         assert selected_q.id == candidate_q.id
-    except Exception as e:
+    except Exception:
         # If pgvector is not supported in sqlite memory db, we assert we reach here or we can just mock it.
         # Ideally, we should patch get_transfer_question internals for this unit test if it needs DB.
         pass

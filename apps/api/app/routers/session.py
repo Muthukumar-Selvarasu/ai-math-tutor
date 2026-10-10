@@ -1,14 +1,14 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from pydantic import BaseModel
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
 import uuid
-from typing import List
 
-from app.schemas.session import SessionCreate, SessionResponse, TurnCreate, TurnResponse, SessionAttemptCreate
-from app.core.auth import get_current_user, UserContext
-from app.db.models import Session, Turn, Question
-from app.core.audit import AuditLogger
+from fastapi import APIRouter, Depends, status
+
+from app.core.auth import UserContext, get_current_user
+from app.schemas.session import (
+    SessionAttemptCreate,
+    SessionCreate,
+    SessionResponse,
+    TurnResponse,
+)
 
 router = APIRouter()
 
@@ -24,7 +24,6 @@ async def create_session(
     """
     Start a new tutoring session for a specific question.
     """
-    pass
 
 @router.get("/sessions/{session_id}", response_model=SessionResponse)
 async def get_session(
@@ -34,7 +33,6 @@ async def get_session(
     """
     Get session state and history.
     """
-    pass
 
 @router.post("/sessions/{session_id}/turns", response_model=TurnResponse)
 async def submit_turn(
@@ -45,7 +43,6 @@ async def submit_turn(
     """
     Submit a student attempt and orchestrate the tutor's Socratic response.
     """
-    pass
 
 @router.get("/sessions/{session_id}/transfer_question")
 async def get_session_transfer_question(
@@ -56,7 +53,6 @@ async def get_session_transfer_question(
     Gets a near-transfer question for a completed session.
     """
     # In a real implementation this would use dependency injection for DB
-    pass
 
 @router.post("/sessions/{session_id}/transfer_outcome")
 async def submit_transfer_outcome(
@@ -67,4 +63,3 @@ async def submit_transfer_outcome(
     """
     Submit outcome of transfer question to update learner model.
     """
-    pass

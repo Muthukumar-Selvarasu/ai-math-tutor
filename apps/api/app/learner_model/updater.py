@@ -1,9 +1,11 @@
 import uuid
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
-from datetime import datetime
+from datetime import UTC, datetime
 
-from app.db.models import LearnerModel, User, Skill
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.db.models import LearnerModel
+
 
 async def update_learner_mastery(
     db: AsyncSession,
@@ -33,7 +35,7 @@ async def update_learner_mastery(
 
     if outcome == 'skipped':
         # Skipped transfer does not raise confidence or mastery
-        learner_model.last_updated = datetime.utcnow()
+        learner_model.last_updated = datetime.now(UTC)
         await db.commit()
         await db.refresh(learner_model)
         return learner_model
@@ -54,7 +56,7 @@ async def update_learner_mastery(
     # Confidence increases asymptotically to 1.0 based on attempts
     learner_model.confidence_score = min(1.0, 1.0 - (1.0 / (learner_model.attempts + 1)))
     
-    learner_model.last_updated = datetime.utcnow()
+    learner_model.last_updated = datetime.now(UTC)
     
     await db.commit()
     await db.refresh(learner_model)

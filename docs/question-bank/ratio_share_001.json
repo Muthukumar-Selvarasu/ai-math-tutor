@@ -1,0 +1,188 @@
+{
+    "question_id": "ratio_share_001",
+    "version": 1,
+    "validation_status": "pending",
+    "publication_status": "draft",
+    "flagged": false,
+    "curriculum": {
+        "jurisdiction": "VIC",
+        "year_level": 7,
+        "topic": "Number and Algebra",
+        "subtopic": "Real numbers - Ratio and rate",
+        "curriculum_code": "VC2M7N08",
+        "foundation_curriculum_code": "VC2M6N07"
+    },
+    "skill_id": "ratio_sharing",
+    "subskill": "part_sharing_total",
+    "learning_objective": "Divide an amount into a given two-term ratio and calculate a specific share.",
+    "difficulty": {
+        "band": "intermediate",
+        "estimated_difficulty": 0.45,
+        "reasoning_depth": 3
+    },
+    "title": "Sharing $60 in 2:3",
+    "problem_type": "word_problem",
+    "stem": "Share $60 between Leo and Maya in the ratio 2 : 3. What is Maya's share in dollars?",
+    "accepted_answer_spec": {
+        "type": "numeric",
+        "canonical_value": "36",
+        "unit": "$",
+        "answer_requires_unit": false,
+        "tolerance": 0.0,
+        "accepted_forms": [
+            "36",
+            "$36"
+        ],
+        "valid_alternatives": [],
+        "rounding_rule": "none"
+    },
+    "solution_steps": [
+        {
+            "step_id": "step_1",
+            "description": "Find total number of parts",
+            "target_expression": "2 + 3",
+            "target_value": "5",
+            "unit": "parts",
+            "permitted_scaffold_step": "Add the ratio terms 2 and 3 to find total parts"
+        },
+        {
+            "step_id": "step_2",
+            "description": "Calculate value of one single part",
+            "target_expression": "60 / 5",
+            "target_value": "12",
+            "unit": "$",
+            "permitted_scaffold_step": "Divide 60 by 5 to find one part"
+        },
+        {
+            "step_id": "step_3",
+            "description": "Multiply value per part by Maya's 3 parts",
+            "target_expression": "12 * 3",
+            "target_value": "36",
+            "unit": "$"
+        }
+    ],
+    "alternate_solution_paths": [
+        {
+            "path_id": "primary",
+            "steps": [
+                "step_1",
+                "step_2",
+                "step_3"
+            ]
+        }
+    ],
+    "method_leak_patterns": {
+        "operations": [
+            "divide",
+            "multiply",
+            "add"
+        ],
+        "step_phrases": [
+            "find one part",
+            "five parts total",
+            "twelve dollars per part"
+        ],
+        "blocked_below_level": 4
+    },
+    "scaffold_probes": [
+        {
+            "probe_id": "probe_1",
+            "kind": "value",
+            "min_level": 1,
+            "template": "How many total equal parts are there in the ratio 2 : 3?",
+            "expected_expression": "2 + 3",
+            "expected_value": "5",
+            "unit": "parts",
+            "counts_as_step_id": "step_1"
+        },
+        {
+            "probe_id": "probe_2",
+            "kind": "value",
+            "min_level": 2,
+            "template": "How much is one single part worth if 5 parts equal $60?",
+            "expected_expression": "60 / 5",
+            "expected_value": "12",
+            "unit": "$",
+            "counts_as_step_id": "step_2"
+        }
+    ],
+    "misconception_predictions": [
+        {
+            "predicted_response": "24",
+            "misconception_code": "ratio_reversal",
+            "confidence": 0.90,
+            "rationale": "Student found Leo's share (2 parts = 24) instead of Maya's share."
+        },
+        {
+            "predicted_response": "20",
+            "misconception_code": "unit_rate_error",
+            "confidence": 0.90,
+            "rationale": "Student divided 60 directly by 3 without accounting for total parts."
+        },
+        {
+            "predicted_response": "57",
+            "misconception_code": "ratio_additive_interpretation",
+            "confidence": 0.90,
+            "rationale": "Student subtracted 3 from 60 instead of dividing."
+        }
+    ],
+    "isomorphic_worked_example": {
+        "stem": "Share $50 in ratio 2 : 3. What is the larger share?",
+        "solution_steps": [
+            {
+                "description": "Total parts = 2 + 3 = 5",
+                "target_value": "5"
+            },
+            {
+                "description": "1 part = 50 ÷ 5 = 10",
+                "target_value": "10"
+            },
+            {
+                "description": "Larger share = 10 × 3 = 30",
+                "target_value": "30"
+            }
+        ],
+        "final_answer": "30"
+    },
+    "reasoning_options": [
+        {
+            "option_id": "opt_parts",
+            "label": "Found the value of 1 part and multiplied by 3"
+        },
+        {
+            "option_id": "opt_diff",
+            "label": "Divided $60 by 3"
+        }
+    ],
+    "misconception_tags": [
+        "ratio_reversal",
+        "unit_rate_error",
+        "ratio_additive_interpretation"
+    ],
+    "reflection": {
+        "prompt_template": "You calculated Maya's share as {student_value}. How could you check your answer using Leo's share?",
+        "options": [
+            {
+                "option_id": "refl_1",
+                "label": "Add Leo's share (24) to Maya's share (36) to check they sum to $60",
+                "sound": true,
+                "feedback": "Exactly! Checking that both shares add back up to the total is a great verification step."
+            },
+            {
+                "option_id": "refl_2",
+                "label": "Subtract 2 from 3 to check it equals 1",
+                "sound": false,
+                "feedback": "That checks the ratio difference, but not whether the dollar amounts match the total."
+            },
+            {
+                "option_id": "refl_3",
+                "label": "Multiply 36 by 2",
+                "sound": false,
+                "feedback": "Multiplying the share does not confirm the initial $60 total."
+            }
+        ]
+    },
+    "socratic_prompt_set_id": "socratic_ratio_share",
+    "has_diagram": false,
+    "diagram_id": null
+}

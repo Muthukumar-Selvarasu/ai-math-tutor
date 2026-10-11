@@ -1,0 +1,153 @@
+{
+    "question_id": "ratio_unit_002",
+    "version": 1,
+    "validation_status": "pending",
+    "publication_status": "draft",
+    "flagged": false,
+    "curriculum": {
+        "jurisdiction": "VIC",
+        "year_level": 7,
+        "topic": "Number and Algebra",
+        "subtopic": "Real numbers - Ratio and rate",
+        "curriculum_code": "VC2M7N08",
+        "foundation_curriculum_code": "VC2M6N07"
+    },
+    "skill_id": "ratio_unitary",
+    "subskill": "scaling_given_one_part",
+    "learning_objective": "Find an unknown quantity when given a ratio and the value of one part.",
+    "difficulty": {
+        "band": "intermediate",
+        "estimated_difficulty": 0.40,
+        "reasoning_depth": 2
+    },
+    "title": "Paint Mixing 2:5",
+    "problem_type": "word_problem",
+    "stem": "Yellow paint and white paint are mixed in the ratio 2 : 5. If a painter uses 12 litres of yellow paint, how many litres of white paint are needed?",
+    "accepted_answer_spec": {
+        "type": "numeric",
+        "canonical_value": "30",
+        "unit": "L",
+        "answer_requires_unit": false,
+        "tolerance": 0.0,
+        "accepted_forms": [
+            "30",
+            "30 L",
+            "30L"
+        ],
+        "valid_alternatives": [],
+        "rounding_rule": "none"
+    },
+    "solution_steps": [
+        {
+            "step_id": "step_1",
+            "description": "Find the value of one part from yellow paint",
+            "target_expression": "12 / 2",
+            "target_value": "6",
+            "unit": "L",
+            "permitted_scaffold_step": "Divide 12 by 2 to find 1 part"
+        },
+        {
+            "step_id": "step_2",
+            "description": "Calculate white paint required",
+            "target_expression": "6 * 5",
+            "target_value": "30",
+            "unit": "L"
+        }
+    ],
+    "alternate_solution_paths": [
+        {
+            "path_id": "primary",
+            "steps": [
+                "step_1",
+                "step_2"
+            ]
+        }
+    ],
+    "method_leak_patterns": {
+        "operations": [
+            "multiply",
+            "divide"
+        ],
+        "step_phrases": [
+            "six litres per part",
+            "multiply by five"
+        ],
+        "blocked_below_level": 4
+    },
+    "scaffold_probes": [
+        {
+            "probe_id": "probe_1",
+            "kind": "value",
+            "min_level": 1,
+            "template": "If 2 parts of yellow equal 12 litres, how many litres is 1 part?",
+            "expected_expression": "12 / 2",
+            "expected_value": "6",
+            "unit": "L",
+            "counts_as_step_id": "step_1"
+        }
+    ],
+    "misconception_predictions": [
+        {
+            "predicted_response": "15",
+            "misconception_code": "ratio_additive_interpretation",
+            "confidence": 0.90,
+            "rationale": "Student noted difference 5 - 2 = 3, so added 3 to 12 (12 + 3 = 15)."
+        },
+        {
+            "predicted_response": "4.8",
+            "misconception_code": "scale_direction_error",
+            "confidence": 0.90,
+            "rationale": "Student inverted the scale ratio and multiplied 12 by 2/5."
+        }
+    ],
+    "isomorphic_worked_example": {
+        "stem": "Water and juice are mixed 3 : 7. Given 9 L of water, find juice.",
+        "solution_steps": [
+            {
+                "description": "1 part = 9 ÷ 3 = 3 L",
+                "target_value": "3"
+            },
+            {
+                "description": "Juice = 3 × 7 = 21 L",
+                "target_value": "21"
+            }
+        ],
+        "final_answer": "21"
+    },
+    "reasoning_options": [
+        {
+            "option_id": "opt_scale",
+            "label": "Found 1 part = 6 L, then multiplied by 5"
+        }
+    ],
+    "misconception_tags": [
+        "ratio_additive_interpretation",
+        "scale_direction_error"
+    ],
+    "reflection": {
+        "prompt_template": "You calculated {student_value} litres of white paint. How does the ratio 12 : 30 compare to 2 : 5?",
+        "options": [
+            {
+                "option_id": "refl_1",
+                "label": "Both simplify to the same simplest form when divided by 6",
+                "sound": true,
+                "feedback": "Exactly! Equivalent ratios maintain the same simplest form."
+            },
+            {
+                "option_id": "refl_2",
+                "label": "12 and 30 are both multiples of 10",
+                "sound": false,
+                "feedback": "12 is not a multiple of 10."
+            },
+            {
+                "option_id": "refl_3",
+                "label": "Their difference is 18",
+                "sound": false,
+                "feedback": "The difference between terms does not determine equivalence."
+            }
+        ]
+    },
+    "socratic_prompt_set_id": "socratic_ratio_unit",
+    "has_diagram": false,
+    "diagram_id": null
+}

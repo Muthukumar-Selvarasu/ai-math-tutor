@@ -8,6 +8,10 @@ export default function PracticePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [answerInput, setAnswerInput] = useState("");
+  const [selectedReasoningOption, setSelectedReasoningOption] = useState("");
+  const [confidenceRating, setConfidenceRating] = useState("");
+  const [stepInput, setStepInput] = useState("");
+  const [noteInput, setNoteInput] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [auditLog, setAuditLog] = useState([]);
   const [startTime, setStartTime] = useState(Date.now());
@@ -101,15 +105,19 @@ export default function PracticePage() {
     const duration = Date.now() - startTime;
 
     try {
+      const payload = {
+        event: "submit",
+        answer_text: answerInput.trim(),
+        response_target: "final",
+        selected_reasoning_option: selectedReasoningOption || undefined,
+        confidence_rating: confidenceRating ? parseInt(confidenceRating, 10) : undefined,
+        response_duration_ms: duration,
+      };
+
       const res = await fetch(`/api/sessions/${sessionData.session.id}/events`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          event: "submit",
-          answer_text: answerInput.trim(),
-          response_target: "final",
-          response_duration_ms: duration,
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!res.ok) {
@@ -127,15 +135,162 @@ export default function PracticePage() {
         setAuditLog((prev) => [
           ...prev,
           {
-            event_type: "attempt_submitted",
+            event_type: result.audit_event.event_type || "attempt_submitted",
             timestamp: new Date().toLocaleTimeString(),
-            details: `Attempt #${result.attempt.attempt_number} submitted ("${answerInput}", Level ${result.attempt.hint_level}, duration: ${duration}ms)`,
+            details: `Submitted: "${answerInput}" (Level ${result.session.hint_level}, duration: ${duration}ms)`,
           },
         ]);
       }
 
       setAnswerInput("");
       setStartTime(Date.now());
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  // Handle Option-Only Strategy Submission
+  async function handleReasoningSubmit() {
+    if (!sessionData || submitting || !selectedReasoningOption) return;
+    setSubmitting(true);
+    const duration = Date.now() - startTime;
+
+    try {
+      const payload = {
+        event: "submit",
+        selected_reasoning_option: selectedReasoningOption,
+        confidence_rating: confidenceRating ? parseInt(confidenceRating, 10) : undefined,
+        response_duration_ms: duration,
+      };
+
+      const res = await fetch(`/api/sessions/${sessionData.session.id}/events`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Error: ${res.statusText}`);
+      }
+
+      const result = await res.json();
+      setSessionData((prev) => ({
+        ...prev,
+        session: result.session,
+        tutor: result.tutor,
+      }));
+
+      if (result.audit_event) {
+        setAuditLog((prev) => [
+          ...prev,
+          {
+            event_type: "reasoning_option_selected",
+            timestamp: new Date().toLocaleTimeString(),
+            details: `Strategy selected: "${selectedReasoningOption}" (duration: ${duration}ms)`,
+          },
+        ]);
+      }
+      setStartTime(Date.now());
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  // Handle Working Step Submission
+  async function handleStepSubmit() {
+    if (!sessionData || submitting || !stepInput.trim()) return;
+    setSubmitting(true);
+    const duration = Date.now() - startTime;
+
+    try {
+      const payload = {
+        event: "submit",
+        step_expressions: [stepInput.trim()],
+        response_target: "step",
+        selected_reasoning_option: selectedReasoningOption || undefined,
+        confidence_rating: confidenceRating ? parseInt(confidenceRating, 10) : undefined,
+        response_duration_ms: duration,
+      };
+
+      const res = await fetch(`/api/sessions/${sessionData.session.id}/events`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Error: ${res.statusText}`);
+      }
+
+      const result = await res.json();
+      setSessionData((prev) => ({
+        ...prev,
+        session: result.session,
+        tutor: result.tutor,
+      }));
+
+      if (result.audit_event) {
+        setAuditLog((prev) => [
+          ...prev,
+          {
+            event_type: result.audit_event.event_type || "step_submitted",
+            timestamp: new Date().toLocaleTimeString(),
+            details: `Working step submitted: "${stepInput}" (duration: ${duration}ms)`,
+          },
+        ]);
+      }
+
+      setStepInput("");
+      setStartTime(Date.now());
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  // Handle Note to Teacher
+  async function handleSaveNote() {
+    if (!sessionData || submitting || !noteInput.trim()) return;
+    setSubmitting(true);
+
+    try {
+      const payload = {
+        event: "note",
+        note_text: noteInput.trim(),
+      };
+
+      const res = await fetch(`/api/sessions/${sessionData.session.id}/events`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Error: ${res.statusText}`);
+      }
+
+      const result = await res.json();
+      setSessionData((prev) => ({
+        ...prev,
+        session: result.session,
+        tutor: result.tutor,
+      }));
+
+      setAuditLog((prev) => [
+        ...prev,
+        {
+          event_type: "note_saved",
+          timestamp: new Date().toLocaleTimeString(),
+          details: `Teacher note saved: "${noteInput.trim()}"`,
+        },
+      ]);
+
+      setNoteInput("");
     } catch (err) {
       setError(err.message);
     } finally {
@@ -206,6 +361,18 @@ export default function PracticePage() {
           <div className="status-badge" data-testid="attempt-count-badge">
             <span className="badge-label">Attempts:</span>
             <span className="badge-value attempts-pill">{session?.attempt_count}</span>
+          </div>
+
+          <div className="status-badge" data-testid="input-mode-badge">
+            <span className="badge-label">Mode:</span>
+            <span className="badge-value input-mode-pill">{session?.input_mode || "keypad"}</span>
+          </div>
+
+          <div className="status-badge" data-testid="session-flags-badge">
+            <span className="badge-label">Flags:</span>
+            <span className="badge-value flags-pill">
+              {session?.flags && session.flags.length > 0 ? session.flags.join(", ") : "none"}
+            </span>
           </div>
         </div>
       </header>
@@ -286,7 +453,7 @@ export default function PracticePage() {
               <h3 className="section-title">Your Answer</h3>
               <form onSubmit={handleSubmit} className="answer-form">
                 <div className="input-row">
-                  <div className="input-wrapper">
+                  <div className="input-wrapper" style={{ flex: 1 }}>
                     {question?.unit && <span className="unit-prefix">{question.unit}</span>}
                     <input
                       type="text"
@@ -298,6 +465,23 @@ export default function PracticePage() {
                       disabled={submitting}
                       autoFocus
                     />
+                  </div>
+
+                  <div className="confidence-wrapper" data-testid="confidence-rating-container" style={{ minWidth: "160px" }}>
+                    <select
+                      className="answer-input"
+                      data-testid="confidence-rating-select"
+                      value={confidenceRating}
+                      onChange={(e) => setConfidenceRating(e.target.value)}
+                      disabled={submitting}
+                    >
+                      <option value="">Confidence (optional)</option>
+                      <option value="1">1 - Guessing</option>
+                      <option value="2">2 - Low</option>
+                      <option value="3">3 - Medium</option>
+                      <option value="4">4 - High</option>
+                      <option value="5">5 - Completely sure</option>
+                    </select>
                   </div>
                 </div>
 
@@ -334,6 +518,109 @@ export default function PracticePage() {
                   )}
                 </div>
               </form>
+
+              {/* Structured Reasoning Options Section */}
+              {question?.reasoning_options && question.reasoning_options.length > 0 && (
+                <div
+                  className="reasoning-section"
+                  data-testid="reasoning-section"
+                  style={{ marginTop: "1.5rem", paddingTop: "1.25rem", borderTop: "1px solid var(--border)" }}
+                >
+                  <h4 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.5rem" }}>
+                    Choose Your Strategy / Reasoning Option:
+                  </h4>
+                  <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", alignItems: "center" }}>
+                    <select
+                      className="answer-input"
+                      data-testid="reasoning-option-select"
+                      value={selectedReasoningOption}
+                      onChange={(e) => setSelectedReasoningOption(e.target.value)}
+                      disabled={submitting}
+                      style={{ flex: 1, minWidth: "220px" }}
+                    >
+                      <option value="">-- Pick reasoning strategy --</option>
+                      {question.reasoning_options.map((opt) => (
+                        <option key={opt.option_id} value={opt.option_id}>
+                          {opt.label}
+                        </option>
+                      ))}
+                    </select>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      data-testid="submit-reasoning-btn"
+                      onClick={handleReasoningSubmit}
+                      disabled={submitting || !selectedReasoningOption}
+                    >
+                      Submit Strategy
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Working Step Expression Input */}
+              <div
+                className="step-working-section"
+                data-testid="step-working-section"
+                style={{ marginTop: "1.25rem", paddingTop: "1.25rem", borderTop: "1px solid var(--border)" }}
+              >
+                <h4 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.5rem" }}>
+                  Optional Working Step (one calculation):
+                </h4>
+                <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+                  <input
+                    type="text"
+                    className="answer-input"
+                    data-testid="step-expression-input"
+                    placeholder="e.g. 2 + 3 or 60 / 5"
+                    value={stepInput}
+                    onChange={(e) => setStepInput(e.target.value)}
+                    disabled={submitting}
+                    style={{ flex: 1 }}
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-testid="submit-step-btn"
+                    onClick={handleStepSubmit}
+                    disabled={submitting || !stepInput.trim()}
+                  >
+                    Submit Step
+                  </button>
+                </div>
+              </div>
+
+              {/* Private Teacher Note */}
+              <div
+                className="note-section"
+                data-testid="note-section"
+                style={{ marginTop: "1.25rem", paddingTop: "1.25rem", borderTop: "1px solid var(--border)" }}
+              >
+                <h4 style={{ fontSize: "0.95rem", fontWeight: 600, marginBottom: "0.5rem" }}>
+                  Private Note for Teacher:
+                </h4>
+                <div style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
+                  <textarea
+                    className="answer-input"
+                    data-testid="student-note-input"
+                    placeholder="Write a note or question for your teacher..."
+                    value={noteInput}
+                    onChange={(e) => setNoteInput(e.target.value)}
+                    disabled={submitting}
+                    rows={2}
+                    style={{ flex: 1, resize: "vertical" }}
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-testid="save-note-btn"
+                    onClick={handleSaveNote}
+                    disabled={submitting || !noteInput.trim()}
+                  >
+                    Save Note
+                  </button>
+                </div>
+              </div>
             </section>
           </div>
 
@@ -351,7 +638,11 @@ export default function PracticePage() {
                     <li key={att.attempt_id || idx} className="attempt-item" data-testid="attempt-item">
                       <div className="attempt-item-header">
                         <span className="attempt-number">
-                          {att.counted ? `Attempt #${att.attempt_number}` : "Uncertainty Request"}
+                          {att.response_type === "reasoning_option"
+                            ? "Reasoning Choice"
+                            : att.counted
+                            ? `Attempt #${att.attempt_number}`
+                            : "Uncertainty Request"}
                         </span>
                         <span className={`counted-badge ${att.counted ? "counted-yes" : "counted-no"}`}>
                           {att.counted ? "Counted" : "Not Counted"}
@@ -362,6 +653,30 @@ export default function PracticePage() {
                           <div className="attempt-detail">
                             <span className="detail-label">Answer:</span>{" "}
                             <span className="detail-val">{att.answer_text}</span>
+                          </div>
+                        )}
+                        {att.step_expressions && att.step_expressions.length > 0 && (
+                          <div className="attempt-detail">
+                            <span className="detail-label">Step:</span>{" "}
+                            <span className="detail-val" data-testid="attempt-step-val">
+                              {att.step_expressions.join(", ")}
+                            </span>
+                          </div>
+                        )}
+                        {att.selected_reasoning_option && (
+                          <div className="attempt-detail">
+                            <span className="detail-label">Strategy:</span>{" "}
+                            <span className="detail-val" data-testid="attempt-reasoning-val">
+                              {att.selected_reasoning_option}
+                            </span>
+                          </div>
+                        )}
+                        {att.confidence_rating !== null && att.confidence_rating !== undefined && (
+                          <div className="attempt-detail">
+                            <span className="detail-label">Confidence:</span>{" "}
+                            <span className="detail-val" data-testid="attempt-confidence-val">
+                              {att.confidence_rating}/5
+                            </span>
                           </div>
                         )}
                         <div className="attempt-detail">

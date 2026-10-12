@@ -1,0 +1,19 @@
+{
+  "name": "ai-math-tutor",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@clerk/nextjs": "^7.9.14",
+    "@neon/config": "^1.8.6",
+    "@neon/env": "^1.5.3",
+    "@sentry/nextjs": "^11.6.0",
+    "next": "^16.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  }
+}

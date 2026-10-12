@@ -100,8 +100,9 @@ Before any execution begins, verify:
 - [ ] Execution log and technical notes.
 - [ ] Tracks progress without committing code (no git commit prompts).
 
-### Stage 3: Validation (Incorporates PRD §6.3 Definition of Done)
-- [ ] Automated and manual verification executed.
+### Stage 3: Validation (Incorporates PRD §6.3 Definition of Done; Managed by `qa-manager`)
+> `qa-manager` executes automated tests (Playwright, pytest, lint), pastes evidence, and approves the gate before `commit-manager`.
+- [ ] Automated and manual verification executed (Playwright E2E, pytest, etc.).
 - [ ] Acceptance criteria (Given/When/Then) checked off with recorded outputs.
 - [ ] Regression checks passed (authz, schema validity, leakage checks where applicable).
 - [ ] Verification evidence pasted into the issue document.

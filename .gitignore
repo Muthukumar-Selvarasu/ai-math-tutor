@@ -1,1 +1,25 @@
 .DS_Store
+
+# Environment files (never commit secrets)
+.env*
+!.env.example
+
+# Neon
+.neon
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+
+# Sentry Config File
+.env.sentry-build-plugin

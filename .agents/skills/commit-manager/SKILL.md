@@ -10,7 +10,7 @@ description: >-
 
 # Commit Manager
 
-Commit each finished story as **one single commit** with the Story ID prefixed in the commit message, followed by a proper description.
+Once QA validation is approved by **`qa-manager`**, commit the finished story as **one single commit** with the Story ID prefixed in the commit message, followed by a proper description.
 
 Once the commit is complete, hand off to **`task-manager`** to perform the story closure workflow.
 
@@ -61,7 +61,7 @@ Commit when all of the following are true:
 
 ## Story Commit & Closure Rhythm
 
-1. **Finish the Story**: All code and validation for the story are complete.
+1. **QA Approval**: `qa-manager` runs all tests (Playwright/pytest/lint), logs evidence in `ISSUE.md`, and approves DoD.
 2. **Review the Diff**: Ensure the diff is clean and contains only the changes for this story.
 3. **Commit the Story**:
    - Create one single commit with `[<Story-ID>] <Proper description>`.

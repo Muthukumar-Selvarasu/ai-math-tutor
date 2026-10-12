@@ -11,6 +11,7 @@ export default function PracticePage() {
   const [selectedReasoningOption, setSelectedReasoningOption] = useState("");
   const [confidenceRating, setConfidenceRating] = useState("");
   const [dialogueMode, setDialogueMode] = useState("template");
+  const [allowLevel5, setAllowLevel5] = useState(false);
   const [stepInput, setStepInput] = useState("");
   const [noteInput, setNoteInput] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -34,6 +35,9 @@ export default function PracticePage() {
         setSessionData(data);
         if (data.session?.dialogue_mode) {
           setDialogueMode(data.session.dialogue_mode);
+        }
+        if (data.session?.allow_level_5 !== undefined) {
+          setAllowLevel5(data.session.allow_level_5);
         }
         setStartTime(Date.now());
         if (data.session) {
@@ -303,6 +307,138 @@ export default function PracticePage() {
     }
   }
 
+  // Handle "Show Solution" (Level 5 request)
+  async function handleShowSolution() {
+    if (!sessionData || submitting) return;
+    setSubmitting(true);
+    const duration = Date.now() - startTime;
+
+    try {
+      const res = await fetch(`/api/sessions/${sessionData.session.id}/events`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event: "show_solution",
+          allow_level_5: allowLevel5,
+          response_duration_ms: duration,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Error: ${res.statusText}`);
+      }
+
+      const result = await res.json();
+      setSessionData((prev) => ({
+        ...prev,
+        session: result.session,
+        tutor: result.tutor,
+      }));
+
+      if (result.audit_event) {
+        setAuditLog((prev) => [
+          ...prev,
+          {
+            event_type: result.audit_event.event_type,
+            timestamp: new Date().toLocaleTimeString(),
+            details: `Show solution response: kind=${result.tutor?.kind}, Level ${result.session.hint_level}`,
+          },
+        ]);
+      }
+      setStartTime(Date.now());
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  // Handle Transfer Offer Acceptance
+  async function handleAcceptTransfer() {
+    if (!sessionData || submitting) return;
+    setSubmitting(true);
+
+    try {
+      const res = await fetch(`/api/sessions/${sessionData.session.id}/events`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event: "accept",
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Error: ${res.statusText}`);
+      }
+
+      const result = await res.json();
+      setSessionData((prev) => ({
+        ...prev,
+        session: result.session,
+        tutor: result.tutor,
+      }));
+
+      if (result.audit_event) {
+        setAuditLog((prev) => [
+          ...prev,
+          {
+            event_type: "transfer_accepted",
+            timestamp: new Date().toLocaleTimeString(),
+            details: `Accepted transfer question (new level: ${result.session.hint_level})`,
+          },
+        ]);
+      }
+      setStartTime(Date.now());
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  // Handle Transfer Offer Decline
+  async function handleDeclineTransfer() {
+    if (!sessionData || submitting) return;
+    setSubmitting(true);
+
+    try {
+      const res = await fetch(`/api/sessions/${sessionData.session.id}/events`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event: "decline",
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Error: ${res.statusText}`);
+      }
+
+      const result = await res.json();
+      setSessionData((prev) => ({
+        ...prev,
+        session: result.session,
+        tutor: result.tutor,
+      }));
+
+      if (result.audit_event) {
+        setAuditLog((prev) => [
+          ...prev,
+          {
+            event_type: "transfer_declined",
+            timestamp: new Date().toLocaleTimeString(),
+            details: `Declined transfer question (session completed/declined)`,
+          },
+        ]);
+      }
+      setStartTime(Date.now());
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   if (loading) {
     return (
       <main className="practice-container">
@@ -383,6 +519,13 @@ export default function PracticePage() {
           <div className="status-badge" data-testid="dialogue-mode-badge">
             <span className="badge-label">Dialogue:</span>
             <span className="badge-value dialogue-pill">{session?.dialogue_mode || "template"}</span>
+          </div>
+
+          <div className="status-badge" data-testid="allow-level-5-badge">
+            <span className="badge-label">Level 5:</span>
+            <span className="badge-value level-5-pill">
+              {allowLevel5 ? "Enabled" : "Disabled"}
+            </span>
           </div>
         </div>
       </header>
@@ -514,6 +657,19 @@ export default function PracticePage() {
                       <option value="llm">Mode: LLM Classifier</option>
                     </select>
                   </div>
+
+                  <div className="mode-toggle-wrapper" data-testid="allow-level-5-container" style={{ minWidth: "160px" }}>
+                    <select
+                      className="answer-input"
+                      data-testid="allow-level-5-select"
+                      value={allowLevel5 ? "true" : "false"}
+                      onChange={(e) => setAllowLevel5(e.target.value === "true")}
+                      disabled={submitting}
+                    >
+                      <option value="false">L5: Disabled (Default)</option>
+                      <option value="true">L5: Enabled (Coordinator)</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div className="action-buttons">
@@ -543,8 +699,34 @@ export default function PracticePage() {
                       type="button"
                       className="btn btn-secondary show-solution-btn"
                       data-testid="show-solution-btn"
+                      onClick={handleShowSolution}
+                      disabled={submitting}
                     >
                       Show Solution
+                    </button>
+                  )}
+
+                  {(controls.includes("accept") || session?.state === "transfer_offered") && (
+                    <button
+                      type="button"
+                      className="btn btn-primary accept-transfer-btn"
+                      data-testid="accept-transfer-btn"
+                      onClick={handleAcceptTransfer}
+                      disabled={submitting}
+                    >
+                      Accept Transfer
+                    </button>
+                  )}
+
+                  {(controls.includes("decline") || session?.state === "transfer_offered") && (
+                    <button
+                      type="button"
+                      className="btn btn-secondary decline-transfer-btn"
+                      data-testid="decline-transfer-btn"
+                      onClick={handleDeclineTransfer}
+                      disabled={submitting}
+                    >
+                      Decline Transfer
                     </button>
                   )}
                 </div>

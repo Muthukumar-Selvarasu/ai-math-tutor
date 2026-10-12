@@ -10,6 +10,7 @@ export default function PracticePage() {
   const [answerInput, setAnswerInput] = useState("");
   const [selectedReasoningOption, setSelectedReasoningOption] = useState("");
   const [confidenceRating, setConfidenceRating] = useState("");
+  const [dialogueMode, setDialogueMode] = useState("template");
   const [stepInput, setStepInput] = useState("");
   const [noteInput, setNoteInput] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -31,6 +32,9 @@ export default function PracticePage() {
         }
         const data = await res.json();
         setSessionData(data);
+        if (data.session?.dialogue_mode) {
+          setDialogueMode(data.session.dialogue_mode);
+        }
         setStartTime(Date.now());
         if (data.session) {
           setAuditLog([
@@ -109,6 +113,7 @@ export default function PracticePage() {
         event: "submit",
         answer_text: answerInput.trim(),
         response_target: "final",
+        dialogue_mode: dialogueMode,
         selected_reasoning_option: selectedReasoningOption || undefined,
         confidence_rating: confidenceRating ? parseInt(confidenceRating, 10) : undefined,
         response_duration_ms: duration,
@@ -374,6 +379,11 @@ export default function PracticePage() {
               {session?.flags && session.flags.length > 0 ? session.flags.join(", ") : "none"}
             </span>
           </div>
+
+          <div className="status-badge" data-testid="dialogue-mode-badge">
+            <span className="badge-label">Dialogue:</span>
+            <span className="badge-value dialogue-pill">{session?.dialogue_mode || "template"}</span>
+          </div>
         </div>
       </header>
 
@@ -433,6 +443,14 @@ export default function PracticePage() {
                 <span className="meta-pill" data-testid="turn-trace-status-badge">
                   Trace: {tutor?.trace_status || "missing"}
                 </span>
+                {tutor?.prompt_type && (
+                  <span className="meta-pill" data-testid="turn-prompt-type-badge">
+                    Prompt: {tutor.prompt_type}
+                  </span>
+                )}
+                <span className="meta-pill" data-testid="turn-safety-badge">
+                  Safety: {tutor?.safety_verdict || "allow"}
+                </span>
                 {tutor?.single_prompt !== null && tutor?.single_prompt !== undefined && (
                   <span className="meta-pill" data-testid="turn-single-prompt-badge">
                     Single Prompt: {tutor.single_prompt ? "Passed" : "Failed"}
@@ -481,6 +499,19 @@ export default function PracticePage() {
                       <option value="3">3 - Medium</option>
                       <option value="4">4 - High</option>
                       <option value="5">5 - Completely sure</option>
+                    </select>
+                  </div>
+
+                  <div className="mode-toggle-wrapper" data-testid="dialogue-mode-container" style={{ minWidth: "160px" }}>
+                    <select
+                      className="answer-input"
+                      data-testid="dialogue-mode-select"
+                      value={dialogueMode}
+                      onChange={(e) => setDialogueMode(e.target.value)}
+                      disabled={submitting}
+                    >
+                      <option value="template">Mode: Template</option>
+                      <option value="llm">Mode: LLM Classifier</option>
                     </select>
                   </div>
                 </div>
@@ -683,6 +714,30 @@ export default function PracticePage() {
                           <span className="detail-label">Hint Level:</span>{" "}
                           <span className="detail-val">Level {att.hint_level}</span>
                         </div>
+                        {att.prompt_type && (
+                          <div className="attempt-detail">
+                            <span className="detail-label">Prompt Type:</span>{" "}
+                            <span className="detail-val" data-testid="attempt-prompt-type">
+                              {att.prompt_type}
+                            </span>
+                          </div>
+                        )}
+                        {att.misconception_code && (
+                          <div className="attempt-detail">
+                            <span className="detail-label">Misconception:</span>{" "}
+                            <span className="detail-val" data-testid="attempt-misconception-code">
+                              {att.misconception_code}
+                            </span>
+                          </div>
+                        )}
+                        {att.reviewer_status && (
+                          <div className="attempt-detail">
+                            <span className="detail-label">Reviewer Status:</span>{" "}
+                            <span className="detail-val" data-testid="attempt-reviewer-status">
+                              {att.reviewer_status}
+                            </span>
+                          </div>
+                        )}
                         <div className="attempt-detail">
                           <span className="detail-label">Duration:</span>{" "}
                           <span className="detail-val">{att.duration_ms}ms</span>
@@ -693,6 +748,47 @@ export default function PracticePage() {
                 </ul>
               )}
             </section>
+
+            {/* Teacher Diagnostic / Misconception Events Card */}
+            {session?.misconception_events && session.misconception_events.length > 0 && (
+              <section className="drawer-card" data-testid="misconception-events-card" style={{ marginTop: "1.5rem" }}>
+                <h3 className="drawer-title">Teacher Diagnostic Events</h3>
+                <ul className="attempts-list" data-testid="misconception-events-list">
+                  {session.misconception_events.map((evt, idx) => (
+                    <li key={evt.id || idx} className="attempt-item" data-testid="misconception-event-item">
+                      <div className="attempt-item-header">
+                        <span className="attempt-number" data-testid="event-taxonomy-code">
+                          {evt.code}
+                        </span>
+                        <span className="counted-badge counted-no" data-testid="event-reviewer-status">
+                          {evt.reviewer_status}
+                        </span>
+                      </div>
+                      <div className="attempt-item-body">
+                        <div className="attempt-detail">
+                          <span className="detail-label">Confidence:</span>{" "}
+                          <span className="detail-val" data-testid="event-confidence">
+                            {evt.confidence}
+                          </span>
+                        </div>
+                        <div className="attempt-detail">
+                          <span className="detail-label">Recommended Prompt:</span>{" "}
+                          <span className="detail-val" data-testid="event-prompt-type">
+                            {evt.recommended_prompt_type}
+                          </span>
+                        </div>
+                        <div className="attempt-detail">
+                          <span className="detail-label">Evidence:</span>{" "}
+                          <span className="detail-val" data-testid="event-evidence">
+                            {evt.evidence}
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
 
             <section className="drawer-card" data-testid="audit-log-card">
               <h3 className="drawer-title">Session Audit Trail</h3>

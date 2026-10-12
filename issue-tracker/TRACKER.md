@@ -8,12 +8,12 @@ This tracker maintains the central registry of all project tasks managed as **IS
 
 | Milestone | Total Issues | Planned | In Progress | Completed (Local) | Closed (GitHub) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| **Tier 1a: Core MVP (Gate A)** | 27 | 23 | 0 | 4 | 4 |
+| **Tier 1a: Core MVP (Gate A)** | 27 | 22 | 0 | 5 | 5 |
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 1 | 0 | 0 | 0 |
 | **Tier 1c: Replay & Human Oversight** | 2 | 2 | 0 | 0 | 0 |
 | **Tier 2: Platform Launch (Gate C)** | 10 | 10 | 0 | 0 | 0 |
 | **Tier 3: Platform Governance & Scale** | 4 | 4 | 0 | 0 | 0 |
-| **Total** | **44** | **40** | **0** | **4** | **4** |
+| **Total** | **44** | **39** | **0** | **5** | **5** |
 
 ---
 
@@ -27,7 +27,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 | ISSUE-001 | `STU-01` | Attempt before guidance | P0 | [#637](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/637) | Completed | Closure | 2026-10-12 | [ISSUE-001](ISSUE-001-STU-01/ISSUE.md) |
 | ISSUE-002 | `STU-02` | One focused hint at a time | P0 | [#638](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/638) | Completed | Closure | 2026-10-12 | [ISSUE-002](ISSUE-002-STU-02/ISSUE.md) |
 | ISSUE-003 | `STU-03` | Submit working and selected reasoning options | P0 | [#639](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/639) | Completed | Closure | 2026-10-12 | [ISSUE-003](ISSUE-003-STU-03/ISSUE.md) |
-| ISSUE-004 | `STU-04` | Feedback on why my answer is incorrect | P0 | [#640](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/640) | Planned | Pre-flight | - | [ISSUE-004](ISSUE-004-STU-04/ISSUE.md) |
+| ISSUE-004 | `STU-04` | Feedback on why my answer is incorrect | P0 | [#640](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/640) | Completed | Closure | 2026-10-12 | [ISSUE-004](ISSUE-004-STU-04/ISSUE.md) |
 | ISSUE-005 | `STU-05` | Full solution only after meaningful effort | P0 | [#641](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/641) | Planned | Pre-flight | - | [ISSUE-005](ISSUE-005-STU-05/ISSUE.md) |
 | ISSUE-006 | `STU-06` | Test understanding with a similar question | P0 | [#642](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/642) | Planned | Pre-flight | - | [ISSUE-006](ISSUE-006-STU-06/ISSUE.md) |
 | ISSUE-008 | `STU-08` | Diagrams that help | P0 (Level 3 ratio table), P1 (wider diagram set) | [#644](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/644) | Planned | Pre-flight | - | [ISSUE-008](ISSUE-008-STU-08/ISSUE.md) |

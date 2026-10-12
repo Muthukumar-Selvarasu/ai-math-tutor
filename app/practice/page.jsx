@@ -18,48 +18,95 @@ export default function PracticePage() {
   const [submitting, setSubmitting] = useState(false);
   const [auditLog, setAuditLog] = useState([]);
   const [startTime, setStartTime] = useState(Date.now());
+  const [publishedQuestions, setPublishedQuestions] = useState([]);
+  const [selectedQuestionId, setSelectedQuestionId] = useState("ratio_share_001");
 
-  // Initialize session on mount
+  // Fetch published questions list on mount
   useEffect(() => {
-    async function startSession() {
+    async function fetchQuestions() {
       try {
-        setLoading(true);
-        const searchParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
-        const targetQId = searchParams?.get("question_id") || "ratio_share_001";
-        const res = await fetch("/api/sessions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question_id: targetQId }),
-        });
-        if (!res.ok) {
-          throw new Error(`Failed to start session: ${res.statusText}`);
-        }
-        const data = await res.json();
-        setSessionData(data);
-        if (data.session?.dialogue_mode) {
-          setDialogueMode(data.session.dialogue_mode);
-        }
-        if (data.session?.allow_level_5 !== undefined) {
-          setAllowLevel5(data.session.allow_level_5);
-        }
-        setStartTime(Date.now());
-        if (data.session) {
-          setAuditLog([
-            {
-              event_type: "session_created",
-              timestamp: new Date().toLocaleTimeString(),
-              details: `Session started in state: ${data.session.state}, Level: ${data.session.hint_level}`,
-            },
-          ]);
+        const res = await fetch("/api/questions");
+        if (res.ok) {
+          const list = await res.json();
+          setPublishedQuestions(list);
+          if (list.length > 0 && !selectedQuestionId) {
+            setSelectedQuestionId(list[0].question_id);
+          }
         }
       } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+        // Fallback
       }
     }
-    startSession();
+    fetchQuestions();
   }, []);
+
+  // Initialize session
+  async function initSession(options = {}) {
+    try {
+      setLoading(true);
+      setError(null);
+      const searchParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+      const isRecommended = options.recommended !== undefined
+        ? options.recommended
+        : searchParams?.get("recommended") === "true";
+      const targetQId = options.question_id || searchParams?.get("question_id") || "ratio_share_001";
+      const studentId = options.student_id || searchParams?.get("student_id") || "student_default";
+
+      const reqBody = isRecommended
+        ? { recommended: true, student_id: studentId }
+        : { question_id: targetQId, student_id: studentId };
+
+      const res = await fetch("/api/sessions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(reqBody),
+      });
+
+      if (!res.ok) {
+        const errJson = await res.json().catch(() => ({}));
+        throw new Error(errJson.error || `Failed to start session: ${res.statusText}`);
+      }
+
+      const data = await res.json();
+      setSessionData(data);
+      if (data.session?.question_id) {
+        setSelectedQuestionId(data.session.question_id);
+      }
+      if (data.session?.dialogue_mode) {
+        setDialogueMode(data.session.dialogue_mode);
+      }
+      if (data.session?.allow_level_5 !== undefined) {
+        setAllowLevel5(data.session.allow_level_5);
+      }
+      setStartTime(Date.now());
+      if (data.session) {
+        setAuditLog([
+          {
+            event_type: "session_created",
+            timestamp: new Date().toLocaleTimeString(),
+            details: `Session started in state: ${data.session.state}, Level: ${data.session.hint_level}${data.session.recommended ? " (Recommended)" : ""}`,
+          },
+        ]);
+      }
+    } catch (err) {
+      setError(err.message);
+      setSessionData(null);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    initSession();
+  }, []);
+
+  async function handleStartRecommended() {
+    await initSession({ recommended: true });
+  }
+
+  async function handleStartQuestion(qId) {
+    await initSession({ question_id: qId, recommended: false });
+  }
 
   // Handle "I am not sure" button
   async function handleNotSure() {
@@ -554,17 +601,33 @@ export default function PracticePage() {
 
   if (error && !sessionData) {
     return (
-      <main className="practice-container">
-        <div className="practice-card" style={{ textAlign: "center", padding: "4rem", borderColor: "#ef4444" }}>
-          <h2 style={{ color: "#ef4444", marginBottom: "1rem" }}>Session Error</h2>
-          <p style={{ color: "var(--text-muted)" }}>{error}</p>
-          <button
-            onClick={() => window.location.reload()}
-            className="btn btn-primary"
-            style={{ marginTop: "1.5rem" }}
-          >
-            Retry
-          </button>
+      <main className="practice-container" style={{ padding: "2rem" }}>
+        <div
+          className="practice-card"
+          data-testid="question-not-delivered-alert"
+          style={{ textAlign: "center", padding: "3rem", borderColor: "#ef4444", maxWidth: "600px", margin: "2rem auto" }}
+        >
+          <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>🚫</div>
+          <h2 style={{ color: "#ef4444", marginBottom: "0.75rem" }}>Question Not Delivered</h2>
+          <p data-testid="question-error" style={{ color: "var(--text-muted)", marginBottom: "1.5rem" }}>
+            {error || "This question is not approved, published, or available. Zero unapproved questions delivered."}
+          </p>
+          <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
+            <button
+              onClick={() => handleStartQuestion("ratio_share_001")}
+              className="btn btn-secondary"
+              data-testid="choose-published-btn"
+            >
+              Choose Published Question
+            </button>
+            <button
+              onClick={handleStartRecommended}
+              className="btn btn-primary"
+              data-testid="error-start-recommended-btn"
+            >
+              Start Recommended
+            </button>
+          </div>
         </div>
       </main>
     );
@@ -660,6 +723,84 @@ export default function PracticePage() {
           </Link>
         </div>
       </header>
+
+      {/* Question Selection & Recommendation Bar (STU-09) */}
+      <div
+        className="question-selection-bar"
+        data-testid="question-selection-bar"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: "1rem",
+          padding: "0.75rem 1.5rem",
+          background: "var(--card-bg, #ffffff)",
+          borderBottom: "1px solid var(--border, #e5e7eb)",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
+          <label htmlFor="question-select" style={{ fontSize: "0.875rem", fontWeight: 600, color: "var(--foreground)" }}>
+            Choose Question:
+          </label>
+          <select
+            id="question-select"
+            data-testid="question-select"
+            value={selectedQuestionId}
+            onChange={(e) => setSelectedQuestionId(e.target.value)}
+            className="select-input"
+            style={{ padding: "0.4rem 0.75rem", borderRadius: "6px", border: "1px solid var(--border, #d1d5db)", fontSize: "0.875rem" }}
+          >
+            {publishedQuestions.map((q) => (
+              <option key={q.question_id} value={q.question_id}>
+                {q.title} ({q.difficulty_band})
+              </option>
+            ))}
+          </select>
+          <button
+            onClick={() => handleStartQuestion(selectedQuestionId)}
+            className="btn btn-secondary"
+            data-testid="start-selected-btn"
+            style={{ padding: "0.4rem 0.75rem", fontSize: "0.875rem" }}
+          >
+            Start Question
+          </button>
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          {session?.recommended && (
+            <span
+              data-testid="recommended-badge"
+              className="badge"
+              style={{
+                background: "#ecfdf5",
+                color: "#065f46",
+                border: "1px solid #a7f3d0",
+                padding: "0.3rem 0.6rem",
+                borderRadius: "9999px",
+                fontSize: "0.8rem",
+                fontWeight: 600,
+              }}
+            >
+              ✨ Recommended Next
+            </span>
+          )}
+          <button
+            onClick={handleStartRecommended}
+            className="btn btn-primary"
+            data-testid="start-recommended-btn"
+            style={{
+              padding: "0.4rem 0.85rem",
+              fontSize: "0.875rem",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.4rem",
+            }}
+          >
+            🎯 Start Recommended
+          </button>
+        </div>
+      </div>
 
       <main className="practice-main">
         <div className="practice-grid">

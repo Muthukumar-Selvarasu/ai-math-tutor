@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { listQuestions } from "../../../lib/question-loader";
+import { listApprovedPublishedQuestions } from "../../../lib/practice-planner";
 
 export async function GET() {
-  const questions = listQuestions();
+  const questions = listApprovedPublishedQuestions();
   return NextResponse.json(questions);
 }

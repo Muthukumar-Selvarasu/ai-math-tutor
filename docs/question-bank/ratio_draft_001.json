@@ -1,0 +1,15 @@
+{
+  "question_id": "ratio_draft_001",
+  "version": 1,
+  "validation_status": "draft",
+  "publication_status": "draft",
+  "flagged": false,
+  "title": "Unapproved Ratio Draft Question",
+  "skill_id": "ratio_sharing",
+  "problem_type": "word_problem",
+  "stem": "This is an unapproved draft question that should never be delivered.",
+  "accepted_answer_spec": {
+    "type": "numeric",
+    "canonical_value": "42"
+  }
+}

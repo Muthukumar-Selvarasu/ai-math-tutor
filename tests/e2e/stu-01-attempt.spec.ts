@@ -66,22 +66,27 @@ test.describe('STU-01: Attempt before guidance', () => {
 
     // Escalate through "I am not sure" clicks: Level 0 -> 1 -> 2 -> 3 -> 4
     // 1st click: Level 0 -> Level 1
+    await expect(page.getByTestId('not-sure-btn')).toBeEnabled();
     await page.getByTestId('not-sure-btn').click();
     await expect(page.getByTestId('hint-level-badge')).toContainText('Level 1');
 
     // 2nd click: Level 1 -> Level 2
+    await expect(page.getByTestId('not-sure-btn')).toBeEnabled();
     await page.getByTestId('not-sure-btn').click();
     await expect(page.getByTestId('hint-level-badge')).toContainText('Level 2');
 
     // 3rd click: Level 2 -> Level 3
+    await expect(page.getByTestId('not-sure-btn')).toBeEnabled();
     await page.getByTestId('not-sure-btn').click();
     await expect(page.getByTestId('hint-level-badge')).toContainText('Level 3');
 
     // 4th click: Level 3 -> Level 4
+    await expect(page.getByTestId('not-sure-btn')).toBeEnabled();
     await page.getByTestId('not-sure-btn').click();
     await expect(page.getByTestId('hint-level-badge')).toContainText('Level 4');
 
     // When student presses "I am not sure" at Level 4
+    await expect(page.getByTestId('not-sure-btn')).toBeEnabled();
     await page.getByTestId('not-sure-btn').click();
 
     // Then level STAYS 4 and NEVER reaches Level 5

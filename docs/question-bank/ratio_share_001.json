@@ -183,6 +183,6 @@
         ]
     },
     "socratic_prompt_set_id": "socratic_ratio_share",
-    "has_diagram": false,
-    "diagram_id": null
+    "has_diagram": true,
+    "diagram_id": "diag_ratio_share_001"
 }

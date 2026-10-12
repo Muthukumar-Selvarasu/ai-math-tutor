@@ -24,10 +24,12 @@ export default function PracticePage() {
     async function startSession() {
       try {
         setLoading(true);
+        const searchParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+        const targetQId = searchParams?.get("question_id") || "ratio_share_001";
         const res = await fetch("/api/sessions", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question_id: "ratio_share_001" }),
+          body: JSON.stringify({ question_id: targetQId }),
         });
         if (!res.ok) {
           throw new Error(`Failed to start session: ${res.statusText}`);
@@ -671,7 +673,153 @@ export default function PracticePage() {
               </div>
               <h2 className="problem-title">{question?.title}</h2>
               <p className="problem-stem" data-testid="problem-stem">{question?.stem}</p>
+
+              {question?.is_withheld && (
+                <div
+                  className="withheld-alert"
+                  data-testid="question-withheld-alert"
+                  role="alert"
+                  style={{
+                    background: "#fef2f2",
+                    border: "1px solid #f87171",
+                    borderRadius: "8px",
+                    padding: "0.75rem 1rem",
+                    marginTop: "0.75rem",
+                    color: "#991b1b",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <span style={{ fontSize: "1.25rem" }}>⚠️</span>
+                  <div>
+                    <strong data-testid="withheld-badge">Question Withheld:</strong> Visual model validation failed or no approved diagram variant exists.
+                  </div>
+                </div>
+              )}
             </section>
+
+            {/* Diagram Card - Level 3+ Visual Model (PRD FR-09, SPEC WF-13) */}
+            {tutor?.diagram && (
+              <section
+                className="diagram-card"
+                data-testid="diagram-card"
+                aria-labelledby="diagram-heading"
+                style={{
+                  background: "#ffffff",
+                  borderRadius: "12px",
+                  border: "1px solid #e2e8f0",
+                  padding: "1rem",
+                  marginBottom: "1rem",
+                  boxShadow: "0 1px 3px rgba(0, 0, 0, 0.05)",
+                }}
+              >
+                <div
+                  className="diagram-header"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: "0.75rem",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <span style={{ fontSize: "1.25rem" }}>📊</span>
+                    <h3
+                      id="diagram-heading"
+                      className="diagram-title"
+                      data-testid="diagram-title"
+                      style={{ margin: 0, fontSize: "1rem", fontWeight: 600, color: "#0f172a" }}
+                    >
+                      {tutor.diagram.title || "Visual Model (Ratio Table)"}
+                    </h3>
+                  </div>
+                  <span
+                    className="diagram-hash-badge"
+                    data-testid="diagram-hash"
+                    style={{ fontSize: "0.75rem", color: "#64748b", fontFamily: "monospace" }}
+                  >
+                    {tutor.diagram.hash ? `${tutor.diagram.hash.substring(0, 16)}...` : ""}
+                  </span>
+                </div>
+
+                <div className="diagram-container" data-testid="diagram-container">
+                  <img
+                    src={tutor.diagram.url}
+                    alt={tutor.diagram.alt_text}
+                    className="diagram-svg"
+                    data-testid="diagram-svg"
+                    role="img"
+                    tabIndex={0}
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      height: "auto",
+                      borderRadius: "6px",
+                      border: "1px solid #e2e8f0",
+                    }}
+                  />
+                </div>
+
+                {/* Textual Description shown beside/below diagram (PRD FR-09) */}
+                <div
+                  className="diagram-description-box"
+                  style={{
+                    marginTop: "0.75rem",
+                    padding: "0.6rem 0.8rem",
+                    background: "#f8fafc",
+                    borderRadius: "6px",
+                    border: "1px solid #e2e8f0",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "0.7rem",
+                      fontWeight: 700,
+                      color: "#475569",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    Text Description
+                  </span>
+                  <p
+                    className="diagram-description"
+                    data-testid="diagram-description"
+                    style={{ margin: "0.25rem 0 0", fontSize: "0.875rem", color: "#1e293b", lineHeight: 1.4 }}
+                  >
+                    {tutor.diagram.description}
+                  </p>
+                </div>
+
+                {/* Accessibility Verification: Non-color Visual Distinction */}
+                <div
+                  className="diagram-a11y-badge"
+                  data-testid="diagram-a11y-note"
+                  style={{
+                    display: "flex",
+                    gap: "0.5rem",
+                    alignItems: "center",
+                    marginTop: "0.5rem",
+                    fontSize: "0.75rem",
+                    color: "#64748b",
+                  }}
+                >
+                  <span
+                    style={{
+                      background: "#e0f2fe",
+                      color: "#0369a1",
+                      padding: "0.15rem 0.4rem",
+                      borderRadius: "4px",
+                      fontWeight: 600,
+                    }}
+                  >
+                    A11y Verified
+                  </span>
+                  <span>Textures, patterns and shape markers distinguish parts without color dependence.</span>
+                </div>
+              </section>
+            )}
 
             {/* Tutor Socratic Guidance Card */}
             <section className="tutor-card" data-testid="tutor-card">

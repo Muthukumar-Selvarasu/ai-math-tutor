@@ -1,0 +1,40 @@
+{
+  "question_id": "ratio_diagram_withheld_001",
+  "version": 1,
+  "title": "Share $60 with unapproved diagram (Withheld)",
+  "skill_id": "ratio_division",
+  "learning_objective_id": "ratio_part_whole",
+  "difficulty": {
+    "band": "intermediate",
+    "score": 0.5
+  },
+  "stem": "Share $60 between Leo and Maya in the ratio 2 : 3. How much does Maya receive?",
+  "accepted_answer_spec": {
+    "type": "numeric",
+    "canonical_value": "36",
+    "unit": "",
+    "answer_requires_unit": false
+  },
+  "solution_steps": [
+    {
+      "step_id": "step_1",
+      "description": "Total parts = 2 + 3 = 5",
+      "target_expression": "2 + 3",
+      "target_value": "5"
+    },
+    {
+      "step_id": "step_2",
+      "description": "Value of 1 part = 60 / 5 = 12",
+      "target_expression": "60 / 5",
+      "target_value": "12"
+    },
+    {
+      "step_id": "step_3",
+      "description": "Maya's share = 3 * 12 = 36",
+      "target_expression": "3 * 12",
+      "target_value": "36"
+    }
+  ],
+  "has_diagram": true,
+  "diagram_id": "diag_unapproved"
+}

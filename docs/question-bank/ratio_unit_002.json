@@ -1,8 +1,8 @@
 {
     "question_id": "ratio_unit_002",
     "version": 1,
-    "validation_status": "pending",
-    "publication_status": "draft",
+    "validation_status": "approved",
+    "publication_status": "published",
     "flagged": false,
     "curriculum": {
         "jurisdiction": "VIC",
@@ -17,7 +17,7 @@
     "learning_objective": "Find an unknown quantity when given a ratio and the value of one part.",
     "difficulty": {
         "band": "intermediate",
-        "estimated_difficulty": 0.40,
+        "estimated_difficulty": 0.4,
         "reasoning_depth": 2
     },
     "title": "Paint Mixing 2:5",
@@ -28,7 +28,7 @@
         "canonical_value": "30",
         "unit": "L",
         "answer_requires_unit": false,
-        "tolerance": 0.0,
+        "tolerance": 0,
         "accepted_forms": [
             "30",
             "30 L",
@@ -90,13 +90,13 @@
         {
             "predicted_response": "15",
             "misconception_code": "ratio_additive_interpretation",
-            "confidence": 0.90,
+            "confidence": 0.9,
             "rationale": "Student noted difference 5 - 2 = 3, so added 3 to 12 (12 + 3 = 15)."
         },
         {
             "predicted_response": "4.8",
             "misconception_code": "scale_direction_error",
-            "confidence": 0.90,
+            "confidence": 0.9,
             "rationale": "Student inverted the scale ratio and multiplied 12 by 2/5."
         }
     ],

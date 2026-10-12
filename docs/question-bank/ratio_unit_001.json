@@ -1,8 +1,8 @@
 {
     "question_id": "ratio_unit_001",
     "version": 1,
-    "validation_status": "pending",
-    "publication_status": "draft",
+    "validation_status": "approved",
+    "publication_status": "published",
     "flagged": false,
     "curriculum": {
         "jurisdiction": "VIC",
@@ -17,7 +17,7 @@
     "learning_objective": "Find an unknown quantity when given a ratio and the value of one part.",
     "difficulty": {
         "band": "intermediate",
-        "estimated_difficulty": 0.40,
+        "estimated_difficulty": 0.4,
         "reasoning_depth": 2
     },
     "title": "Paint Mixing 3:4",
@@ -28,7 +28,7 @@
         "canonical_value": "20",
         "unit": "L",
         "answer_requires_unit": false,
-        "tolerance": 0.0,
+        "tolerance": 0,
         "accepted_forms": [
             "20",
             "20 L",
@@ -90,13 +90,13 @@
         {
             "predicted_response": "16",
             "misconception_code": "ratio_additive_interpretation",
-            "confidence": 0.90,
+            "confidence": 0.9,
             "rationale": "Student noted 4 is 1 more than 3, so added 1 to 15 (15 + 1 = 16)."
         },
         {
             "predicted_response": "11.25",
             "misconception_code": "scale_direction_error",
-            "confidence": 0.90,
+            "confidence": 0.9,
             "rationale": "Student multiplied by 3/4 instead of 4/3."
         }
     ],

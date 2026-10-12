@@ -1,8 +1,8 @@
 {
     "question_id": "ratio_share_001",
     "version": 1,
-    "validation_status": "pending",
-    "publication_status": "draft",
+    "validation_status": "approved",
+    "publication_status": "published",
     "flagged": false,
     "curriculum": {
         "jurisdiction": "VIC",
@@ -28,7 +28,7 @@
         "canonical_value": "36",
         "unit": "$",
         "answer_requires_unit": false,
-        "tolerance": 0.0,
+        "tolerance": 0,
         "accepted_forms": [
             "36",
             "$36"
@@ -110,19 +110,19 @@
         {
             "predicted_response": "24",
             "misconception_code": "ratio_reversal",
-            "confidence": 0.90,
+            "confidence": 0.9,
             "rationale": "Student found Leo's share (2 parts = 24) instead of Maya's share."
         },
         {
             "predicted_response": "20",
             "misconception_code": "unit_rate_error",
-            "confidence": 0.90,
+            "confidence": 0.9,
             "rationale": "Student divided 60 directly by 3 without accounting for total parts."
         },
         {
             "predicted_response": "57",
             "misconception_code": "ratio_additive_interpretation",
-            "confidence": 0.90,
+            "confidence": 0.9,
             "rationale": "Student subtracted 3 from 60 instead of dividing."
         }
     ],

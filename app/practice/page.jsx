@@ -9,6 +9,7 @@ export default function PracticePage() {
   const [error, setError] = useState(null);
   const [answerInput, setAnswerInput] = useState("");
   const [selectedReasoningOption, setSelectedReasoningOption] = useState("");
+  const [selectedReflectionOption, setSelectedReflectionOption] = useState("");
   const [confidenceRating, setConfidenceRating] = useState("");
   const [dialogueMode, setDialogueMode] = useState("template");
   const [allowLevel5, setAllowLevel5] = useState(false);
@@ -353,6 +354,101 @@ export default function PracticePage() {
     }
   }
 
+  // Handle Reflection Submission
+  async function handleReflectionSubmit() {
+    if (!sessionData || submitting || !selectedReflectionOption) return;
+    setSubmitting(true);
+    const duration = Date.now() - startTime;
+
+    try {
+      const res = await fetch(`/api/sessions/${sessionData.session.id}/events`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event: "reflection_choice",
+          option_id: selectedReflectionOption,
+          response_duration_ms: duration,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Error: ${res.statusText}`);
+      }
+
+      const result = await res.json();
+      setSessionData((prev) => ({
+        ...prev,
+        session: result.session,
+        question: result.question || prev.question,
+        tutor: result.tutor,
+      }));
+
+      if (result.audit_event) {
+        setAuditLog((prev) => [
+          ...prev,
+          {
+            event_type: result.audit_event.event_type || "reflection_submitted",
+            timestamp: new Date().toLocaleTimeString(),
+            details: `Reflection choice submitted: "${selectedReflectionOption}"`,
+          },
+        ]);
+      }
+      setSelectedReflectionOption("");
+      setStartTime(Date.now());
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  // Handle Skip Reflection
+  async function handleSkipReflection() {
+    if (!sessionData || submitting) return;
+    setSubmitting(true);
+    const duration = Date.now() - startTime;
+
+    try {
+      const res = await fetch(`/api/sessions/${sessionData.session.id}/events`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event: "skip",
+          response_duration_ms: duration,
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Error: ${res.statusText}`);
+      }
+
+      const result = await res.json();
+      setSessionData((prev) => ({
+        ...prev,
+        session: result.session,
+        question: result.question || prev.question,
+        tutor: result.tutor,
+      }));
+
+      if (result.audit_event) {
+        setAuditLog((prev) => [
+          ...prev,
+          {
+            event_type: result.audit_event.event_type || "reflection_skipped",
+            timestamp: new Date().toLocaleTimeString(),
+            details: `Reflection skipped`,
+          },
+        ]);
+      }
+      setSelectedReflectionOption("");
+      setStartTime(Date.now());
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   // Handle Transfer Offer Acceptance
   async function handleAcceptTransfer() {
     if (!sessionData || submitting) return;
@@ -375,8 +471,10 @@ export default function PracticePage() {
       setSessionData((prev) => ({
         ...prev,
         session: result.session,
+        question: result.question || prev.question,
         tutor: result.tutor,
       }));
+      setAnswerInput("");
 
       if (result.audit_event) {
         setAuditLog((prev) => [
@@ -527,6 +625,31 @@ export default function PracticePage() {
               {allowLevel5 ? "Enabled" : "Disabled"}
             </span>
           </div>
+
+          {session?.transfer_outcome && (
+            <div className="status-badge" data-testid="transfer-outcome-badge">
+              <span className="badge-label">Transfer:</span>
+              <span className="badge-value transfer-outcome-pill">
+                {session.transfer_outcome}
+              </span>
+            </div>
+          )}
+
+          <div className="status-badge" data-testid="mastery-confidence-badge">
+            <span className="badge-label">Confidence:</span>
+            <span className="badge-value confidence-pill">
+              {session?.mastery_confidence !== undefined ? session.mastery_confidence.toFixed(2) : "0.00"}
+            </span>
+          </div>
+
+          {session?.end_reason && (
+            <div className="status-badge" data-testid="end-reason-badge">
+              <span className="badge-label">End Reason:</span>
+              <span className="badge-value end-reason-pill">
+                {session.end_reason}
+              </span>
+            </div>
+          )}
         </div>
       </header>
 
@@ -694,7 +817,7 @@ export default function PracticePage() {
                     </button>
                   )}
 
-                  {controls.includes("show_solution") && (
+                  {controls.includes("show_solution") && session?.state !== "transfer_active" && (
                     <button
                       type="button"
                       className="btn btn-secondary show-solution-btn"
@@ -731,6 +854,76 @@ export default function PracticePage() {
                   )}
                 </div>
               </form>
+
+              {/* Structured Reflection Section */}
+              {session?.state === "reflection" && tutor?.choices && tutor.choices.length > 0 && (
+                <div
+                  className="reflection-section"
+                  data-testid="reflection-section"
+                  style={{
+                    marginTop: "1.5rem",
+                    padding: "1.25rem",
+                    border: "1px solid var(--border)",
+                    borderRadius: "8px",
+                    background: "rgba(99, 102, 241, 0.04)",
+                  }}
+                >
+                  <h4 style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.75rem", color: "var(--accent)" }}>
+                    Reflect on your method:
+                  </h4>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+                    {tutor.choices
+                      .filter((opt) => opt.option_id !== "skip")
+                      .map((opt) => (
+                        <label
+                          key={opt.option_id}
+                          data-testid={`reflection-option-${opt.option_id}`}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.6rem",
+                            cursor: "pointer",
+                            padding: "0.6rem 0.8rem",
+                            borderRadius: "6px",
+                            border: "1px solid var(--border)",
+                            background: selectedReflectionOption === opt.option_id ? "rgba(99, 102, 241, 0.12)" : "var(--card-bg, #fff)",
+                          }}
+                        >
+                          <input
+                            type="radio"
+                            name="reflection_choice"
+                            value={opt.option_id}
+                            checked={selectedReflectionOption === opt.option_id}
+                            onChange={(e) => setSelectedReflectionOption(e.target.value)}
+                            disabled={submitting}
+                          />
+                          <span>{opt.label}</span>
+                        </label>
+                      ))}
+                  </div>
+
+                  <div style={{ display: "flex", gap: "0.75rem", marginTop: "1rem" }}>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      data-testid="submit-reflection-btn"
+                      onClick={handleReflectionSubmit}
+                      disabled={submitting || !selectedReflectionOption}
+                    >
+                      Submit Reflection
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      data-testid="skip-reflection-btn"
+                      onClick={handleSkipReflection}
+                      disabled={submitting}
+                    >
+                      Skip Reflection
+                    </button>
+                  </div>
+                </div>
+              )}
 
               {/* Structured Reasoning Options Section */}
               {question?.reasoning_options && question.reasoning_options.length > 0 && (

@@ -1,8 +1,8 @@
 {
     "question_id": "ratio_simp_001",
     "version": 1,
-    "validation_status": "pending",
-    "publication_status": "draft",
+    "validation_status": "approved",
+    "publication_status": "published",
     "flagged": false,
     "curriculum": {
         "jurisdiction": "VIC",
@@ -28,7 +28,7 @@
         "canonical_value": "3:4",
         "unit": null,
         "answer_requires_unit": false,
-        "tolerance": 0.0,
+        "tolerance": 0,
         "accepted_forms": [
             "3:4",
             "3 to 4"
@@ -90,13 +90,13 @@
         {
             "predicted_response": "4:3",
             "misconception_code": "ratio_reversal",
-            "confidence": 0.90,
+            "confidence": 0.9,
             "rationale": "Student swapped antecedent and consequent terms."
         },
         {
             "predicted_response": "9:12",
             "misconception_code": "incomplete_reasoning",
-            "confidence": 0.90,
+            "confidence": 0.9,
             "rationale": "Student divided by 2 but did not reduce to simplest terms."
         }
     ],

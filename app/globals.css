@@ -342,6 +342,18 @@ main {
   border-radius: 8px;
 }
 
+.meta-pill {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: #94a3b8;
+}
+
 .section-title {
   font-size: 1.1rem;
   font-weight: 600;

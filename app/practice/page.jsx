@@ -238,6 +238,41 @@ export default function PracticePage() {
                 <p>{tutor?.text}</p>
               </div>
 
+              {/* Turn Metadata Badges */}
+              <div
+                className="tutor-meta-row"
+                data-testid="tutor-meta-row"
+                style={{
+                  display: "flex",
+                  gap: "0.5rem",
+                  flexWrap: "wrap",
+                  marginTop: "0.75rem",
+                  fontSize: "0.75rem",
+                  color: "var(--text-muted)",
+                }}
+              >
+                <span className="meta-pill" data-testid="turn-kind-badge">
+                  Kind: {tutor?.kind || "canned"}
+                </span>
+                <span className="meta-pill" data-testid="turn-model-badge">
+                  Model: {tutor?.model || "template"}
+                </span>
+                <span className="meta-pill" data-testid="turn-prompt-version-badge">
+                  Prompt: v{tutor?.prompt_version || "1.0.0"}
+                </span>
+                <span className="meta-pill" data-testid="turn-policy-version-badge">
+                  Policy: v{tutor?.policy_version || "1.0.0"}
+                </span>
+                <span className="meta-pill" data-testid="turn-trace-status-badge">
+                  Trace: {tutor?.trace_status || "missing"}
+                </span>
+                {tutor?.single_prompt !== null && tutor?.single_prompt !== undefined && (
+                  <span className="meta-pill" data-testid="turn-single-prompt-badge">
+                    Single Prompt: {tutor.single_prompt ? "Passed" : "Failed"}
+                  </span>
+                )}
+              </div>
+
               {/* Notice when at Level 0: No hints active */}
               {session?.hint_level === 0 && (
                 <div className="no-hint-notice" data-testid="no-hint-notice">

@@ -39,6 +39,11 @@ export default function HomePage() {
                 🎯 Start Socratic Practice (STU-01)
               </button>
             </Link>
+            <Link href="/dashboard" style={{ textDecoration: "none" }}>
+              <button className="btn btn-secondary" style={{ padding: "0.8rem 1.8rem", fontSize: "1rem" }} data-testid="view-dashboard-btn">
+                📊 Student Progress (STU-07)
+              </button>
+            </Link>
             <Show when="signed-out">
               <SignUpButton mode="modal">
                 <button className="btn btn-secondary" style={{ padding: "0.8rem 1.8rem", fontSize: "1rem" }}>

@@ -650,6 +650,12 @@ export default function PracticePage() {
               </span>
             </div>
           )}
+
+          <Link href="/dashboard" style={{ textDecoration: "none" }}>
+            <button className="btn btn-secondary" style={{ padding: "0.35rem 0.75rem", fontSize: "0.8rem" }} data-testid="practice-to-dashboard-btn">
+              📊 Dashboard
+            </button>
+          </Link>
         </div>
       </header>
 

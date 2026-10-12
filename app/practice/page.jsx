@@ -196,7 +196,9 @@ export default function PracticePage() {
           {
             event_type: result.audit_event.event_type || "attempt_submitted",
             timestamp: new Date().toLocaleTimeString(),
-            details: `Submitted: "${answerInput}" (Level ${result.session.hint_level}, duration: ${duration}ms)`,
+            details: result.audit_event.category
+              ? `Safety event: ${result.audit_event.category}`
+              : `Submitted: "${answerInput}" (Level ${result.session.hint_level}, duration: ${duration}ms)`,
           },
         ]);
       }
@@ -340,14 +342,27 @@ export default function PracticePage() {
         tutor: result.tutor,
       }));
 
-      setAuditLog((prev) => [
-        ...prev,
-        {
-          event_type: "note_saved",
-          timestamp: new Date().toLocaleTimeString(),
-          details: `Teacher note saved: "${noteInput.trim()}"`,
-        },
-      ]);
+      if (result.audit_event) {
+        setAuditLog((prev) => [
+          ...prev,
+          {
+            event_type: result.audit_event.event_type || "note_saved",
+            timestamp: new Date().toLocaleTimeString(),
+            details: result.audit_event.category
+              ? `Safety event: ${result.audit_event.category}`
+              : `Teacher note saved: "${noteInput.trim()}"`,
+          },
+        ]);
+      } else {
+        setAuditLog((prev) => [
+          ...prev,
+          {
+            event_type: "note_saved",
+            timestamp: new Date().toLocaleTimeString(),
+            details: `Teacher note saved: "${noteInput.trim()}"`,
+          },
+        ]);
+      }
 
       setNoteInput("");
     } catch (err) {
@@ -1321,6 +1336,18 @@ export default function PracticePage() {
                     Save Note
                   </button>
                 </div>
+                <p
+                  className="note-safeguarding-notice"
+                  data-testid="note-safeguarding-notice"
+                  style={{
+                    fontSize: "0.85rem",
+                    color: "var(--text-muted)",
+                    marginTop: "0.5rem",
+                    marginBottom: 0,
+                  }}
+                >
+                  If something is worrying you, tell a trusted adult.
+                </p>
               </div>
             </section>
           </div>
@@ -1452,6 +1479,34 @@ export default function PracticePage() {
                           <span className="detail-val" data-testid="event-evidence">
                             {evt.evidence}
                           </span>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            {session?.notes && session.notes.length > 0 && (
+              <section className="drawer-card" data-testid="teacher-notes-card" style={{ marginTop: "1.5rem" }}>
+                <h3 className="drawer-title">Notes for Teacher</h3>
+                <ul className="attempts-list" data-testid="teacher-notes-list">
+                  {session.notes.map((n, idx) => (
+                    <li key={n.id || idx} className="attempt-item" data-testid="teacher-note-item">
+                      <div className="attempt-item-header">
+                        <span className="attempt-number">Note #{idx + 1}</span>
+                        <span className="counted-badge counted-yes">Saved</span>
+                      </div>
+                      <div className="attempt-item-body">
+                        <div className="attempt-detail">
+                          <span className="detail-label">Text:</span>{" "}
+                          <span className="detail-val" data-testid="note-body-text">
+                            {n.body}
+                          </span>
+                        </div>
+                        <div className="attempt-detail">
+                          <span className="detail-label">State at Save:</span>{" "}
+                          <span className="detail-val">{n.state_at_save}</span>
                         </div>
                       </div>
                     </li>

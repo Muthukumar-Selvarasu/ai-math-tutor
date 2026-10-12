@@ -56,23 +56,23 @@
     "status": "draft"
   },
   "answer_request_reply": {
-    "text": "I cannot give you the answer directly, but I can guide you through each step.",
+    "text": "I cannot give you the answer directly, but I can help with the next step. You can also use the Show me the solution option if you are stuck.",
     "status": "draft"
   },
   "abuse_reply": {
-    "text": "Let's keep our conversation respectful and focused on solving the math.",
+    "text": "Let's keep our conversation respectful and return to the maths problem.",
     "status": "draft"
   },
   "assessment_help_reply": {
-    "text": "I can only help you learn the methods, not provide test answers.",
+    "text": "I cannot help with a test or exam. Please speak with your teacher.",
     "status": "draft"
   },
   "impersonation_reply": {
-    "text": "I am your SolvePath math tutor, here to guide your practice.",
+    "text": "I cannot write work for you to submit. I can only guide your own practice.",
     "status": "draft"
   },
   "worrying_disclosure_reply": {
-    "text": "Thank you for sharing. Please speak with a trusted teacher, adult, or counselor.",
+    "text": "Please tell a trusted adult right now. If something is worrying you, an adult you trust can help.",
     "status": "draft"
   },
   "injection_phrase_reply": {

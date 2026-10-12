@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SignInButton, SignUpButton, Show, UserButton } from "@clerk/nextjs";
 
 export default function HomePage() {
@@ -32,10 +33,15 @@ export default function HomePage() {
             grounded in deterministic verifiers and structured curriculum mastery.
           </p>
 
-          <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
+            <Link href="/practice" style={{ textDecoration: "none" }}>
+              <button className="btn btn-primary" style={{ padding: "0.8rem 1.8rem", fontSize: "1rem" }} data-testid="start-practice-btn">
+                🎯 Start Socratic Practice (STU-01)
+              </button>
+            </Link>
             <Show when="signed-out">
               <SignUpButton mode="modal">
-                <button className="btn btn-primary" style={{ padding: "0.8rem 1.8rem", fontSize: "1rem" }}>
+                <button className="btn btn-secondary" style={{ padding: "0.8rem 1.8rem", fontSize: "1rem" }}>
                   Create Test Account
                 </button>
               </SignUpButton>

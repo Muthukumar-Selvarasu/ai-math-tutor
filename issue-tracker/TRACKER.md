@@ -8,12 +8,12 @@ This tracker maintains the central registry of all project tasks managed as **IS
 
 | Milestone | Total Issues | Planned | In Progress | Completed (Local) | Closed (GitHub) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| **Tier 1a: Core MVP (Gate A)** | 27 | 26 | 0 | 1 | 1 |
+| **Tier 1a: Core MVP (Gate A)** | 27 | 25 | 0 | 2 | 2 |
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 1 | 0 | 0 | 0 |
 | **Tier 1c: Replay & Human Oversight** | 2 | 2 | 0 | 0 | 0 |
 | **Tier 2: Platform Launch (Gate C)** | 10 | 10 | 0 | 0 | 0 |
 | **Tier 3: Platform Governance & Scale** | 4 | 4 | 0 | 0 | 0 |
-| **Total** | **44** | **43** | **0** | **1** | **1** |
+| **Total** | **44** | **42** | **0** | **2** | **2** |
 
 ---
 
@@ -24,7 +24,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 #### Epic E1: Guided practice and Socratic tutoring
 | Issue ID | Story / Task | Title | Priority | GitHub # | Status | Stage | Completed | Local Path |
 |---|---|---|:---:|:---:|:---:|:---:|:---:|---|
-| ISSUE-001 | `STU-01` | Attempt before guidance | P0 | [#637](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/637) | Planned | Pre-flight | - | [ISSUE-001](ISSUE-001-STU-01/ISSUE.md) |
+| ISSUE-001 | `STU-01` | Attempt before guidance | P0 | [#637](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/637) | Completed | Closure | 2026-10-12 | [ISSUE-001](ISSUE-001-STU-01/ISSUE.md) |
 | ISSUE-002 | `STU-02` | One focused hint at a time | P0 | [#638](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/638) | Planned | Pre-flight | - | [ISSUE-002](ISSUE-002-STU-02/ISSUE.md) |
 | ISSUE-003 | `STU-03` | Submit working and selected reasoning options | P0 | [#639](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/639) | Planned | Pre-flight | - | [ISSUE-003](ISSUE-003-STU-03/ISSUE.md) |
 | ISSUE-004 | `STU-04` | Feedback on why my answer is incorrect | P0 | [#640](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/640) | Planned | Pre-flight | - | [ISSUE-004](ISSUE-004-STU-04/ISSUE.md) |

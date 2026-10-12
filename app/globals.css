@@ -143,3 +143,374 @@ main {
   line-height: 1.6;
   margin-bottom: 2rem;
 }
+
+/* Practice View Styles */
+.practice-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+}
+
+.practice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--card-border);
+  background: rgba(9, 13, 22, 0.85);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.header-divider {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.header-sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.status-badges {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--card-border);
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.badge-label {
+  color: var(--text-muted);
+}
+
+.badge-value {
+  font-weight: 600;
+}
+
+.state-pill[data-state="awaiting_first_attempt"] {
+  color: #fbbf24;
+}
+
+.state-pill[data-state="active"] {
+  color: #38bdf8;
+}
+
+.state-pill[data-state="reflection"] {
+  color: #34d399;
+}
+
+.level-pill {
+  color: #a78bfa;
+}
+
+.attempts-pill {
+  color: #f472b6;
+}
+
+.practice-main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.practice-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .practice-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.practice-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.problem-card, .tutor-card, .input-card, .drawer-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.problem-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.problem-topic {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #60a5fa;
+  background: rgba(59, 130, 246, 0.12);
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+}
+
+.problem-id {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.problem-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.85rem;
+  color: #fff;
+}
+
+.problem-stem {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+}
+
+.tutor-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.tutor-avatar {
+  font-size: 1.5rem;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  padding: 0.35rem 0.6rem;
+  border-radius: 10px;
+}
+
+.tutor-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.tutor-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #f1f5f9;
+}
+
+.tutor-mode {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.tutor-speech-bubble {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid var(--accent);
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #f8fafc;
+}
+
+.no-hint-notice {
+  margin-top: 0.85rem;
+  font-size: 0.85rem;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px dashed rgba(251, 191, 36, 0.3);
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #f8fafc;
+}
+
+.answer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: 360px;
+}
+
+.input-wrapper:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.unit-prefix {
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-right: 0.5rem;
+}
+
+.answer-input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.15rem;
+  outline: none;
+  width: 100%;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.submit-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+}
+
+.not-sure-btn {
+  background: rgba(245, 158, 11, 0.1);
+  color: #fcd34d;
+  border-color: rgba(245, 158, 11, 0.3);
+  padding: 0.75rem 1.4rem;
+  font-size: 0.95rem;
+}
+
+.not-sure-btn:hover {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: #fcd34d;
+}
+
+.show-solution-btn {
+  padding: 0.75rem 1.25rem;
+}
+
+.drawer-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.5rem;
+  color: #f1f5f9;
+}
+
+.drawer-empty {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.attempts-list, .audit-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.attempt-item {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.attempt-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.attempt-number {
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.counted-badge {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.counted-yes {
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+}
+
+.counted-no {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.attempt-detail {
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.detail-val {
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.audit-item {
+  background: rgba(15, 23, 42, 0.4);
+  border-left: 2px solid var(--primary);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.8rem;
+}
+
+.audit-time {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.audit-type {
+  font-weight: 600;
+  color: #60a5fa;
+  margin: 0.1rem 0;
+}
+
+.audit-details {
+  color: #94a3b8;
+  font-size: 0.775rem;
+  word-break: break-word;
+}
+

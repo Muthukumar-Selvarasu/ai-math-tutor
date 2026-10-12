@@ -1,0 +1,114 @@
+{
+  "level0_prompt": {
+    "text": "Take a go at solving this question or share your first step to get started.",
+    "status": "draft"
+  },
+  "fallback_l0": {
+    "text": "What is the first step you would take to solve this problem?",
+    "status": "draft"
+  },
+  "fallback_l1": {
+    "text": "What information in the question can help you begin?",
+    "status": "draft"
+  },
+  "fallback_l2": {
+    "text": "Can you break this down into smaller parts?",
+    "status": "draft"
+  },
+  "fallback_l3": {
+    "text": "Think about how the numbers are connected.",
+    "status": "draft"
+  },
+  "fallback_l4": {
+    "text": "Look carefully at the calculation for this step.",
+    "status": "draft"
+  },
+  "rephrase_request": {
+    "text": "Could you rephrase your answer using numbers or standard math symbols?",
+    "status": "draft"
+  },
+  "use_dot_for_decimals": {
+    "text": "Please use a dot rather than a comma for decimal numbers.",
+    "status": "draft"
+  },
+  "enter_the_number": {
+    "text": "Please enter the number your calculation gives.",
+    "status": "draft"
+  },
+  "structured_mode_notice": {
+    "text": "Let's switch to structured steps to make this easier to follow.",
+    "status": "draft"
+  },
+  "tool_failure_notice": {
+    "text": "We are experiencing a temporary issue checking this step. Your progress is saved.",
+    "status": "draft"
+  },
+  "save_failed_notice": {
+    "text": "Unable to save your response at the moment. Please try again shortly.",
+    "status": "draft"
+  },
+  "rate_limited_notice": {
+    "text": "Please wait a moment before sending your next response.",
+    "status": "draft"
+  },
+  "note_ack": {
+    "text": "Your note has been saved for your teacher.",
+    "status": "draft"
+  },
+  "answer_request_reply": {
+    "text": "I cannot give you the answer directly, but I can guide you through each step.",
+    "status": "draft"
+  },
+  "abuse_reply": {
+    "text": "Let's keep our conversation respectful and focused on solving the math.",
+    "status": "draft"
+  },
+  "assessment_help_reply": {
+    "text": "I can only help you learn the methods, not provide test answers.",
+    "status": "draft"
+  },
+  "impersonation_reply": {
+    "text": "I am your SolvePath math tutor, here to guide your practice.",
+    "status": "draft"
+  },
+  "worrying_disclosure_reply": {
+    "text": "Thank you for sharing. Please speak with a trusted teacher, adult, or counselor.",
+    "status": "draft"
+  },
+  "injection_phrase_reply": {
+    "text": "Let's focus on the math problem in front of us.",
+    "status": "draft"
+  },
+  "encouragement": {
+    "text": "Keep going! Take a moment to review what you've found so far.",
+    "status": "draft"
+  },
+  "support_withheld_notice": {
+    "text": "The full solution is withheld for this practice item. Try reviewing the similar example.",
+    "status": "draft"
+  },
+  "turn_cap_notice": {
+    "text": "You've worked hard on this question. Let's bookmark it for your teacher and move to another problem.",
+    "status": "draft"
+  },
+  "transfer_offer": {
+    "text": "Great job! Would you like to try a similar question to solidify what you learned?",
+    "status": "draft"
+  },
+  "transfer_declined_ack": {
+    "text": "No problem! You have completed this question.",
+    "status": "draft"
+  },
+  "transfer_stuck_notice": {
+    "text": "Good effort on this transfer question. We'll save your work for review.",
+    "status": "draft"
+  },
+  "no_legal_transfer_notice": {
+    "text": "Practice session complete. Well done!",
+    "status": "draft"
+  },
+  "session_closed_notice": {
+    "text": "This tutoring session is closed.",
+    "status": "draft"
+  }
+}

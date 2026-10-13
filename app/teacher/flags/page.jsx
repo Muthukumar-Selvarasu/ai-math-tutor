@@ -50,9 +50,10 @@ export default function TeacherFlagsPage() {
     fetchData();
   }, []);
 
-  const handleReviewDecision = async (recId, decision) => {
+  const handleReviewDecision = async (recId, decision, customRationale = null) => {
     try {
       setError(null);
+      const rationaleText = customRationale || (decision === "overridden" ? "Teacher clinical review override" : `Teacher decision: marked as ${decision}`);
       const res = await fetch(`/api/teacher/recommendations/${recId}/review`, {
         method: "POST",
         headers: {
@@ -61,7 +62,8 @@ export default function TeacherFlagsPage() {
         },
         body: JSON.stringify({
           decision,
-          note: `Teacher decision: marked as ${decision}`,
+          note: rationaleText,
+          rationale: rationaleText,
         }),
       });
 

@@ -56,10 +56,18 @@ export default function PracticePage() {
         : (options.sessionId || options.session_id || null);
 
       if (resumeSessionId) {
-        // Resume existing session via GET /api/sessions/{id} (STU-12 Criterion 1)
+        // Resume existing session via GET /api/sessions/{id} (STU-12 Criterion 1, STU-18 Criterion 2)
         const res = await fetch(`/api/sessions/${resumeSessionId}`);
         if (res.ok) {
           const data = await res.json();
+          if (data.session?.state === "abandoned") {
+            // Resume after abandoned starts a new session (STU-18 Criterion 2)
+            await initSession({
+              question_id: data.session.question_id,
+              student_id: data.session.student_id,
+            });
+            return;
+          }
           setSessionData(data);
           if (data.session?.question_id) {
             setSelectedQuestionId(data.session.question_id);
@@ -642,6 +650,17 @@ export default function PracticePage() {
     }
   }
 
+  // Handle Next Question in terminal states
+  async function handleNextQuestion() {
+    if (submitting) return;
+    const nextQId = sessionData?.session?.offered_next_question_id;
+    if (nextQId) {
+      await handleStartQuestion(nextQId);
+    } else {
+      await handleStartRecommended();
+    }
+  }
+
   if (loading) {
     return (
       <main className="practice-container">
@@ -1205,8 +1224,134 @@ export default function PracticePage() {
                       Decline Transfer
                     </button>
                   )}
+
+                  {controls.includes("next_question") && (
+                    <button
+                      type="button"
+                      className="btn btn-primary next-question-btn"
+                      data-testid="next-question-btn"
+                      onClick={handleNextQuestion}
+                      disabled={submitting}
+                    >
+                      Next Question
+                    </button>
+                  )}
                 </div>
               </form>
+
+              {/* Session Summary Section (STU-18) */}
+              {(controls.includes("summary") || session?.summary || ["completed", "declined", "stuck", "abandoned"].includes(session?.state)) && (
+                <div
+                  className="session-summary-card"
+                  data-testid="session-summary"
+                  style={{
+                    marginTop: "1.5rem",
+                    padding: "1.25rem",
+                    border: "1px solid var(--border)",
+                    borderRadius: "8px",
+                    background: "rgba(16, 185, 129, 0.04)",
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", flexWrap: "wrap", gap: "0.5rem" }}>
+                    <h4 style={{ fontSize: "1.1rem", fontWeight: 600, color: "var(--foreground)", margin: 0 }}>
+                      Session Summary
+                    </h4>
+                    <div style={{ display: "flex", gap: "0.5rem" }}>
+                      <span
+                        className="badge"
+                        data-testid="summary-state"
+                        style={{ padding: "0.2rem 0.6rem", borderRadius: "4px", fontSize: "0.8rem", background: "var(--accent)", color: "#fff" }}
+                      >
+                        {session?.state}
+                      </span>
+                      {session?.end_reason && (
+                        <span
+                          className="badge"
+                          data-testid="summary-end-reason"
+                          style={{ padding: "0.2rem 0.6rem", borderRadius: "4px", fontSize: "0.8rem", background: "#f59e0b", color: "#fff" }}
+                        >
+                          {session.end_reason}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {session?.flags && session.flags.length > 0 && (
+                    <div
+                      data-testid="summary-flags"
+                      style={{
+                        marginBottom: "0.75rem",
+                        padding: "0.4rem 0.75rem",
+                        borderRadius: "6px",
+                        background: "rgba(239, 68, 68, 0.08)",
+                        color: "#ef4444",
+                        fontSize: "0.85rem",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Flags: {session.flags.join(", ")}
+                    </div>
+                  )}
+
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "0.75rem", marginBottom: "1rem" }}>
+                    <div style={{ padding: "0.6rem", background: "var(--card-bg, #fff)", borderRadius: "6px", border: "1px solid var(--border)" }}>
+                      <div style={{ fontSize: "0.75rem", color: "var(--muted)" }}>Attempts</div>
+                      <div style={{ fontSize: "1.1rem", fontWeight: 700 }} data-testid="summary-attempts">
+                        {session?.attempt_count || 0}
+                      </div>
+                    </div>
+                    <div style={{ padding: "0.6rem", background: "var(--card-bg, #fff)", borderRadius: "6px", border: "1px solid var(--border)" }}>
+                      <div style={{ fontSize: "0.75rem", color: "var(--muted)" }}>Turns</div>
+                      <div style={{ fontSize: "1.1rem", fontWeight: 700 }} data-testid="summary-turns">
+                        {session?.turn_number || 1}
+                      </div>
+                    </div>
+                    <div style={{ padding: "0.6rem", background: "var(--card-bg, #fff)", borderRadius: "6px", border: "1px solid var(--border)" }}>
+                      <div style={{ fontSize: "0.75rem", color: "var(--muted)" }}>Final Hint Level</div>
+                      <div style={{ fontSize: "1.1rem", fontWeight: 700 }} data-testid="summary-hint-levels">
+                        {session?.summary?.hint_levels ? session.summary.hint_levels.join(", ") : session?.hint_level}
+                      </div>
+                    </div>
+                    <div style={{ padding: "0.6rem", background: "var(--card-bg, #fff)", borderRadius: "6px", border: "1px solid var(--border)" }}>
+                      <div style={{ fontSize: "0.75rem", color: "var(--muted)" }}>Transfer Result</div>
+                      <div style={{ fontSize: "1.1rem", fontWeight: 700 }} data-testid="summary-transfer-result">
+                        {session?.transfer_outcome || session?.summary?.transfer_result || "none"}
+                      </div>
+                    </div>
+                  </div>
+
+                  {session?.summary?.verifier_outcomes && session.summary.verifier_outcomes.length > 0 && (
+                    <div style={{ marginBottom: "1rem" }} data-testid="summary-verifier-outcomes">
+                      <div style={{ fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.4rem" }}>
+                        Verifier Outcomes:
+                      </div>
+                      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
+                        {session.summary.verifier_outcomes.map((vo, idx) => (
+                          <span
+                            key={idx}
+                            style={{
+                              padding: "0.2rem 0.5rem",
+                              borderRadius: "4px",
+                              fontSize: "0.75rem",
+                              background:
+                                vo.status === "correct"
+                                  ? "#10b981"
+                                  : vo.status === "partially_correct"
+                                  ? "#3b82f6"
+                                  : vo.status === "not_sure"
+                                  ? "#6b7280"
+                                  : "#ef4444",
+                              color: "#fff",
+                            }}
+                          >
+                            Attempt #{vo.attempt_number}: {vo.status}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Structured Reflection Section */}
               {session?.state === "reflection" && tutor?.choices && tutor.choices.length > 0 && (

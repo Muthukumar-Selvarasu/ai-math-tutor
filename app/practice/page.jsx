@@ -166,7 +166,7 @@ export default function PracticePage() {
       const payload = {
         event: "submit",
         answer_text: answerInput.trim(),
-        response_target: "final",
+        response_target: sessionData?.session?.active_probe_id || sessionData?.session?.next_target === "probe" ? "probe" : "final",
         dialogue_mode: dialogueMode,
         selected_reasoning_option: selectedReasoningOption || undefined,
         confidence_rating: confidenceRating ? parseInt(confidenceRating, 10) : undefined,

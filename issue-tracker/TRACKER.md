@@ -98,7 +98,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 | ISSUE-013 | `EDU-05` | Group students with similar needs | P1 | [#649](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/649) | Completed | Closure | 2026-10-13 | [ISSUE-013](ISSUE-013-EDU-05/ISSUE.md) |
 
 | ISSUE-022 | `EDU-08` | Student learning profile and misconception trends | P1 | [#658](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/658) | Completed | Closure | 2026-10-13 | [ISSUE-022](ISSUE-022-EDU-08/ISSUE.md) |
-| ISSUE-032 | `EDU-10` | See a cohort summary | P1 | [#668](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/668) | Planned | Pre-flight | - | [ISSUE-032](ISSUE-032-EDU-10/ISSUE.md) |
+| ISSUE-032 | `EDU-10` | See a cohort summary | P1 | [#668](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/668) | Completed | Closure | 2026-10-13 | [ISSUE-032](ISSUE-032-EDU-10/ISSUE.md) |
 
 #### Epic E3: Review, replay, and human oversight
 | Issue ID | Story / Task | Title | Priority | GitHub # | Status | Stage | Completed | Local Path |

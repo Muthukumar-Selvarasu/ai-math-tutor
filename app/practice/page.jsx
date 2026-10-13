@@ -40,12 +40,48 @@ export default function PracticePage() {
     fetchQuestions();
   }, []);
 
-  // Initialize session
+  // Initialize or resume session
   async function initSession(options = {}) {
     try {
       setLoading(true);
       setError(null);
       const searchParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+      const isExplicitNewQuestion = Boolean(options.question_id || options.recommended);
+      const resumeSessionId = !isExplicitNewQuestion
+        ? (options.sessionId ||
+           options.session_id ||
+           searchParams?.get("sessionId") ||
+           searchParams?.get("session_id") ||
+           null)
+        : (options.sessionId || options.session_id || null);
+
+      if (resumeSessionId) {
+        // Resume existing session via GET /api/sessions/{id} (STU-12 Criterion 1)
+        const res = await fetch(`/api/sessions/${resumeSessionId}`);
+        if (res.ok) {
+          const data = await res.json();
+          setSessionData(data);
+          if (data.session?.question_id) {
+            setSelectedQuestionId(data.session.question_id);
+          }
+          if (data.session?.dialogue_mode) {
+            setDialogueMode(data.session.dialogue_mode);
+          }
+          if (data.session?.allow_level_5 !== undefined) {
+            setAllowLevel5(data.session.allow_level_5);
+          }
+          setStartTime(Date.now());
+          setAuditLog([
+            {
+              event_type: "session_resumed",
+              timestamp: new Date().toLocaleTimeString(),
+              details: `Session resumed: State: ${data.session?.state}, Level: ${data.session?.hint_level}, Attempts: ${data.session?.attempt_count}`,
+            },
+          ]);
+          return;
+        }
+      }
+
       const isRecommended = options.recommended !== undefined
         ? options.recommended
         : searchParams?.get("recommended") === "true";
@@ -64,11 +100,16 @@ export default function PracticePage() {
 
       if (!res.ok) {
         const errJson = await res.json().catch(() => ({}));
-        throw new Error(errJson.error || `Failed to start session: ${res.statusText}`);
+        throw new Error(errJson.error?.message || errJson.error || `Failed to start session: ${res.statusText}`);
       }
 
       const data = await res.json();
       setSessionData(data);
+      if (data.session?.id && typeof window !== "undefined") {
+        const url = new URL(window.location.href);
+        url.searchParams.set("sessionId", data.session.id);
+        window.history.replaceState({}, "", url.toString());
+      }
       if (data.session?.question_id) {
         setSelectedQuestionId(data.session.question_id);
       }
@@ -1106,14 +1147,16 @@ export default function PracticePage() {
                 </div>
 
                 <div className="action-buttons">
-                  <button
-                    type="submit"
-                    className="btn btn-primary submit-btn"
-                    data-testid="submit-attempt-btn"
-                    disabled={submitting || !answerInput.trim()}
-                  >
-                    {submitting ? "Checking..." : "Submit Attempt"}
-                  </button>
+                  {controls.includes("answer") && (
+                    <button
+                      type="submit"
+                      className="btn btn-primary submit-btn"
+                      data-testid="submit-attempt-btn"
+                      disabled={submitting || !answerInput.trim()}
+                    >
+                      {submitting ? "Checking..." : "Submit Attempt"}
+                    </button>
+                  )}
 
                   {controls.includes("not_sure") && (
                     <button
@@ -1127,7 +1170,7 @@ export default function PracticePage() {
                     </button>
                   )}
 
-                  {controls.includes("show_solution") && session?.state !== "transfer_active" && (
+                  {controls.includes("show_solution") && (
                     <button
                       type="button"
                       className="btn btn-secondary show-solution-btn"
@@ -1139,7 +1182,7 @@ export default function PracticePage() {
                     </button>
                   )}
 
-                  {(controls.includes("accept") || session?.state === "transfer_offered") && (
+                  {controls.includes("accept") && (
                     <button
                       type="button"
                       className="btn btn-primary accept-transfer-btn"
@@ -1151,7 +1194,7 @@ export default function PracticePage() {
                     </button>
                   )}
 
-                  {(controls.includes("decline") || session?.state === "transfer_offered") && (
+                  {controls.includes("decline") && (
                     <button
                       type="button"
                       className="btn btn-secondary decline-transfer-btn"

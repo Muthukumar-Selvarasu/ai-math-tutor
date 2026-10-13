@@ -141,7 +141,7 @@ test.describe('STU-06: Test understanding with a similar question (Concept Conne
     });
     expect(showSolRes.status()).toBe(409);
     const errData = await showSolRes.json();
-    expect(errData.error).toContain('transition_not_allowed');
+    expect(errData.error?.code || errData.error).toContain('transition_not_allowed');
   });
 
   test('Criterion 3: Transfer outcomes: correct (+0.20 confidence), declined/skipped (no confidence raise), and incorrect after struggle', async ({ request }) => {

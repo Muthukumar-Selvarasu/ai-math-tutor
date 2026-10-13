@@ -8,12 +8,12 @@ This tracker maintains the central registry of all project tasks managed as **IS
 
 | Milestone | Total Issues | Planned | In Progress | Completed (Local) | Closed (GitHub) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| **Tier 1a: Core MVP (Gate A)** | 27 | 16 | 0 | 10 | 10 |
+| **Tier 1a: Core MVP (Gate A)** | 27 | 15 | 0 | 11 | 11 |
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 1 | 0 | 0 | 0 |
 | **Tier 1c: Replay & Human Oversight** | 2 | 2 | 0 | 0 | 0 |
 | **Tier 2: Platform Launch (Gate C)** | 10 | 9 | 0 | 1 | 1 |
 | **Tier 3: Platform Governance & Scale** | 4 | 4 | 0 | 0 | 0 |
-| **Total** | **44** | **32** | **0** | **11** | **11** |
+| **Total** | **44** | **31** | **0** | **12** | **12** |
 
 ---
 
@@ -34,7 +34,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 | ISSUE-021 | `STU-09` | Select or receive a recommended question | P0 | [#657](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/657) | Completed | Closure | 2026-10-12 | [ISSUE-021](ISSUE-021-STU-09/ISSUE.md) |
 | ISSUE-025 | `STU-10` | Safe handling of unsafe input | P0 | [#661](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/661) | Completed | Closure | 2026-10-12 | [ISSUE-025](ISSUE-025-STU-10/ISSUE.md) |
 | ISSUE-026 | `STU-11` | Check ratio work deterministically | P0 | [#662](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/662) | Completed | Closure | 2026-10-13 | [ISSUE-026](ISSUE-026-STU-11/ISSUE.md) |
-| ISSUE-027 | `STU-12` | Leave and resume a session | P0 | [#663](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/663) | Planned | Pre-flight | - | [ISSUE-027](ISSUE-027-STU-12/ISSUE.md) |
+| ISSUE-027 | `STU-12` | Leave and resume a session | P0 | [#663](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/663) | Completed | Closure | 2026-10-13 | [ISSUE-027](ISSUE-027-STU-12/ISSUE.md) |
 | ISSUE-029 | `STU-18` | Close a session with a summary and a stuck flag | P0 | [#665](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/665) | Planned | Pre-flight | - | [ISSUE-029](ISSUE-029-STU-18/ISSUE.md) |
 | ISSUE-030 | `STU-19` | Estimate understanding from this turn | P0 | [#666](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/666) | Planned | Pre-flight | - | [ISSUE-030](ISSUE-030-STU-19/ISSUE.md) |
 | ISSUE-033 | `STU-13` | Keep an unapproved turn off the screen | P0 | [#669](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/669) | Planned | Pre-flight | - | [ISSUE-033](ISSUE-033-STU-13/ISSUE.md) |

@@ -5,6 +5,7 @@ import {
   recommendNextQuestion,
   isQuestionApprovedAndPublished,
 } from "../../../lib/practice-planner";
+import { createErrorResponse } from "../../../lib/error-response";
 
 export async function POST(request) {
   try {
@@ -20,10 +21,7 @@ export async function POST(request) {
       });
 
       if (!recommended) {
-        return NextResponse.json(
-          { error: "No eligible recommended question found" },
-          { status: 404 }
-        );
+        return createErrorResponse(404, "not_found", "No eligible recommended question found");
       }
 
       targetQuestionId = recommended.question_id;
@@ -34,10 +32,7 @@ export async function POST(request) {
       const q = getQuestion(targetQuestionId);
 
       if (!q) {
-        return NextResponse.json(
-          { error: "Question not found" },
-          { status: 404 }
-        );
+        return createErrorResponse(404, "not_found", "Question not found");
       }
 
       // Special allowance: ratio_diagram_withheld_001 tests diagram-withholding handling in STU-08
@@ -52,10 +47,7 @@ export async function POST(request) {
         const isFlagged = Boolean(q.flagged);
 
         if (isDraft || isFlagged) {
-          return NextResponse.json(
-            { error: "Question is not approved and published" },
-            { status: 404 }
-          );
+          return createErrorResponse(404, "not_found", "Question is not approved and published");
         }
       }
     } else {
@@ -66,8 +58,8 @@ export async function POST(request) {
     return NextResponse.json(sessionView, { status: 201 });
   } catch (error) {
     if (error.message && error.message.toLowerCase().includes("not found")) {
-      return NextResponse.json({ error: error.message }, { status: 404 });
+      return createErrorResponse(404, "not_found", error.message);
     }
-    return NextResponse.json({ error: error.message }, { status: 400 });
+    return createErrorResponse(400, "invalid_request", error.message || "Failed to create session");
   }
 }

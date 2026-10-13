@@ -303,6 +303,41 @@ export default function TeacherSessionReplayPage() {
               No active recommendation.
             </div>
           )}
+
+          {/* Tutor Notes (EDU-09 AC2) */}
+          <div style={{ marginTop: "1.5rem" }}>
+            <h3 style={{ fontSize: "1.1rem", marginBottom: "0.75rem", color: "#cbd5e1" }}>
+              Tutor Observations & Notes
+            </h3>
+            {replayData?.tutor_notes && replayData.tutor_notes.length > 0 ? (
+              <div data-testid="tutor-notes-list" style={{ display: "grid", gap: "0.5rem" }}>
+                {replayData.tutor_notes.map((note) => (
+                  <div
+                    key={note.id}
+                    data-testid="tutor-note-card"
+                    style={{
+                      background: "#1e293b",
+                      border: "1px solid #475569",
+                      borderRadius: "6px",
+                      padding: "0.75rem",
+                      fontSize: "0.85rem",
+                    }}
+                  >
+                    <div style={{ color: "#38bdf8", fontWeight: 600, marginBottom: "0.25rem" }}>
+                      Note from {note.author_id}
+                    </div>
+                    <div data-testid="tutor-note-body" style={{ color: "#f8fafc" }}>
+                      {note.body}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div style={{ background: "#1e293b", padding: "1rem", borderRadius: "8px", color: "#94a3b8", fontSize: "0.85rem" }}>
+                No tutor notes attached to this session.
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

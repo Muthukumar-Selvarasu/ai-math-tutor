@@ -105,7 +105,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 |---|---|---|:---:|:---:|:---:|:---:|:---:|---|
 | ISSUE-012 | `EDU-04` | Accept, reject, or override a recommendation | P1 | [#648](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/648) | Completed | Closure | 2026-10-13 | [ISSUE-012](ISSUE-012-EDU-04/ISSUE.md) |
 | ISSUE-014 | `EDU-06` | Review content quality | P1 | [#650](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/650) | Completed | Closure | 2026-10-13 | [ISSUE-014](ISSUE-014-EDU-06/ISSUE.md) |
-| ISSUE-031 | `EDU-09` | Add a tutor note | P1 | [#667](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/667) | Planned | Pre-flight | - | [ISSUE-031](ISSUE-031-EDU-09/ISSUE.md) |
+| ISSUE-031 | `EDU-09` | Add a tutor note | P1 | [#667](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/667) | Completed | Closure | 2026-10-13 | [ISSUE-031](ISSUE-031-EDU-09/ISSUE.md) |
 | ISSUE-036 | `EDU-12` | See safety and stuck-session flags | P1 | [#672](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/672) | Planned | Pre-flight | - | [ISSUE-036](ISSUE-036-EDU-12/ISSUE.md) |
 | ISSUE-041 | `EDU-11` | Comment on a session | P1 | [#677](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/677) | Planned | Pre-flight | - | [ISSUE-041](ISSUE-041-EDU-11/ISSUE.md) |
 

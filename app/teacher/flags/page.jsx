@@ -9,11 +9,39 @@ export default function TeacherFlagsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [actionMsg, setActionMsg] = useState("");
+  const [exportResult, setExportResult] = useState(null);
 
   const teacherToken = JSON.stringify({
     sub: "user_2test_tch_001",
     role: "teacher",
   });
+
+  const handleExportSummary = async () => {
+    try {
+      setError(null);
+      const recIds = recommendations.map((r) => r.id);
+      const res = await fetch("/api/teacher/exports", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${teacherToken}`,
+        },
+        body: JSON.stringify({ recommendation_ids: recIds }),
+      });
+
+      if (!res.ok) {
+        const errJson = await res.json();
+        throw new Error(errJson.message || `HTTP ${res.status}`);
+      }
+
+      const json = await res.json();
+      setExportResult(json);
+      setActionMsg("Intervention summary exported successfully.");
+      setTimeout(() => setActionMsg(""), 4000);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   const fetchData = async () => {
     try {
@@ -150,9 +178,90 @@ export default function TeacherFlagsPage() {
 
             {/* Recommendations Section */}
             <div style={{ marginTop: "2rem" }}>
-              <h2 style={{ fontSize: "1.25rem", marginBottom: "1rem", color: "#cbd5e1" }}>
-                Pending Recommendations ({recommendations.length})
-              </h2>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+                <h2 style={{ fontSize: "1.25rem", margin: 0, color: "#cbd5e1" }}>
+                  Pending Recommendations ({recommendations.length})
+                </h2>
+                {recommendations.length > 0 && (
+                  <button
+                    data-testid="export-summary-btn"
+                    onClick={handleExportSummary}
+                    style={{
+                      background: "#3b82f6",
+                      color: "#ffffff",
+                      border: "none",
+                      padding: "6px 14px",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      fontSize: "0.85rem",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Export Intervention Summary
+                  </button>
+                )}
+              </div>
+
+              {exportResult && (
+                <div
+                  data-testid="export-result-panel"
+                  style={{
+                    background: "#1e293b",
+                    border: "2px solid #3b82f6",
+                    borderRadius: "8px",
+                    padding: "1rem",
+                    marginBottom: "1.5rem",
+                  }}
+                >
+                  <div
+                    data-testid="export-ai-draft-label"
+                    style={{
+                      fontSize: "0.85rem",
+                      background: "#b45309",
+                      color: "#fef3c7",
+                      padding: "4px 10px",
+                      borderRadius: "4px",
+                      fontWeight: "bold",
+                      display: "inline-block",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    {exportResult.draft_label || "AI-GENERATED DRAFT — FOR HUMAN EDUCATOR REVIEW ONLY"}
+                  </div>
+                  <div
+                    data-testid="export-safeguard-notice"
+                    style={{
+                      fontSize: "0.8rem",
+                      color: "#34d399",
+                      fontWeight: 500,
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    ✓ Safeguard verified: No automated message sent to parent or student.
+                  </div>
+                  <div style={{ fontSize: "0.85rem", color: "#94a3b8", marginBottom: "0.5rem" }}>
+                    Export reference: <code>{exportResult.export_id}</code> | Items: {exportResult.item_count} | Expires: {new Date(exportResult.expires_at).toLocaleTimeString()}
+                  </div>
+                  <a
+                    data-testid="export-download-link"
+                    href={exportResult.download_url}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      display: "inline-block",
+                      background: "#2563eb",
+                      color: "#ffffff",
+                      padding: "6px 12px",
+                      borderRadius: "4px",
+                      textDecoration: "none",
+                      fontSize: "0.85rem",
+                    }}
+                  >
+                    Download Intervention Summary
+                  </a>
+                </div>
+              )}
+
               {recommendations.length === 0 ? (
                 <div style={{ background: "#1e293b", padding: "1rem", borderRadius: "8px", color: "#94a3b8" }}>
                   No pending recommendations.

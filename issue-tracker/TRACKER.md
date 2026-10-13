@@ -12,8 +12,8 @@ This tracker maintains the central registry of all project tasks managed as **IS
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 0 | 0 | 1 | 1 |
 | **Tier 1c: Replay & Human Oversight** | 2 | 0 | 0 | 2 | 2 |
 | **Tier 2: Platform Launch (Gate C)** | 10 | 0 | 0 | 10 | 10 |
-| **Tier 3: Platform Governance & Scale** | 4 | 4 | 0 | 0 | 0 |
-| **Total** | **44** | **4** | **0** | **40** | **40** |
+| **Tier 3: Platform Governance & Scale** | 4 | 3 | 0 | 1 | 1 |
+| **Total** | **44** | **3** | **0** | **41** | **41** |
 
 
 ---
@@ -116,7 +116,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 #### Epic E2: Learner progress and educator insight
 | Issue ID | Story / Task | Title | Priority | GitHub # | Status | Stage | Completed | Local Path |
 |---|---|---|:---:|:---:|:---:|:---:|:---:|---|
-| ISSUE-015 | `EDU-07` | Export an intervention summary | P2 | [#651](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/651) | Planned | Pre-flight | - | [ISSUE-015](ISSUE-015-EDU-07/ISSUE.md) |
+| ISSUE-015 | `EDU-07` | Export an intervention summary | P2 | [#651](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/651) | Completed | Closure | 2026-10-13 | [ISSUE-015](ISSUE-015-EDU-07/ISSUE.md) |
 
 #### Epic E4: Governance, security, and platform operations
 | Issue ID | Story / Task | Title | Priority | GitHub # | Status | Stage | Completed | Local Path |

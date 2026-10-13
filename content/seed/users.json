@@ -1,0 +1,28 @@
+[
+  {
+    "clerk_ref": "ref_student_1",
+    "role": "student",
+    "display_label": "Student 101"
+  },
+  {
+    "clerk_ref": "ref_student_2",
+    "role": "student",
+    "display_label": "Student 102"
+  },
+  {
+    "clerk_ref": "ref_teacher_1",
+    "role": "teacher",
+    "display_label": "Teacher Alpha"
+  },
+  {
+    "clerk_ref": "ref_parent_1",
+    "role": "parent",
+    "display_label": "Parent Beta"
+  },
+  {
+    "clerk_ref": "ref_admin_1",
+    "role": "administrator",
+    "display_label": "Administrator Gamma",
+    "grants": ["trace_review"]
+  }
+]

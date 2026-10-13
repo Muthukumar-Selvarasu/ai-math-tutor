@@ -295,6 +295,38 @@ export default function TeacherSessionReplayPage() {
               <span>Policy: v{currentTurn.policy_version}</span>
               <span>Time: {new Date(currentTurn.audit_timestamps?.created_at).toLocaleTimeString()}</span>
             </div>
+
+            {/* Langfuse Trace Link or Expired Notice (ADM-09, SPEC SC-14) */}
+            {currentTurn.trace_link && (
+              <div style={{ marginTop: "0.5rem", fontSize: "0.8rem" }}>
+                <span style={{ color: "#94a3b8" }}>Trace: </span>
+                <a
+                  data-testid="turn-trace-link"
+                  href={currentTurn.trace_link}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: "#60a5fa", textDecoration: "underline" }}
+                >
+                  Langfuse Trace Link
+                </a>
+              </div>
+            )}
+            {currentTurn.trace_notice && (
+              <div
+                data-testid="turn-trace-notice"
+                style={{
+                  marginTop: "0.5rem",
+                  fontSize: "0.8rem",
+                  color: "#f59e0b",
+                  background: "#1e293b",
+                  padding: "4px 8px",
+                  borderRadius: "4px",
+                  display: "inline-block",
+                }}
+              >
+                Notice: Langfuse trace expired and purged under 90-day retention policy
+              </div>
+            )}
           </div>
         )}
 

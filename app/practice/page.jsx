@@ -1092,6 +1092,16 @@ export default function PracticePage() {
                     Single Prompt: {tutor.single_prompt ? "Passed" : "Failed"}
                   </span>
                 )}
+                {(tutor?.tone || session?.tone) && (
+                  <span className="meta-pill" data-testid="turn-tone-badge">
+                    Tone: {tutor?.tone || session?.tone}
+                  </span>
+                )}
+                {(tutor?.student_state || session?.student_state) && (
+                  <span className="meta-pill" data-testid="student-state-badge">
+                    State: {(tutor?.student_state || session?.student_state).repeated_wrong_value ? "Repeated" : "Exploring"} | Unsuccessful: {(tutor?.student_state || session?.student_state).consecutive_unsuccessful} | Progress: {(tutor?.student_state || session?.student_state).previous_progress}
+                  </span>
+                )}
               </div>
 
               {/* Notice when at Level 0: No hints active */}

@@ -12,8 +12,8 @@ This tracker maintains the central registry of all project tasks managed as **IS
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 0 | 0 | 1 | 1 |
 | **Tier 1c: Replay & Human Oversight** | 2 | 0 | 0 | 2 | 2 |
 | **Tier 2: Platform Launch (Gate C)** | 10 | 0 | 0 | 10 | 10 |
-| **Tier 3: Platform Governance & Scale** | 4 | 1 | 0 | 3 | 3 |
-| **Total** | **44** | **1** | **0** | **43** | **43** |
+| **Tier 3: Platform Governance & Scale** | 4 | 0 | 0 | 4 | 4 |
+| **Total** | **44** | **0** | **0** | **44** | **44** |
 
 
 ---
@@ -122,7 +122,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 | Issue ID | Story / Task | Title | Priority | GitHub # | Status | Stage | Completed | Local Path |
 |---|---|---|:---:|:---:|:---:|:---:|:---:|---|
 | ISSUE-018 | `ADM-03` | Review AI quality issues | P2 | [#654](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/654) | Completed | Closure | 2026-10-13 | [ISSUE-018](ISSUE-018-ADM-03/ISSUE.md) |
-| ISSUE-038 | `ADM-11` | Handover documents | P2 | [#674](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/674) | Planned | Pre-flight | - | [ISSUE-038](ISSUE-038-ADM-11/ISSUE.md) |
+| ISSUE-038 | `ADM-11` | Handover documents | P2 | [#674](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/674) | Completed | Closure | 2026-10-13 | [ISSUE-038](ISSUE-038-ADM-11/ISSUE.md) |
 | ISSUE-043 | `ADM-09` | Retain metadata after purge | P2 | [#679](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/679) | Completed | Closure | 2026-10-13 | [ISSUE-043](ISSUE-043-ADM-09/ISSUE.md) |
 
 ---

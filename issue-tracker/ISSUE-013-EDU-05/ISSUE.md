@@ -4,10 +4,10 @@
 - **Epic**: [E2: Learner progress and educator insight]
 - **Milestone**: [Tier 2: Platform Launch (Gate C)]
 - **Priority**: [P1]
-- **Status**: Planned
+- **Status**: Completed
 - **GitHub Issue**: [#649](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/649)
 - **Created Date**: 2026-10-12
-- **Completed Date**: Pending
+- **Completed Date**: 2026-10-13
 - **Assignee/Owner**: Antigravity / Muthukumar
 
 ---
@@ -39,13 +39,13 @@ Deliver user capability for "Group students with similar needs" as specified in 
   - Automatic scheduling of group sessions
 
 ### Preconditions & Dependencies
-- [ ] Dependencies: Misconception events, `learner-rollup` job
-- [ ] Non-blocking check: PRD v1.3.28 and ADR-015 constraints verified.
+- [x] Dependencies: Misconception events, `learner-rollup` job
+- [x] Non-blocking check: PRD v1.3.28 and ADR-015 constraints verified.
 
 ### Acceptance Criteria (Given / When / Then)
-- [ ] **Given** the groups view, **then** each group shows skill, misconception pattern, student count, attempt count, and confidence.
-- [ ] **Given** very little evidence, **then** the group shows an evidence-limit warning.
-- [ ] **Given** the caller is a teacher, **then** groups contain only assigned students.
+- [x] **Given** the groups view, **then** each group shows skill, misconception pattern, student count, attempt count, and confidence.
+- [x] **Given** very little evidence, **then** the group shows an evidence-limit warning.
+- [x] **Given** the caller is a teacher, **then** groups contain only assigned students.
 
 ### Definition of Ready (DoR) Sign-off
 - [x] Story format (*As a... I want... so that...*) and Priority stated
@@ -58,42 +58,46 @@ Deliver user capability for "Group students with similar needs" as specified in 
 ## 2. Execution
 
 ### Implementation Plan
-- [ ] Step 1: Technical design, schema updates, and test scaffolding.
-- [ ] Step 2: Implementation of core logic, state transitions, or UI components.
-- [ ] Step 3: Verification against acceptance criteria and regression suite.
+- [x] Step 1: Technical design, schema updates, and test scaffolding.
+- [x] Step 2: Implementation of core logic, state transitions, or UI components.
+- [x] Step 3: Verification against acceptance criteria and regression suite.
 
 ### Implementation Log & Technical Notes
 - `2026-10-12`: Initial issue initialized in local tracker as per task-manager.
+- `2026-10-13`: Implemented `lib/student-grouping.js` clustering attempts into skill and misconception patterns with confidence scoring and evidence-limit warning banners.
+- `2026-10-13`: Created `app/api/teacher/student-groups/route.js` scoped strictly to teacher's assigned cohort students with audit event on unauthorized access.
+- `2026-10-13`: Created `app/teacher/groups/page.jsx` with responsive UI cards, evidence-limit warnings, confidence badges, student badges, and filter tabs.
+- `2026-10-13`: Implemented `tests/e2e/edu-05-student-grouping.spec.ts` covering all ACs and verified against entire E2E test suite.
 
 ---
 
 ## 3. Validation (Definition of Done)
 
 ### Verification Commands & Test Suites
-- [ ] Automated Tests: `pytest`
-- [ ] Typecheck / Linter: `ruff check apps/api && mypy apps/api`
-- [ ] Functional / E2E: Verification against acceptance criteria
+- [x] Automated Tests: Playwright E2E suite
+- [x] Functional / E2E: Verification against acceptance criteria (`npm run test:e2e`)
 
 ### Verification Evidence & Results
 ```text
-Pending execution
+Running 210 tests using 1 worker
+  210 passed (1.5m)
 ```
 
 ### Acceptance Criteria Verification
-- [ ] All Given / When / Then criteria verified: Pending
+- [x] All Given / When / Then criteria verified: All 5 EDU-05 test scenarios pass and full suite of 210 tests pass without regression.
 
 ---
 
 ## 4. Closure
 
 ### Definition of Done (DoD) Sign-off Checklist
-- [ ] All Pre-flight acceptance criteria verified
-- [ ] Execution plan completed
-- [ ] Automated test suite passed with evidence logged
-- [ ] Regressions / leakage / security gates checked where applicable
-- [ ] Local `ISSUE.md` marked `Status: Completed`
-- [ ] Master `issue-tracker/TRACKER.md` updated and marked `Completed`
-- [ ] GitHub Issue closed via `gh issue close` (ONLY after local files are updated)
+- [x] All Pre-flight acceptance criteria verified
+- [x] Execution plan completed
+- [x] Automated test suite passed with evidence logged
+- [x] Regressions / leakage / security gates checked where applicable
+- [x] Local `ISSUE.md` marked `Status: Completed`
+- [x] Master `issue-tracker/TRACKER.md` updated and marked `Completed`
+- [x] GitHub Issue closed via `gh issue close` (ONLY after local files are updated)
 
 ### Closure Summary
-Pending implementation.
+Implemented small-group student intervention clustering (`lib/student-grouping.js`), API endpoint (`/api/teacher/student-groups`), UI page (`/teacher/groups`), and comprehensive Playwright test suite (`tests/e2e/edu-05-student-grouping.spec.ts`). Validated against full test suite with 210 tests passing.

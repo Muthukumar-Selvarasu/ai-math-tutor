@@ -11,9 +11,9 @@ This tracker maintains the central registry of all project tasks managed as **IS
 | **Tier 1a: Core MVP (Gate A)** | 27 | 0 | 0 | 27 | 27 |
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 0 | 0 | 1 | 1 |
 | **Tier 1c: Replay & Human Oversight** | 2 | 0 | 0 | 2 | 2 |
-| **Tier 2: Platform Launch (Gate C)** | 10 | 8 | 0 | 2 | 2 |
+| **Tier 2: Platform Launch (Gate C)** | 10 | 7 | 0 | 3 | 3 |
 | **Tier 3: Platform Governance & Scale** | 4 | 4 | 0 | 0 | 0 |
-| **Total** | **44** | **12** | **0** | **32** | **32** |
+| **Total** | **44** | **11** | **0** | **33** | **33** |
 
 
 ---
@@ -95,7 +95,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 |---|---|---|:---:|:---:|:---:|:---:|:---:|---|
 | ISSUE-007 | `STU-07` | See my progress | P1, and still a launch requirement ([Section 21](#21-launch-criteria)) | [#643](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/643) | Completed | Closure | 2026-10-12 | [ISSUE-007](ISSUE-007-STU-07/ISSUE.md) |
 | ISSUE-009 | `EDU-01` | See students needing review | P1 | [#645](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/645) | Completed | Closure | 2026-10-13 | [ISSUE-009](ISSUE-009-EDU-01/ISSUE.md) |
-| ISSUE-013 | `EDU-05` | Group students with similar needs | P1 | [#649](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/649) | Planned | Pre-flight | - | [ISSUE-013](ISSUE-013-EDU-05/ISSUE.md) |
+| ISSUE-013 | `EDU-05` | Group students with similar needs | P1 | [#649](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/649) | Completed | Closure | 2026-10-13 | [ISSUE-013](ISSUE-013-EDU-05/ISSUE.md) |
 
 | ISSUE-022 | `EDU-08` | Student learning profile and misconception trends | P1 | [#658](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/658) | Planned | Pre-flight | - | [ISSUE-022](ISSUE-022-EDU-08/ISSUE.md) |
 | ISSUE-032 | `EDU-10` | See a cohort summary | P1 | [#668](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/668) | Planned | Pre-flight | - | [ISSUE-032](ISSUE-032-EDU-10/ISSUE.md) |

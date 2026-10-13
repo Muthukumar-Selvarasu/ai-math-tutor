@@ -13,10 +13,41 @@ export default function TeacherSessionReplayPage() {
   const [error, setError] = useState(null);
   const [actionMsg, setActionMsg] = useState("");
 
+  const [newCommentText, setNewCommentText] = useState("");
+  const [commentSubmitting, setCommentSubmitting] = useState(false);
+
   const teacherToken = JSON.stringify({
     sub: "user_2test_tch_001",
     role: "teacher",
   });
+
+  const handleAddComment = async (e) => {
+    e.preventDefault();
+    if (!newCommentText.trim()) return;
+    try {
+      setCommentSubmitting(true);
+      const res = await fetch(`/api/teacher/sessions/${sessionId}/comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${teacherToken}`,
+        },
+        body: JSON.stringify({ body: newCommentText.trim() }),
+      });
+      if (!res.ok) {
+        const errJson = await res.json();
+        throw new Error(errJson.message || `HTTP ${res.status}`);
+      }
+      setNewCommentText("");
+      setActionMsg("Teacher comment saved successfully.");
+      setTimeout(() => setActionMsg(""), 3000);
+      fetchReplay();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setCommentSubmitting(false);
+    }
+  };
 
   const fetchReplay = async () => {
     if (!sessionId) return;
@@ -337,6 +368,84 @@ export default function TeacherSessionReplayPage() {
                 No tutor notes attached to this session.
               </div>
             )}
+          </div>
+
+          {/* Teacher Comments (EDU-11 AC1) */}
+          <div style={{ marginTop: "1.5rem" }}>
+            <h3 style={{ fontSize: "1.1rem", marginBottom: "0.75rem", color: "#cbd5e1" }}>
+              Teacher Session Comments
+            </h3>
+
+            {replayData?.comments && replayData.comments.length > 0 ? (
+              <div data-testid="teacher-comments-list" style={{ display: "grid", gap: "0.5rem", marginBottom: "1rem" }}>
+                {replayData.comments.map((comment) => (
+                  <div
+                    key={comment.id}
+                    data-testid="teacher-comment-card"
+                    style={{
+                      background: "#1e293b",
+                      border: "1px solid #475569",
+                      borderRadius: "6px",
+                      padding: "0.75rem",
+                      fontSize: "0.85rem",
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.25rem" }}>
+                      <span data-testid="teacher-comment-author" style={{ color: "#38bdf8", fontWeight: 600 }}>
+                        {comment.author_display_label || comment.author_id}
+                      </span>
+                      <span data-testid="teacher-comment-time" style={{ color: "#94a3b8", fontSize: "0.75rem" }}>
+                        {comment.created_at ? new Date(comment.created_at).toLocaleTimeString() : ""}
+                      </span>
+                    </div>
+                    <div data-testid="teacher-comment-body" style={{ color: "#f8fafc" }}>
+                      {comment.body}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div style={{ background: "#1e293b", padding: "1rem", borderRadius: "8px", color: "#94a3b8", fontSize: "0.85rem", marginBottom: "1rem" }}>
+                No teacher comments recorded for this session.
+              </div>
+            )}
+
+            {/* Add Comment Form */}
+            <form onSubmit={handleAddComment} style={{ display: "grid", gap: "0.5rem" }}>
+              <textarea
+                data-testid="teacher-comment-input"
+                value={newCommentText}
+                onChange={(e) => setNewCommentText(e.target.value)}
+                placeholder="Add pedagogical observation or note for this session..."
+                rows={3}
+                style={{
+                  width: "100%",
+                  padding: "0.5rem",
+                  background: "#0f172a",
+                  color: "#f8fafc",
+                  border: "1px solid #475569",
+                  borderRadius: "6px",
+                  fontSize: "0.85rem",
+                }}
+              />
+              <button
+                type="submit"
+                data-testid="submit-teacher-comment-btn"
+                disabled={commentSubmitting || !newCommentText.trim()}
+                style={{
+                  padding: "0.5rem 1rem",
+                  background: commentSubmitting || !newCommentText.trim() ? "#475569" : "#0284c7",
+                  color: "#ffffff",
+                  border: "none",
+                  borderRadius: "6px",
+                  fontWeight: 600,
+                  cursor: commentSubmitting || !newCommentText.trim() ? "not-allowed" : "pointer",
+                  justifySelf: "end",
+                }}
+              >
+                {commentSubmitting ? "Saving..." : "Save Comment"}
+              </button>
+            </form>
           </div>
         </div>
       </div>

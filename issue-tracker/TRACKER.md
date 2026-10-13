@@ -11,9 +11,9 @@ This tracker maintains the central registry of all project tasks managed as **IS
 | **Tier 1a: Core MVP (Gate A)** | 27 | 0 | 0 | 27 | 27 |
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 0 | 0 | 1 | 1 |
 | **Tier 1c: Replay & Human Oversight** | 2 | 0 | 0 | 2 | 2 |
-| **Tier 2: Platform Launch (Gate C)** | 10 | 7 | 0 | 3 | 3 |
+| **Tier 2: Platform Launch (Gate C)** | 10 | 0 | 0 | 10 | 10 |
 | **Tier 3: Platform Governance & Scale** | 4 | 4 | 0 | 0 | 0 |
-| **Total** | **44** | **11** | **0** | **33** | **33** |
+| **Total** | **44** | **4** | **0** | **40** | **40** |
 
 
 ---
@@ -107,7 +107,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 | ISSUE-014 | `EDU-06` | Review content quality | P1 | [#650](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/650) | Completed | Closure | 2026-10-13 | [ISSUE-014](ISSUE-014-EDU-06/ISSUE.md) |
 | ISSUE-031 | `EDU-09` | Add a tutor note | P1 | [#667](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/667) | Completed | Closure | 2026-10-13 | [ISSUE-031](ISSUE-031-EDU-09/ISSUE.md) |
 | ISSUE-036 | `EDU-12` | See safety and stuck-session flags | P1 | [#672](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/672) | Completed | Closure | 2026-10-13 | [ISSUE-036](ISSUE-036-EDU-12/ISSUE.md) |
-| ISSUE-041 | `EDU-11` | Comment on a session | P1 | [#677](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/677) | Planned | Pre-flight | - | [ISSUE-041](ISSUE-041-EDU-11/ISSUE.md) |
+| ISSUE-041 | `EDU-11` | Comment on a session | P1 | [#677](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/677) | Completed | Closure | 2026-10-13 | [ISSUE-041](ISSUE-041-EDU-11/ISSUE.md) |
 
 ---
 

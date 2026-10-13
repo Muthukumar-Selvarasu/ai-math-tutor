@@ -16,10 +16,23 @@ export default function PracticePage() {
   const [stepInput, setStepInput] = useState("");
   const [noteInput, setNoteInput] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [optimisticAttempt, setOptimisticAttempt] = useState(null);
+  const [waitingElapsedMs, setWaitingElapsedMs] = useState(0);
+  const [progressStage, setProgressStage] = useState(null);
+  const waitingTimerRef = useRef(null);
+  const lastIdempotencyKeyRef = useRef(null);
   const [auditLog, setAuditLog] = useState([]);
   const [startTime, setStartTime] = useState(Date.now());
   const [publishedQuestions, setPublishedQuestions] = useState([]);
   const [selectedQuestionId, setSelectedQuestionId] = useState("ratio_share_001");
+
+  useEffect(() => {
+    return () => {
+      if (waitingTimerRef.current) {
+        clearInterval(waitingTimerRef.current);
+      }
+    };
+  }, []);
 
   // Fetch published questions list on mount
   useEffect(() => {
@@ -203,30 +216,195 @@ export default function PracticePage() {
     }
   }
 
-  // Handle Answer Submission
+  function deliverFallbackPrompt(reason = "retry_exhausted") {
+    const currentLevel = sessionData?.session?.hint_level ?? 1;
+    const fallbackMap = {
+      0: "What is the first step you would take to solve this problem?",
+      1: "What information in the question can help you begin?",
+      2: "Can you break this down into smaller parts?",
+      3: "Look at how the numbers are connected.",
+      4: "Look carefully at the calculation for this step.",
+    };
+    const fallbackText = fallbackMap[currentLevel] || fallbackMap[1];
+
+    setSessionData((prev) => ({
+      ...prev,
+      tutor: {
+        text: fallbackText,
+        kind: "fallback",
+        model: "template",
+        prompt_version: "1.0.0",
+        policy_version: "1.0.0",
+        safety_verdict: "allow",
+        fallback_reason: reason,
+      },
+    }));
+    setStartTime(Date.now());
+  }
+
+  function applyTurnResult(result, submittedAnswer, duration) {
+    setSessionData((prev) => ({
+      ...prev,
+      session: result.session,
+      tutor: result.tutor,
+    }));
+
+    if (result.audit_event) {
+      setAuditLog((prev) => [
+        ...prev,
+        {
+          event_type: result.audit_event.event_type || "attempt_submitted",
+          timestamp: new Date().toLocaleTimeString(),
+          details: result.audit_event.category
+            ? `Safety event: ${result.audit_event.category}`
+            : `Submitted: "${submittedAnswer}" (Level ${result.session.hint_level}, duration: ${duration}ms)`,
+        },
+      ]);
+    }
+    setStartTime(Date.now());
+  }
+
+  // Handle Answer Submission (STU-14)
   async function handleSubmit(e) {
     if (e) e.preventDefault();
     if (!sessionData || submitting || !answerInput.trim()) return;
 
-    setSubmitting(true);
+    const submittedAnswer = answerInput.trim();
     const duration = Date.now() - startTime;
+    const idempotencyKey = crypto.randomUUID();
+    lastIdempotencyKeyRef.current = idempotencyKey;
+
+    setOptimisticAttempt({
+      answer_text: submittedAnswer,
+      response_target:
+        sessionData?.session?.active_probe_id || sessionData?.session?.next_target === "probe"
+          ? "probe"
+          : "final",
+      hint_level: sessionData?.session?.hint_level ?? 0,
+      created_at: new Date().toISOString(),
+      pending: true,
+    });
+    setAnswerInput("");
+    setSubmitting(true);
+    setWaitingElapsedMs(0);
+    setProgressStage("checking");
+    setError(null);
+
+    if (waitingTimerRef.current) clearInterval(waitingTimerRef.current);
+    waitingTimerRef.current = setInterval(() => {
+      setWaitingElapsedMs((prev) => prev + 100);
+    }, 100);
+
+    // Optional progress stream connection (AC 5, AC 8)
+    let progressEventSource = null;
+    const searchParams = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+    const enableProgressStream =
+      (typeof window !== "undefined" && window.__ENABLE_PROGRESS_STREAM) ||
+      searchParams?.get("progress_stream") === "true";
+    if (enableProgressStream && typeof EventSource !== "undefined") {
+      try {
+        progressEventSource = new EventSource(`/api/sessions/${sessionData.session.id}/progress`);
+        progressEventSource.onmessage = (event) => {
+          try {
+            const data = JSON.parse(event.data);
+            if (data?.stage) {
+              setProgressStage(data.stage);
+            }
+          } catch (_) {}
+        };
+        progressEventSource.onerror = () => {
+          if (progressEventSource) {
+            progressEventSource.close();
+            progressEventSource = null;
+          }
+        };
+      } catch (_) {}
+    }
+
+    const extraPayload =
+      typeof window !== "undefined" && window.__SUBMIT_EXTRA_PAYLOAD
+        ? window.__SUBMIT_EXTRA_PAYLOAD
+        : {};
+
+    const payload = {
+      event: "submit",
+      answer_text: submittedAnswer,
+      response_target:
+        sessionData?.session?.active_probe_id || sessionData?.session?.next_target === "probe"
+          ? "probe"
+          : "final",
+      dialogue_mode: dialogueMode,
+      selected_reasoning_option: selectedReasoningOption || undefined,
+      confidence_rating: confidenceRating ? parseInt(confidenceRating, 10) : undefined,
+      response_duration_ms: duration,
+      idempotency_key: idempotencyKey,
+      ...extraPayload,
+    };
+
+    const clientTimeoutMs =
+      typeof window !== "undefined" && window.__CLIENT_TIMEOUT_MS
+        ? window.__CLIENT_TIMEOUT_MS
+        : 15000;
+
+    const executeFetch = async (key, timeoutMs) => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        const res = await fetch(`/api/sessions/${sessionData.session.id}/events`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Idempotency-Key": key,
+          },
+          body: JSON.stringify(payload),
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+        return { res, timedOut: false };
+      } catch (err) {
+        clearTimeout(timeoutId);
+        const isTimeout = err.name === "AbortError" || err.message?.includes("aborted");
+        return { res: null, err, timedOut: isTimeout };
+      }
+    };
 
     try {
-      const payload = {
-        event: "submit",
-        answer_text: answerInput.trim(),
-        response_target: sessionData?.session?.active_probe_id || sessionData?.session?.next_target === "probe" ? "probe" : "final",
-        dialogue_mode: dialogueMode,
-        selected_reasoning_option: selectedReasoningOption || undefined,
-        confidence_rating: confidenceRating ? parseInt(confidenceRating, 10) : undefined,
-        response_duration_ms: duration,
-      };
+      let { res, err, timedOut } = await executeFetch(idempotencyKey, clientTimeoutMs);
 
-      const res = await fetch(`/api/sessions/${sessionData.session.id}/events`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      let is409InProgress = false;
+      if (res && res.status === 409) {
+        try {
+          const errBody = await res.clone().json();
+          if (errBody?.error?.code === "request_in_progress") {
+            is409InProgress = true;
+          }
+        } catch (_) {}
+      }
+
+      if (is409InProgress || timedOut || (err && !res)) {
+        // Wait 3 seconds (retry_after_s=3, accelerated in tests via window.__RETRY_AFTER_MS)
+        const retryDelay =
+          typeof window !== "undefined" && window.__RETRY_AFTER_MS !== undefined
+            ? window.__RETRY_AFTER_MS
+            : 3000;
+        await new Promise((resolve) => setTimeout(resolve, retryDelay));
+
+        // Retry ONCE with the EXACT SAME idempotency key (AC 7)
+        const retryResult = await executeFetch(idempotencyKey, clientTimeoutMs);
+        res = retryResult.res;
+        err = retryResult.err;
+        timedOut = retryResult.timedOut;
+
+        if (res && res.ok) {
+          const result = await res.json();
+          applyTurnResult(result, submittedAnswer, duration);
+          return;
+        } else {
+          // Retry exhausted or timed out -> Deliver deterministic fallback prompt
+          deliverFallbackPrompt("retry_exhausted");
+          return;
+        }
+      }
 
       if (!res.ok) {
         let errMsg = `Error: ${res.statusText}`;
@@ -236,35 +414,26 @@ export default function PracticePage() {
             errMsg = errData.error.message;
           }
         } catch (_) {}
+        if (res.status === 503) {
+          setAnswerInput(submittedAnswer);
+        }
         throw new Error(errMsg);
       }
 
       const result = await res.json();
-      setSessionData((prev) => ({
-        ...prev,
-        session: result.session,
-        tutor: result.tutor,
-      }));
-
-      if (result.audit_event) {
-        setAuditLog((prev) => [
-          ...prev,
-          {
-            event_type: result.audit_event.event_type || "attempt_submitted",
-            timestamp: new Date().toLocaleTimeString(),
-            details: result.audit_event.category
-              ? `Safety event: ${result.audit_event.category}`
-              : `Submitted: "${answerInput}" (Level ${result.session.hint_level}, duration: ${duration}ms)`,
-          },
-        ]);
-      }
-
-      setAnswerInput("");
-      setStartTime(Date.now());
-    } catch (err) {
-      setError(err.message);
+      applyTurnResult(result, submittedAnswer, duration);
+    } catch (submitErr) {
+      setError(submitErr.message);
     } finally {
+      if (waitingTimerRef.current) {
+        clearInterval(waitingTimerRef.current);
+        waitingTimerRef.current = null;
+      }
+      if (progressEventSource) {
+        progressEventSource.close();
+      }
       setSubmitting(false);
+      setOptimisticAttempt(null);
     }
   }
 
@@ -1054,9 +1223,44 @@ export default function PracticePage() {
                 </div>
               </div>
 
-              <div className="tutor-speech-bubble" data-testid="tutor-prompt">
-                <p>{tutor?.text}</p>
-              </div>
+              {submitting ? (
+                <div
+                  className="turn-waiting-indicator"
+                  data-testid="turn-waiting-indicator"
+                  data-loading="true"
+                  role="status"
+                  aria-live="polite"
+                  aria-busy="true"
+                >
+                  <div className="waiting-indicator-header">
+                    <div
+                      className="waiting-spinner"
+                      data-testid="waiting-spinner"
+                      role="status"
+                      aria-label="Checking your answer"
+                    />
+                    <span className="waiting-stage-message" data-testid="waiting-stage-message">
+                      {progressStage === "preparing"
+                        ? "Thinking about your answer…"
+                        : waitingElapsedMs < 1000
+                        ? "Checking your answer…"
+                        : "Thinking about your answer…"}
+                    </span>
+                    <span className="sr-only" data-testid="sr-waiting-announcement">
+                      Checking your answer, please wait...
+                    </span>
+                  </div>
+                  {waitingElapsedMs >= 4000 && (
+                    <div className="waiting-reassurance-message" data-testid="waiting-reassurance-message">
+                      Still working, nearly there
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="tutor-speech-bubble" data-testid="tutor-prompt">
+                  <p>{tutor?.text}</p>
+                </div>
+              )}
 
               {/* Turn Metadata Badges */}
               <div
@@ -1589,12 +1793,31 @@ export default function PracticePage() {
           <div className="practice-right">
             <section className="drawer-card" data-testid="attempts-history-card">
               <h3 className="drawer-title">Attempt History</h3>
-              {attempts.length === 0 ? (
+              {attempts.length === 0 && !optimisticAttempt ? (
                 <p className="drawer-empty" data-testid="empty-attempts-notice">
                   No attempts submitted yet. Try taking your first shot!
                 </p>
               ) : (
                 <ul className="attempts-list" data-testid="attempts-list">
+                  {optimisticAttempt && (
+                    <li
+                      key="optimistic-pending"
+                      className="attempt-item optimistic-attempt"
+                      data-testid="attempt-item"
+                      data-optimistic="true"
+                    >
+                      <div className="attempt-item-header">
+                        <span className="attempt-number">Pending Attempt</span>
+                        <span className="counted-badge pending-badge" data-testid="pending-badge">Checking...</span>
+                      </div>
+                      <div className="attempt-item-body">
+                        <div className="attempt-detail">
+                          <span className="detail-label">Answer:</span>{" "}
+                          <span className="detail-val" data-testid="optimistic-answer">{optimisticAttempt.answer_text}</span>
+                        </div>
+                      </div>
+                    </li>
+                  )}
                   {attempts.map((att, idx) => (
                     <li key={att.attempt_id || idx} className="attempt-item" data-testid="attempt-item">
                       <div className="attempt-item-header">

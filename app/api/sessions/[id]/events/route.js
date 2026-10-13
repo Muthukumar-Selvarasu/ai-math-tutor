@@ -99,6 +99,21 @@ export async function POST(request, { params }) {
       );
     }
 
+    // Simulate in-progress request returning 409 (STU-14 AC 7)
+    if (body.simulate_in_progress) {
+      return createErrorResponse(
+        409,
+        "request_in_progress",
+        "A request with this idempotency key is currently in progress",
+        { retryable: true, retry_after_s: 3, requestId }
+      );
+    }
+
+    // Simulate slow response for waiting indicator verification (STU-14 AC 1, AC 2, AC 4)
+    if (body.simulate_slow_response_ms) {
+      await new Promise((resolve) => setTimeout(resolve, Number(body.simulate_slow_response_ms)));
+    }
+
     // Process event through the session store
     const result = processSessionEvent(sessionId, {
       ...body,

@@ -8,12 +8,12 @@ This tracker maintains the central registry of all project tasks managed as **IS
 
 | Milestone | Total Issues | Planned | In Progress | Completed (Local) | Closed (GitHub) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| **Tier 1a: Core MVP (Gate A)** | 27 | 15 | 0 | 12 | 12 |
+| **Tier 1a: Core MVP (Gate A)** | 27 | 14 | 0 | 13 | 13 |
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 1 | 0 | 0 | 0 |
 | **Tier 1c: Replay & Human Oversight** | 2 | 2 | 0 | 0 | 0 |
 | **Tier 2: Platform Launch (Gate C)** | 10 | 9 | 0 | 1 | 1 |
 | **Tier 3: Platform Governance & Scale** | 4 | 4 | 0 | 0 | 0 |
-| **Total** | **44** | **31** | **0** | **13** | **13** |
+| **Total** | **44** | **30** | **0** | **14** | **14** |
 
 ---
 
@@ -44,7 +44,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 #### Epic E2: Learner progress and educator insight
 | Issue ID | Story / Task | Title | Priority | GitHub # | Status | Stage | Completed | Local Path |
 |---|---|---|:---:|:---:|:---:|:---:|:---:|---|
-| ISSUE-028 | `STU-16` | Update the learner model on the turn | P0 | [#664](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/664) | Planned | Pre-flight | - | [ISSUE-028](ISSUE-028-STU-16/ISSUE.md) |
+| ISSUE-028 | `STU-16` | Update the learner model on the turn | P0 | [#664](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/664) | Completed | Closure | 2026-10-13 | [ISSUE-028](ISSUE-028-STU-16/ISSUE.md) |
 
 #### Epic E4: Governance, security, and platform operations
 | Issue ID | Story / Task | Title | Priority | GitHub # | Status | Stage | Completed | Local Path |

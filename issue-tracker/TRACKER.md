@@ -10,16 +10,17 @@ This tracker maintains the central registry of all project tasks managed as **IS
 |---|:---:|:---:|:---:|:---:|:---:|
 | **Tier 1a: Core MVP (Gate A)** | 27 | 0 | 0 | 27 | 27 |
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 0 | 0 | 1 | 1 |
-| **Tier 1c: Replay & Human Oversight** | 2 | 1 | 0 | 1 | 1 |
+| **Tier 1c: Replay & Human Oversight** | 2 | 0 | 0 | 2 | 2 |
 | **Tier 2: Platform Launch (Gate C)** | 10 | 9 | 0 | 1 | 1 |
 | **Tier 3: Platform Governance & Scale** | 4 | 4 | 0 | 0 | 0 |
-| **Total** | **44** | **14** | **0** | **30** | **30** |
+| **Total** | **44** | **13** | **0** | **31** | **31** |
 
 ---
 
 ## Issues Register by Milestone & Epic
 
 ### Milestone: Tier 1a: Core MVP (Gate A)
+
 
 #### Epic E1: Guided practice and Socratic tutoring
 | Issue ID | Story / Task | Title | Priority | GitHub # | Status | Stage | Completed | Local Path |
@@ -81,7 +82,8 @@ This tracker maintains the central registry of all project tasks managed as **IS
 #### Epic E3: Review, replay, and human oversight
 | Issue ID | Story / Task | Title | Priority | GitHub # | Status | Stage | Completed | Local Path |
 |---|---|---|:---:|:---:|:---:|:---:|:---:|---|
-| ISSUE-011 | `EDU-03` | Replay a tutoring session | P1 | [#647](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/647) | Planned | Pre-flight | - | [ISSUE-011](ISSUE-011-EDU-03/ISSUE.md) |
+| ISSUE-011 | `EDU-03` | Replay a tutoring session | P1 | [#647](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/647) | Completed | Closure | 2026-10-13 | [ISSUE-011](ISSUE-011-EDU-03/ISSUE.md) |
+
 
 ---
 

@@ -8,12 +8,12 @@ This tracker maintains the central registry of all project tasks managed as **IS
 
 | Milestone | Total Issues | Planned | In Progress | Completed (Local) | Closed (GitHub) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| **Tier 1a: Core MVP (Gate A)** | 27 | 12 | 0 | 15 | 15 |
+| **Tier 1a: Core MVP (Gate A)** | 27 | 11 | 0 | 16 | 16 |
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 1 | 0 | 0 | 0 |
 | **Tier 1c: Replay & Human Oversight** | 2 | 2 | 0 | 0 | 0 |
 | **Tier 2: Platform Launch (Gate C)** | 10 | 9 | 0 | 1 | 1 |
 | **Tier 3: Platform Governance & Scale** | 4 | 4 | 0 | 0 | 0 |
-| **Total** | **44** | **28** | **0** | **16** | **16** |
+| **Total** | **44** | **27** | **0** | **17** | **17** |
 
 ---
 
@@ -54,7 +54,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 | ISSUE-019 | `ADM-04` | Content publishing controls | P1 | [#655](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/655) | Planned | Pre-flight | - | [ISSUE-019](ISSUE-019-ADM-04/ISSUE.md) |
 | ISSUE-020 | `ADM-05` | Model and prompt traceability | P0 | [#656](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/656) | Completed | Closure | 2026-10-13 | [ISSUE-020](ISSUE-020-ADM-05/ISSUE.md) |
 | ISSUE-023 | `ADM-06` | Sign in | P0 | [#659](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/659) | Completed | Closure | 2026-10-13 | [ISSUE-023](ISSUE-023-ADM-06/ISSUE.md) |
-| ISSUE-037 | `ADM-10` | Labelled evaluation suite | P0 | [#673](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/673) | Planned | Pre-flight | - | [ISSUE-037](ISSUE-037-ADM-10/ISSUE.md) |
+| ISSUE-037 | `ADM-10` | Labelled evaluation suite | P0 | [#673](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/673) | Completed | Closure | 2026-10-13 | [ISSUE-037](ISSUE-037-ADM-10/ISSUE.md) |
 | ISSUE-039 | `ADM-12` | Seed the approved bank | P0 | [#675](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/675) | Planned | Pre-flight | - | [ISSUE-039](ISSUE-039-ADM-12/ISSUE.md) |
 | ISSUE-040 | `ADM-13` | Create a cohort and assign people | P0 | [#676](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/676) | Planned | Pre-flight | - | [ISSUE-040](ISSUE-040-ADM-13/ISSUE.md) |
 | ISSUE-042 | `ADM-08` | Platform launch controls | P2 | [#678](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/678) | Planned | Pre-flight | - | [ISSUE-042](ISSUE-042-ADM-08/ISSUE.md) |

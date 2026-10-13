@@ -37,7 +37,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 | ISSUE-027 | `STU-12` | Leave and resume a session | P0 | [#663](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/663) | Completed | Closure | 2026-10-13 | [ISSUE-027](ISSUE-027-STU-12/ISSUE.md) |
 | ISSUE-029 | `STU-18` | Close a session with a summary and a stuck flag | P0 | [#665](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/665) | Completed | Closure | 2026-10-13 | [ISSUE-029](ISSUE-029-STU-18/ISSUE.md) |
 | ISSUE-030 | `STU-19` | Estimate understanding from this turn | P0 | [#666](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/666) | Completed | Closure | 2026-10-13 | [ISSUE-030](ISSUE-030-STU-19/ISSUE.md) |
-| ISSUE-033 | `STU-13` | Keep an unapproved turn off the screen | P0 | [#669](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/669) | Planned | Pre-flight | - | [ISSUE-033](ISSUE-033-STU-13/ISSUE.md) |
+| ISSUE-033 | `STU-13` | Keep an unapproved turn off the screen | P0 | [#669](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/669) | Completed | Closure | 2026-10-13 | [ISSUE-033](ISSUE-033-STU-13/ISSUE.md) |
 | ISSUE-034 | `STU-14` | Show a wait while the turn is checked | P0 | [#670](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/670) | Planned | Pre-flight | - | [ISSUE-034](ISSUE-034-STU-14/ISSUE.md) |
 | ISSUE-035 | `STU-15` | Retrieve exemplars only when the verifier can use them | P0 | [#671](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/671) | Planned | Pre-flight | - | [ISSUE-035](ISSUE-035-STU-15/ISSUE.md) |
 

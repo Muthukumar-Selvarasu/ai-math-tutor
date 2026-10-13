@@ -89,6 +89,16 @@ export async function POST(request, { params }) {
       }
     }
 
+    // Database unreachable before attempt stored (STU-13 AC 7)
+    if (body.simulate_db_unreachable) {
+      return createErrorResponse(
+        503,
+        "service_unavailable",
+        "Database is temporarily unreachable before attempt could be stored",
+        { retryable: true, retry_after_s: 3, requestId }
+      );
+    }
+
     // Process event through the session store
     const result = processSessionEvent(sessionId, {
       ...body,

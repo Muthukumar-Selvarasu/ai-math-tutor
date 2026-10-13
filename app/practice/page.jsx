@@ -229,7 +229,14 @@ export default function PracticePage() {
       });
 
       if (!res.ok) {
-        throw new Error(`Error: ${res.statusText}`);
+        let errMsg = `Error: ${res.statusText}`;
+        try {
+          const errData = await res.json();
+          if (errData?.error?.message) {
+            errMsg = errData.error.message;
+          }
+        } catch (_) {}
+        throw new Error(errMsg);
       }
 
       const result = await res.json();
@@ -1102,6 +1109,16 @@ export default function PracticePage() {
                     State: {(tutor?.student_state || session?.student_state).repeated_wrong_value ? "Repeated" : "Exploring"} | Unsuccessful: {(tutor?.student_state || session?.student_state).consecutive_unsuccessful} | Progress: {(tutor?.student_state || session?.student_state).previous_progress}
                   </span>
                 )}
+                {tutor?.fallback_reason && (
+                  <span className="meta-pill" data-testid="turn-fallback-reason-badge">
+                    Fallback: {tutor.fallback_reason}
+                  </span>
+                )}
+                {session?.flags?.includes("safety_fallback") && (
+                  <span className="meta-pill" data-testid="safety-fallback-badge" style={{ background: "#fef2f2", color: "#991b1b", border: "1px solid #fecaca" }}>
+                    ⚠️ Safety Fallback
+                  </span>
+                )}
               </div>
 
               {/* Notice when at Level 0: No hints active */}
@@ -1115,6 +1132,24 @@ export default function PracticePage() {
             {/* Student Working / Input Area */}
             <section className="input-card" data-testid="input-card">
               <h3 className="section-title">Your Answer</h3>
+              {error && (
+                <div
+                  className="submit-error-alert"
+                  data-testid="submit-error-alert"
+                  role="alert"
+                  style={{
+                    background: "#fef2f2",
+                    border: "1px solid #f87171",
+                    borderRadius: "8px",
+                    padding: "0.5rem 0.75rem",
+                    marginBottom: "0.75rem",
+                    color: "#991b1b",
+                    fontSize: "0.875rem",
+                  }}
+                >
+                  ⚠️ {error}
+                </div>
+              )}
               <form onSubmit={handleSubmit} className="answer-form">
                 <div className="input-row">
                   <div className="input-wrapper" style={{ flex: 1 }}>

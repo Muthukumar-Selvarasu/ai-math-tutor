@@ -76,7 +76,9 @@ test.describe('STU-07: See my progress (Student Dashboard)', () => {
     }
 
     // Run hourly rollup on server
-    await page.request.get(`/api/jobs/learner-rollup?student_id=${studentId}`);
+    await page.request.get(`/api/jobs/learner-rollup?student_id=${studentId}`, {
+      headers: { Authorization: `Bearer ${process.env.CRON_SECRET || 'development-cron-secret-change-me'}` },
+    });
 
     // When the student opens the dashboard
     await page.goto(`/dashboard?student_id=${studentId}`);
@@ -126,7 +128,9 @@ test.describe('STU-07: See my progress (Student Dashboard)', () => {
 
     // 1. Rollup ran 50 minutes ago
     const fiftyMinutesAgo = new Date(Date.now() - 50 * 60 * 1000).toISOString();
-    await page.request.get(`/api/jobs/learner-rollup?student_id=${studentId}&rollup_at=${fiftyMinutesAgo}`);
+    await page.request.get(`/api/jobs/learner-rollup?student_id=${studentId}&rollup_at=${fiftyMinutesAgo}`, {
+      headers: { Authorization: `Bearer ${process.env.CRON_SECRET || 'development-cron-secret-change-me'}` },
+    });
 
     // 2. Student completes a session NOW (after the rollup)
     const createRes = await page.request.post('/api/sessions', {
@@ -172,7 +176,9 @@ test.describe('STU-07: See my progress (Student Dashboard)', () => {
       data: { event: 'submit', answer_text: '36' }, // correct
     });
 
-    await page.request.get(`/api/jobs/learner-rollup?student_id=${studentId}`);
+    await page.request.get(`/api/jobs/learner-rollup?student_id=${studentId}`, {
+      headers: { Authorization: `Bearer ${process.env.CRON_SECRET || 'development-cron-secret-change-me'}` },
+    });
 
     // Verify programmatically via API payload validator
     const dashboardRes = await page.request.get(`/api/me/dashboard?student_id=${studentId}`);

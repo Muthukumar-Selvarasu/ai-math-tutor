@@ -1,0 +1,146 @@
+{
+  "question_id": "ratio_simp_002",
+  "version": 1,
+  "validation_status": "approved",
+  "publication_status": "published",
+  "flagged": false,
+  "curriculum": {
+    "jurisdiction": "VIC",
+    "year_level": 7,
+    "topic": "Number and Algebra",
+    "subtopic": "Real numbers - Ratio and rate",
+    "curriculum_code": "VC2M7N08",
+    "foundation_curriculum_code": "VC2M6N07"
+  },
+  "skill_id": "ratio_simplifying",
+  "subskill": "highest_common_factor_division",
+  "learning_objective": "Simplify a two-term ratio to its simplest integer form by dividing by the HCF.",
+  "difficulty": {
+    "band": "foundation",
+    "estimated_difficulty": 0.35,
+    "reasoning_depth": 2
+  },
+  "title": "Simplifying 15:25",
+  "problem_type": "word_problem",
+  "stem": "Simplify the ratio 15 : 25 to its simplest form.",
+  "accepted_answer_spec": {
+    "type": "ratio",
+    "canonical_value": "3:5",
+    "unit": null,
+    "answer_requires_unit": false,
+    "tolerance": 0,
+    "accepted_forms": [
+      "3:5",
+      "3 to 5"
+    ],
+    "valid_alternatives": [],
+    "rounding_rule": "none"
+  },
+  "solution_steps": [
+    {
+      "step_id": "step_1",
+      "description": "Find the highest common factor of 15 and 25",
+      "target_expression": "gcd(15, 25)",
+      "target_value": "5",
+      "unit": null,
+      "permitted_scaffold_step": "Divide both numbers by their common factor 5"
+    },
+    {
+      "step_id": "step_2",
+      "description": "Divide both parts by 5 to obtain simplest form",
+      "target_expression": "15/5 : 25/5",
+      "target_value": "3:5",
+      "unit": null
+    }
+  ],
+  "alternate_solution_paths": [
+    {
+      "path_id": "primary",
+      "steps": [
+        "step_1",
+        "step_2"
+      ]
+    }
+  ],
+  "method_leak_patterns": {
+    "operations": [
+      "divide",
+      "simplify",
+      "reduce"
+    ],
+    "step_phrases": [
+      "highest common factor",
+      "divide both numbers by five"
+    ],
+    "blocked_below_level": 4
+  },
+  "scaffold_probes": [
+    {
+      "probe_id": "probe_1",
+      "kind": "value",
+      "min_level": 1,
+      "template": "What is the greatest common factor of 15 and 25?",
+      "expected_expression": "gcd(15, 25)",
+      "expected_value": "5",
+      "unit": null,
+      "counts_as_step_id": "step_1"
+    }
+  ],
+  "misconception_predictions": [
+    {
+      "predicted_response": "5:3",
+      "misconception_code": "ratio_reversal",
+      "confidence": 0.9,
+      "rationale": "Student reversed the ratio order."
+    }
+  ],
+  "isomorphic_worked_example": {
+    "stem": "Simplify the ratio 10 : 35 to simplest form.",
+    "solution_steps": [
+      {
+        "description": "HCF is 5",
+        "target_value": "5"
+      },
+      {
+        "description": "10 \u00f7 5 : 35 \u00f7 5 = 2 : 7",
+        "target_value": "2:7"
+      }
+    ],
+    "final_answer": "2:7"
+  },
+  "reasoning_options": [
+    {
+      "option_id": "opt_hcf",
+      "label": "Divided both numbers by 5"
+    }
+  ],
+  "misconception_tags": [
+    "ratio_reversal"
+  ],
+  "reflection": {
+    "prompt_template": "You found that {student_value}. How did you know 5 was the right divisor?",
+    "options": [
+      {
+        "option_id": "refl_1",
+        "label": "Both numbers end in 5, so 5 divides both evenly",
+        "sound": true,
+        "feedback": "Great use of divisibility rules!"
+      },
+      {
+        "option_id": "refl_2",
+        "label": "Subtracted 10 from 25 to get 15",
+        "sound": false,
+        "feedback": "Ratios depend on multiplicative factors, not differences."
+      },
+      {
+        "option_id": "refl_3",
+        "label": "Multiplied 15 by 25",
+        "sound": false,
+        "feedback": "Multiplying increases the terms rather than simplifying them."
+      }
+    ]
+  },
+  "socratic_prompt_set_id": "socratic_ratio_simp",
+  "has_diagram": false,
+  "diagram_id": null
+}

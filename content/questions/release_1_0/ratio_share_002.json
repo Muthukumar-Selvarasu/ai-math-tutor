@@ -1,0 +1,176 @@
+{
+  "question_id": "ratio_share_002",
+  "version": 1,
+  "validation_status": "approved",
+  "publication_status": "published",
+  "flagged": false,
+  "curriculum": {
+    "jurisdiction": "VIC",
+    "year_level": 7,
+    "topic": "Number and Algebra",
+    "subtopic": "Real numbers - Ratio and rate",
+    "curriculum_code": "VC2M7N08",
+    "foundation_curriculum_code": "VC2M6N07"
+  },
+  "skill_id": "ratio_sharing",
+  "subskill": "part_sharing_total",
+  "learning_objective": "Divide an amount into a given two-term ratio and calculate a specific share.",
+  "difficulty": {
+    "band": "intermediate",
+    "estimated_difficulty": 0.45,
+    "reasoning_depth": 3
+  },
+  "title": "Sharing $80 in 3:5",
+  "problem_type": "word_problem",
+  "stem": "Share $80 between Dan and Chloe in the ratio 3 : 5. What is Chloe's share in dollars?",
+  "accepted_answer_spec": {
+    "type": "numeric",
+    "canonical_value": "50",
+    "unit": "$",
+    "answer_requires_unit": false,
+    "tolerance": 0,
+    "accepted_forms": [
+      "50",
+      "$50"
+    ],
+    "valid_alternatives": [],
+    "rounding_rule": "none"
+  },
+  "solution_steps": [
+    {
+      "step_id": "step_1",
+      "description": "Calculate total ratio parts",
+      "target_expression": "3 + 5",
+      "target_value": "8",
+      "unit": "parts",
+      "permitted_scaffold_step": "Add 3 and 5 to get total parts"
+    },
+    {
+      "step_id": "step_2",
+      "description": "Calculate value of one single part",
+      "target_expression": "80 / 8",
+      "target_value": "10",
+      "unit": "$",
+      "permitted_scaffold_step": "Divide 80 by 8 to get one part"
+    },
+    {
+      "step_id": "step_3",
+      "description": "Calculate Chloe's share",
+      "target_expression": "10 * 5",
+      "target_value": "50",
+      "unit": "$"
+    }
+  ],
+  "alternate_solution_paths": [
+    {
+      "path_id": "primary",
+      "steps": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ]
+    }
+  ],
+  "method_leak_patterns": {
+    "operations": [
+      "divide",
+      "multiply",
+      "add"
+    ],
+    "step_phrases": [
+      "eight parts",
+      "ten dollars each part"
+    ],
+    "blocked_below_level": 4
+  },
+  "scaffold_probes": [
+    {
+      "probe_id": "probe_1",
+      "kind": "value",
+      "min_level": 1,
+      "template": "What is the total number of parts in the ratio 3 : 5?",
+      "expected_expression": "3 + 5",
+      "expected_value": "8",
+      "unit": "parts",
+      "counts_as_step_id": "step_1"
+    },
+    {
+      "probe_id": "probe_2",
+      "kind": "value",
+      "min_level": 2,
+      "template": "What is the value of 1 part when $80 is split into 8 parts?",
+      "expected_expression": "80 / 8",
+      "expected_value": "10",
+      "unit": "$",
+      "counts_as_step_id": "step_2"
+    }
+  ],
+  "misconception_predictions": [
+    {
+      "predicted_response": "30",
+      "misconception_code": "ratio_reversal",
+      "confidence": 0.9,
+      "rationale": "Student calculated Dan's share (3 parts) rather than Chloe's."
+    },
+    {
+      "predicted_response": "16",
+      "misconception_code": "unit_rate_error",
+      "confidence": 0.9,
+      "rationale": "Student divided 80 by 5 directly without adding parts."
+    }
+  ],
+  "isomorphic_worked_example": {
+    "stem": "Share $40 in ratio 1 : 3. What is the larger share?",
+    "solution_steps": [
+      {
+        "description": "Parts: 1 + 3 = 4",
+        "target_value": "4"
+      },
+      {
+        "description": "1 part: 40 \u00f7 4 = 10",
+        "target_value": "10"
+      },
+      {
+        "description": "Larger share: 10 \u00d7 3 = 30",
+        "target_value": "30"
+      }
+    ],
+    "final_answer": "30"
+  },
+  "reasoning_options": [
+    {
+      "option_id": "opt_parts",
+      "label": "Found 1 part = $10, then multiplied by 5"
+    }
+  ],
+  "misconception_tags": [
+    "ratio_reversal",
+    "unit_rate_error"
+  ],
+  "reflection": {
+    "prompt_template": "You got {student_value} dollars. What did the intermediate value 10 represent?",
+    "options": [
+      {
+        "option_id": "refl_1",
+        "label": "The value of 1 ratio part",
+        "sound": true,
+        "feedback": "Correct! Finding the value of 1 part makes finding any share straightforward."
+      },
+      {
+        "option_id": "refl_2",
+        "label": "The total difference between their shares",
+        "sound": false,
+        "feedback": "The difference between 5 and 3 parts is 2 parts ($20), not 1 part."
+      },
+      {
+        "option_id": "refl_3",
+        "label": "The number of people sharing the money",
+        "sound": false,
+        "feedback": "There are only 2 people sharing the money."
+      }
+    ]
+  },
+  "socratic_prompt_set_id": "socratic_ratio_share",
+  "has_diagram": false,
+  "diagram_id": null
+}

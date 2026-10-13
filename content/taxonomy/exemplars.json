@@ -1,0 +1,96 @@
+{
+  "exemplar_version": "1.0.0",
+  "exemplars": [
+    {
+      "id": "ex_ratio_additive_01",
+      "misconception_code": "ratio_additive_interpretation",
+      "student_answer": "57",
+      "context": "Share $60 between Leo and Maya in ratio 2:3. Student subtracts 3 from 60.",
+      "rationale": "Applied subtraction instead of multiplicative ratio division."
+    },
+    {
+      "id": "ex_ratio_reversal_01",
+      "misconception_code": "ratio_reversal",
+      "student_answer": "24",
+      "context": "Share $60 between Leo and Maya in ratio 2:3. Student gives 2 parts ($24) instead of 3 parts ($36).",
+      "rationale": "Computed Leo's share instead of requested Maya's share."
+    },
+    {
+      "id": "ex_whole_to_part_01",
+      "misconception_code": "whole_to_part_confusion",
+      "student_answer": "2/3",
+      "context": "What fraction of the total parts is Leo's share in ratio 2:3?",
+      "rationale": "Treated ratio 2:3 directly as fraction 2/3 instead of 2/5."
+    },
+    {
+      "id": "ex_unit_rate_01",
+      "misconception_code": "unit_rate_error",
+      "student_answer": "20",
+      "context": "Share $60 between Leo and Maya in ratio 2:3. Student divides 60 by 3.",
+      "rationale": "Divided total by single term rather than sum of parts."
+    },
+    {
+      "id": "ex_scale_direction_01",
+      "misconception_code": "scale_direction_error",
+      "student_answer": "0.02",
+      "context": "Map scale 1:50000 with 4 cm map distance. Student divides instead of multiplies.",
+      "rationale": "Scaled down instead of scaling up real-world distance."
+    },
+    {
+      "id": "ex_unit_conversion_01",
+      "misconception_code": "unit_conversion_error",
+      "student_answer": "200000",
+      "context": "Map scale 1:50000 with 4 cm map distance. Expected 2 km.",
+      "rationale": "Left answer in centimeters (200000 cm) without converting to km."
+    },
+    {
+      "id": "ex_arithmetic_error_01",
+      "misconception_code": "arithmetic_error_after_correct_setup",
+      "student_answer": "35",
+      "context": "Correctly setup 12 * 3 but calculated 35 instead of 36.",
+      "rationale": "Multiplication arithmetic slip."
+    },
+    {
+      "id": "ex_irrelevant_operation_01",
+      "misconception_code": "irrelevant_operation",
+      "student_answer": "65",
+      "context": "Added ratio terms (2 + 3 = 5) to the total amount (60 + 5).",
+      "rationale": "Arbitrary addition of problem parameters."
+    },
+    {
+      "id": "ex_diagram_misread_01",
+      "misconception_code": "diagram_misread",
+      "student_answer": "15",
+      "context": "Read ratio bar model segment count incorrectly.",
+      "rationale": "Miscounted discrete boxes in the visual diagram."
+    },
+    {
+      "id": "ex_premature_rounding_01",
+      "misconception_code": "premature_rounding",
+      "student_answer": "33",
+      "context": "Rounded intermediate part value 3.33 to 3.",
+      "rationale": "Premature truncation before final multiplication."
+    },
+    {
+      "id": "ex_incomplete_reasoning_01",
+      "misconception_code": "incomplete_reasoning",
+      "student_answer": "12",
+      "context": "Calculated value of 1 part ($12) and submitted it as Maya's share.",
+      "rationale": "Stopped working after single part calculation without multiplying by 3 parts."
+    },
+    {
+      "id": "ex_answer_guessing_01",
+      "misconception_code": "answer_guessing",
+      "student_answer": "42",
+      "context": "Random number entry without relation to 60 or 2:3.",
+      "rationale": "Ungrounded numerical guess."
+    },
+    {
+      "id": "ex_insufficient_evidence_01",
+      "misconception_code": "insufficient_evidence",
+      "student_answer": "unclear",
+      "context": "Ambiguous working without distinct mathematical operation.",
+      "rationale": "Unable to map to concrete taxonomy misconception."
+    }
+  ]
+}

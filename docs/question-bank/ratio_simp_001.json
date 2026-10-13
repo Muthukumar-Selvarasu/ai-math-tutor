@@ -1,157 +1,157 @@
 {
-    "question_id": "ratio_simp_001",
-    "version": 1,
-    "validation_status": "approved",
-    "publication_status": "published",
-    "flagged": false,
-    "curriculum": {
-        "jurisdiction": "VIC",
-        "year_level": 7,
-        "topic": "Number and Algebra",
-        "subtopic": "Real numbers - Ratio and rate",
-        "curriculum_code": "VC2M7N08",
-        "foundation_curriculum_code": "VC2M6N07"
+  "question_id": "ratio_simp_001",
+  "version": 1,
+  "validation_status": "approved",
+  "publication_status": "published",
+  "flagged": false,
+  "curriculum": {
+    "jurisdiction": "VIC",
+    "year_level": 7,
+    "topic": "Number and Algebra",
+    "subtopic": "Real numbers - Ratio and rate",
+    "curriculum_code": "VC2M7N08",
+    "foundation_curriculum_code": "VC2M6N07"
+  },
+  "skill_id": "ratio_simplifying",
+  "subskill": "highest_common_factor_division",
+  "learning_objective": "Simplify a two-term ratio to its simplest integer form by dividing by the HCF.",
+  "difficulty": {
+    "band": "foundation",
+    "estimated_difficulty": 0.35,
+    "reasoning_depth": 2
+  },
+  "title": "Simplifying 18:24",
+  "problem_type": "word_problem",
+  "stem": "Simplify the ratio 18 : 24 to its simplest form.",
+  "accepted_answer_spec": {
+    "type": "ratio",
+    "canonical_value": "3:4",
+    "unit": null,
+    "answer_requires_unit": false,
+    "tolerance": 0,
+    "accepted_forms": [
+      "3:4",
+      "3 to 4"
+    ],
+    "valid_alternatives": [],
+    "rounding_rule": "none"
+  },
+  "solution_steps": [
+    {
+      "step_id": "step_1",
+      "description": "Find the highest common factor of 18 and 24",
+      "target_expression": "gcd(18, 24)",
+      "target_value": "6",
+      "unit": null,
+      "permitted_scaffold_step": "Divide both numbers by their common factor 6"
     },
-    "skill_id": "ratio_simplifying",
-    "subskill": "highest_common_factor_division",
-    "learning_objective": "Simplify a two-term ratio to its simplest integer form by dividing by the HCF.",
-    "difficulty": {
-        "band": "foundation",
-        "estimated_difficulty": 0.35,
-        "reasoning_depth": 2
+    {
+      "step_id": "step_2",
+      "description": "Divide both parts by 6 to obtain simplest form",
+      "target_expression": "18/6 : 24/6",
+      "target_value": "3:4",
+      "unit": null
+    }
+  ],
+  "alternate_solution_paths": [
+    {
+      "path_id": "primary",
+      "steps": [
+        "step_1",
+        "step_2"
+      ]
+    }
+  ],
+  "method_leak_patterns": {
+    "operations": [
+      "divide",
+      "simplify",
+      "reduce"
+    ],
+    "step_phrases": [
+      "highest common factor",
+      "divide both numbers by six"
+    ],
+    "blocked_below_level": 4
+  },
+  "scaffold_probes": [
+    {
+      "probe_id": "probe_1",
+      "kind": "value",
+      "min_level": 1,
+      "template": "What is the greatest common factor of 18 and 24?",
+      "expected_expression": "gcd(18, 24)",
+      "expected_value": "6",
+      "unit": null,
+      "counts_as_step_id": "step_1"
+    }
+  ],
+  "misconception_predictions": [
+    {
+      "predicted_response": "4:3",
+      "misconception_code": "ratio_reversal",
+      "confidence": 0.9,
+      "rationale": "Student swapped antecedent and consequent terms."
     },
-    "title": "Simplifying 18:24",
-    "problem_type": "word_problem",
-    "stem": "Simplify the ratio 18 : 24 to its simplest form.",
-    "accepted_answer_spec": {
-        "type": "ratio",
-        "canonical_value": "3:4",
-        "unit": null,
-        "answer_requires_unit": false,
-        "tolerance": 0,
-        "accepted_forms": [
-            "3:4",
-            "3 to 4"
-        ],
-        "valid_alternatives": [],
-        "rounding_rule": "none"
-    },
+    {
+      "predicted_response": "9:12",
+      "misconception_code": "incomplete_reasoning",
+      "confidence": 0.9,
+      "rationale": "Student divided by 2 but did not reduce to simplest terms."
+    }
+  ],
+  "isomorphic_worked_example": {
+    "stem": "Simplify the ratio 12 : 16 to its simplest form.",
     "solution_steps": [
-        {
-            "step_id": "step_1",
-            "description": "Find the highest common factor of 18 and 24",
-            "target_expression": "gcd(18, 24)",
-            "target_value": "6",
-            "unit": null,
-            "permitted_scaffold_step": "Divide both numbers by their common factor 6"
-        },
-        {
-            "step_id": "step_2",
-            "description": "Divide both parts by 6 to obtain simplest form",
-            "target_expression": "18/6 : 24/6",
-            "target_value": "3:4",
-            "unit": null
-        }
+      {
+        "description": "HCF of 12 and 16 is 4",
+        "target_value": "4"
+      },
+      {
+        "description": "12 \u00f7 4 : 16 \u00f7 4 = 3 : 4",
+        "target_value": "3:4"
+      }
     ],
-    "alternate_solution_paths": [
-        {
-            "path_id": "primary",
-            "steps": [
-                "step_1",
-                "step_2"
-            ]
-        }
-    ],
-    "method_leak_patterns": {
-        "operations": [
-            "divide",
-            "simplify",
-            "reduce"
-        ],
-        "step_phrases": [
-            "highest common factor",
-            "divide both numbers by six"
-        ],
-        "blocked_below_level": 4
+    "final_answer": "3:4"
+  },
+  "reasoning_options": [
+    {
+      "option_id": "opt_hcf",
+      "label": "Dividing both parts by their highest common factor 6"
     },
-    "scaffold_probes": [
-        {
-            "probe_id": "probe_1",
-            "kind": "value",
-            "min_level": 1,
-            "template": "What is the greatest common factor of 18 and 24?",
-            "expected_expression": "gcd(18, 24)",
-            "expected_value": "6",
-            "unit": null,
-            "counts_as_step_id": "step_1"
-        }
-    ],
-    "misconception_predictions": [
-        {
-            "predicted_response": "4:3",
-            "misconception_code": "ratio_reversal",
-            "confidence": 0.9,
-            "rationale": "Student swapped antecedent and consequent terms."
-        },
-        {
-            "predicted_response": "9:12",
-            "misconception_code": "incomplete_reasoning",
-            "confidence": 0.9,
-            "rationale": "Student divided by 2 but did not reduce to simplest terms."
-        }
-    ],
-    "isomorphic_worked_example": {
-        "stem": "Simplify the ratio 12 : 16 to its simplest form.",
-        "solution_steps": [
-            {
-                "description": "HCF of 12 and 16 is 4",
-                "target_value": "4"
-            },
-            {
-                "description": "12 ÷ 4 : 16 ÷ 4 = 3 : 4",
-                "target_value": "3:4"
-            }
-        ],
-        "final_answer": "3:4"
-    },
-    "reasoning_options": [
-        {
-            "option_id": "opt_hcf",
-            "label": "Dividing both parts by their highest common factor 6"
-        },
-        {
-            "option_id": "opt_diff",
-            "label": "Subtracting 6 from both terms"
-        }
-    ],
-    "misconception_tags": [
-        "ratio_reversal",
-        "incomplete_reasoning"
-    ],
-    "reflection": {
-        "prompt_template": "You found that {student_value}. What strategy helped you confirm this was simplest form?",
-        "options": [
-            {
-                "option_id": "refl_1",
-                "label": "Checked that 3 and 4 have no common factors other than 1",
-                "sound": true,
-                "feedback": "Spot on! When the only common factor is 1, the ratio is in simplest form."
-            },
-            {
-                "option_id": "refl_2",
-                "label": "Checked that 3 and 4 add up to 7",
-                "sound": false,
-                "feedback": "Adding the parts tells you the total shares, not if the terms are fully simplified."
-            },
-            {
-                "option_id": "refl_3",
-                "label": "Made sure both numbers were even",
-                "sound": false,
-                "feedback": "Notice that 3 is odd; terms do not need to be even to be simplified."
-            }
-        ]
-    },
-    "socratic_prompt_set_id": "socratic_ratio_simp",
-    "has_diagram": false,
-    "diagram_id": null
+    {
+      "option_id": "opt_diff",
+      "label": "Subtracting 6 from both terms"
+    }
+  ],
+  "misconception_tags": [
+    "ratio_reversal",
+    "incomplete_reasoning"
+  ],
+  "reflection": {
+    "prompt_template": "You found that {student_value}. What strategy helped you confirm this was simplest form?",
+    "options": [
+      {
+        "option_id": "refl_1",
+        "label": "Checked that 3 and 4 have no common factors other than 1",
+        "sound": true,
+        "feedback": "Spot on! When the only common factor is 1, the ratio is in simplest form."
+      },
+      {
+        "option_id": "refl_2",
+        "label": "Checked that 3 and 4 add up to 7",
+        "sound": false,
+        "feedback": "Adding the parts tells you the total shares, not if the terms are fully simplified."
+      },
+      {
+        "option_id": "refl_3",
+        "label": "Made sure both numbers were even",
+        "sound": false,
+        "feedback": "Notice that 3 is odd; terms do not need to be even to be simplified."
+      }
+    ]
+  },
+  "socratic_prompt_set_id": "socratic_ratio_simp",
+  "has_diagram": false,
+  "diagram_id": null
 }

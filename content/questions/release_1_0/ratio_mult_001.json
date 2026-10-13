@@ -1,0 +1,171 @@
+{
+  "question_id": "ratio_mult_001",
+  "version": 1,
+  "validation_status": "approved",
+  "publication_status": "published",
+  "flagged": false,
+  "curriculum": {
+    "jurisdiction": "VIC",
+    "year_level": 7,
+    "topic": "Number and Algebra",
+    "subtopic": "Real numbers - Ratio and rate",
+    "curriculum_code": "VC2M7N08"
+  },
+  "skill_id": "multiplicative_comparison",
+  "subskill": "multiplicative_comparison",
+  "learning_objective": "Solve multiplicative comparison word problems.",
+  "difficulty": {
+    "band": "intermediate",
+    "estimated_difficulty": 0.45,
+    "reasoning_depth": 3
+  },
+  "title": "Card collection scaling",
+  "problem_type": "word_problem",
+  "stem": "Liam has 3 times as many collector cards as Zoe. Together they have 48 cards. How many cards does Liam have?",
+  "accepted_answer_spec": {
+    "type": "numeric",
+    "canonical_value": "36",
+    "unit": "cards",
+    "answer_requires_unit": false,
+    "tolerance": 0,
+    "accepted_forms": [
+      "36",
+      "36 cards"
+    ],
+    "valid_alternatives": [],
+    "rounding_rule": "none"
+  },
+  "solution_steps": [
+    {
+      "step_id": "step_1",
+      "description": "Total parts in ratio 3:1",
+      "target_expression": "3 + 1",
+      "target_value": "4",
+      "unit": "parts",
+      "permitted_scaffold_step": "Consider Zoe as 1 part and Liam as 3 parts, totaling 4 parts."
+    },
+    {
+      "step_id": "step_2",
+      "description": "Find cards per part",
+      "target_expression": "48 / 4",
+      "target_value": "12",
+      "unit": "cards",
+      "permitted_scaffold_step": "Divide 48 by 4 to find Zoe's cards."
+    },
+    {
+      "step_id": "step_3",
+      "description": "Calculate Liam's cards",
+      "target_expression": "12 * 3",
+      "target_value": "36",
+      "unit": "cards"
+    }
+  ],
+  "alternate_solution_paths": [
+    {
+      "path_id": "primary",
+      "steps": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ]
+    }
+  ],
+  "method_leak_patterns": {
+    "operations": [
+      "divide",
+      "multiply",
+      "add"
+    ],
+    "step_phrases": [
+      "find one part",
+      "sum the parts"
+    ],
+    "blocked_below_level": 4
+  },
+  "scaffold_probes": [
+    {
+      "probe_id": "p1",
+      "kind": "value",
+      "min_level": 1,
+      "template": "If Zoe has 1 part and Liam has 3 parts, how many parts are there altogether?",
+      "expected_expression": "3 + 1",
+      "expected_value": "4",
+      "unit": "parts",
+      "counts_as_step_id": "step_1"
+    },
+    {
+      "probe_id": "p2",
+      "kind": "value",
+      "min_level": 2,
+      "template": "How many cards is 1 part if 4 parts equal 48 cards?",
+      "expected_expression": "48 / 4",
+      "expected_value": "12",
+      "unit": "cards",
+      "counts_as_step_id": "step_2"
+    }
+  ],
+  "misconception_predictions": [
+    {
+      "predicted_response": "15",
+      "misconception_code": "incomplete_reasoning",
+      "confidence": 0.9,
+      "rationale": "Additive calculation slip."
+    },
+    {
+      "predicted_response": "16",
+      "misconception_code": "unit_rate_error",
+      "confidence": 0.9,
+      "rationale": "Divided 48 by 3 directly."
+    }
+  ],
+  "isomorphic_worked_example": {
+    "stem": "A similar question worked example.",
+    "solution_steps": [
+      {
+        "description": "Step 1",
+        "target_value": "10"
+      }
+    ],
+    "final_answer": "10"
+  },
+  "reasoning_options": [
+    {
+      "option_id": "opt_1",
+      "label": "Found unit part and scaled up"
+    },
+    {
+      "option_id": "opt_2",
+      "label": "Divided directly without summing parts"
+    }
+  ],
+  "misconception_tags": [
+    "incomplete_reasoning",
+    "unit_rate_error"
+  ],
+  "reflection": {
+    "prompt_template": "You calculated {student_value}. How could you check your answer?",
+    "options": [
+      {
+        "option_id": "refl_1",
+        "label": "Verify that all components sum back to the total",
+        "sound": true,
+        "feedback": "Great check! Summing the parts confirms the total."
+      },
+      {
+        "option_id": "refl_2",
+        "label": "Subtract the smaller number from the larger",
+        "sound": false,
+        "feedback": "Subtracting does not verify the original total amount."
+      },
+      {
+        "option_id": "refl_3",
+        "label": "Multiply the answer by two",
+        "sound": false,
+        "feedback": "Multiplying does not verify the ratio relationship."
+      }
+    ]
+  },
+  "socratic_prompt_set_id": "socratic_multiplicative_comparison",
+  "has_diagram": false,
+  "diagram_id": null
+}

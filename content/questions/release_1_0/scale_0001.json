@@ -1,0 +1,160 @@
+{
+  "question_id": "scale_0001",
+  "version": 1,
+  "validation_status": "approved",
+  "publication_status": "published",
+  "flagged": false,
+  "curriculum": {
+    "jurisdiction": "VIC",
+    "year_level": 7,
+    "topic": "Number and Algebra",
+    "subtopic": "Real numbers - Ratio and rate",
+    "curriculum_code": "VC2M7N08"
+  },
+  "skill_id": "scale_drawing",
+  "subskill": "scale_drawing",
+  "learning_objective": "Calculate actual distances using linear map scales.",
+  "difficulty": {
+    "band": "intermediate",
+    "estimated_difficulty": 0.45,
+    "reasoning_depth": 3
+  },
+  "title": "Map scale 1 cm to 4 km",
+  "problem_type": "word_problem",
+  "stem": "A map has a scale of 1 cm to 4 km. Two towns are 7.5 cm apart on the map. What is the actual distance between the towns in kilometres?",
+  "accepted_answer_spec": {
+    "type": "numeric",
+    "canonical_value": "30",
+    "unit": "km",
+    "answer_requires_unit": false,
+    "tolerance": 0,
+    "accepted_forms": [
+      "30",
+      "30 km"
+    ],
+    "valid_alternatives": [],
+    "rounding_rule": "none"
+  },
+  "solution_steps": [
+    {
+      "step_id": "step_1",
+      "description": "Identify distance represented by 1 cm",
+      "target_expression": "4",
+      "target_value": "4",
+      "unit": "km",
+      "permitted_scaffold_step": "Look at the scale to find how many kilometres 1 cm represents."
+    },
+    {
+      "step_id": "step_2",
+      "description": "Multiply map distance by scale factor",
+      "target_expression": "7.5 * 4",
+      "target_value": "30",
+      "unit": "km"
+    }
+  ],
+  "alternate_solution_paths": [
+    {
+      "path_id": "primary",
+      "steps": [
+        "step_1",
+        "step_2"
+      ]
+    }
+  ],
+  "method_leak_patterns": {
+    "operations": [
+      "multiply",
+      "scale"
+    ],
+    "step_phrases": [
+      "multiply by four",
+      "four kilometres per centimetre"
+    ],
+    "blocked_below_level": 4
+  },
+  "scaffold_probes": [
+    {
+      "probe_id": "one_cm_probe",
+      "kind": "value",
+      "min_level": 1,
+      "template": "What does every 1 cm on the map stand for in real distance?",
+      "expected_expression": "4",
+      "expected_value": "4",
+      "unit": "km",
+      "counts_as_step_id": "step_1"
+    },
+    {
+      "probe_id": "two_cm_probe",
+      "kind": "value",
+      "min_level": 2,
+      "template": "If 1 cm on the map stands for 4 km, how far would 2 cm stand for?",
+      "expected_expression": "2 * 4",
+      "expected_value": "8",
+      "unit": "km"
+    }
+  ],
+  "misconception_predictions": [
+    {
+      "predicted_response": "11.5",
+      "misconception_code": "ratio_additive_interpretation",
+      "confidence": 0.9,
+      "rationale": "Added 7.5 + 4 instead of multiplying."
+    },
+    {
+      "predicted_response": "1.875",
+      "misconception_code": "scale_direction_error",
+      "confidence": 0.9,
+      "rationale": "Divided 7.5 by 4 instead of multiplying."
+    }
+  ],
+  "isomorphic_worked_example": {
+    "stem": "A map has scale 1 cm to 3 km. Real distance for 5 cm?",
+    "solution_steps": [
+      {
+        "description": "5 * 3 = 15",
+        "target_value": "15"
+      }
+    ],
+    "final_answer": "15"
+  },
+  "reasoning_options": [
+    {
+      "option_id": "opt_1",
+      "label": "Found unit part and scaled up"
+    },
+    {
+      "option_id": "opt_2",
+      "label": "Divided directly without summing parts"
+    }
+  ],
+  "misconception_tags": [
+    "ratio_additive_interpretation",
+    "scale_direction_error"
+  ],
+  "reflection": {
+    "prompt_template": "You found {student_value} km. How could you verify that 7.5 cm makes sense?",
+    "options": [
+      {
+        "option_id": "refl_1",
+        "label": "Since 7 cm is 28 km and 8 cm is 32 km, 30 km lies right in between",
+        "sound": true,
+        "feedback": "Excellent reasoning! Estimating with neighbouring whole numbers is very reliable."
+      },
+      {
+        "option_id": "refl_2",
+        "label": "Subtract 4 from 30",
+        "sound": false,
+        "feedback": "Subtracting does not verify the scaling factor."
+      },
+      {
+        "option_id": "refl_3",
+        "label": "Add 7.5 and 4",
+        "sound": false,
+        "feedback": "Addition does not check proportional multiplication."
+      }
+    ]
+  },
+  "socratic_prompt_set_id": "socratic_scale_drawing",
+  "has_diagram": true,
+  "diagram_id": "diag_scale_0001"
+}

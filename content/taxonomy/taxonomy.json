@@ -1,0 +1,71 @@
+{
+  "taxonomy_version": "1.0.0",
+  "domain": "ratio_and_proportional_reasoning",
+  "codes": [
+    {
+      "code": "ratio_additive_interpretation",
+      "name": "Ratio Additive Interpretation",
+      "description": "Treating multiplicative ratio relationship as an additive difference between quantities."
+    },
+    {
+      "code": "ratio_reversal",
+      "name": "Ratio Reversal",
+      "description": "Reversing terms in a ratio or allocating shares to the wrong party."
+    },
+    {
+      "code": "whole_to_part_confusion",
+      "name": "Whole to Part Confusion",
+      "description": "Confusing part-to-part ratio with part-to-whole fraction."
+    },
+    {
+      "code": "unit_rate_error",
+      "name": "Unit Rate Error",
+      "description": "Dividing total directly by a single ratio term instead of the sum of parts."
+    },
+    {
+      "code": "scale_direction_error",
+      "name": "Scale Direction Error",
+      "description": "Multiplying instead of dividing (or vice versa) when scaling map or model measurements."
+    },
+    {
+      "code": "unit_conversion_error",
+      "name": "Unit Conversion Error",
+      "description": "Failing to convert measurement units before comparing or calculating ratio."
+    },
+    {
+      "code": "arithmetic_error_after_correct_setup",
+      "name": "Arithmetic Error After Correct Setup",
+      "description": "Executing calculation incorrectly despite having formulated the correct ratio setup."
+    },
+    {
+      "code": "irrelevant_operation",
+      "name": "Irrelevant Operation",
+      "description": "Performing unrelated arithmetic operations on numbers present in the problem."
+    },
+    {
+      "code": "diagram_misread",
+      "name": "Diagram Misread",
+      "description": "Extracting incorrect numeric values or relationships from visual diagram."
+    },
+    {
+      "code": "premature_rounding",
+      "name": "Premature Rounding",
+      "description": "Rounding intermediate steps leading to inaccurate final quantity."
+    },
+    {
+      "code": "incomplete_reasoning",
+      "name": "Incomplete Reasoning",
+      "description": "Stopping after calculating unit part without completing the final share calculation."
+    },
+    {
+      "code": "answer_guessing",
+      "name": "Answer Guessing",
+      "description": "Entering ungrounded numbers without demonstrable mathematical reasoning."
+    },
+    {
+      "code": "insufficient_evidence",
+      "name": "Insufficient Evidence",
+      "description": "Student input provides insufficient numeric or structured working to classify a specific error."
+    }
+  ]
+}

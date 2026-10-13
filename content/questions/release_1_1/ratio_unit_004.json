@@ -1,0 +1,152 @@
+{
+  "question_id": "ratio_unit_004",
+  "version": 1,
+  "validation_status": "approved",
+  "publication_status": "published",
+  "flagged": false,
+  "curriculum": {
+    "jurisdiction": "VIC",
+    "year_level": 7,
+    "topic": "Number and Algebra",
+    "subtopic": "Real numbers - Ratio and rate",
+    "curriculum_code": "VC2M7N08"
+  },
+  "skill_id": "ratio_unitary",
+  "subskill": "unit_rate",
+  "learning_objective": "Solve unit rate and proportional rate word problems.",
+  "difficulty": {
+    "band": "intermediate",
+    "estimated_difficulty": 0.45,
+    "reasoning_depth": 3
+  },
+  "title": "Unit rate - 33",
+  "problem_type": "word_problem",
+  "stem": "6 apples cost $18. How much do 11 apples cost?",
+  "accepted_answer_spec": {
+    "type": "numeric",
+    "canonical_value": "33",
+    "unit": "$",
+    "answer_requires_unit": false,
+    "tolerance": 0,
+    "accepted_forms": [
+      "33",
+      "$33"
+    ],
+    "valid_alternatives": [],
+    "rounding_rule": "none"
+  },
+  "solution_steps": [
+    {
+      "step_id": "step_1",
+      "description": "Calculate unit or intermediate part",
+      "target_expression": "6",
+      "target_value": "6",
+      "unit": "$",
+      "permitted_scaffold_step": "Find the intermediate parts value."
+    },
+    {
+      "step_id": "step_2",
+      "description": "Calculate final requested quantity",
+      "target_expression": "3",
+      "target_value": "33",
+      "unit": "$"
+    }
+  ],
+  "alternate_solution_paths": [
+    {
+      "path_id": "primary",
+      "steps": [
+        "step_1",
+        "step_2"
+      ]
+    }
+  ],
+  "method_leak_patterns": {
+    "operations": [
+      "divide",
+      "multiply",
+      "add"
+    ],
+    "step_phrases": [
+      "find one part",
+      "sum the parts"
+    ],
+    "blocked_below_level": 4
+  },
+  "scaffold_probes": [
+    {
+      "probe_id": "probe_1",
+      "kind": "value",
+      "min_level": 1,
+      "template": "What is the intermediate value for this calculation?",
+      "expected_expression": "6",
+      "expected_value": "6",
+      "unit": "$",
+      "counts_as_step_id": "step_1"
+    }
+  ],
+  "misconception_predictions": [
+    {
+      "predicted_response": "38",
+      "misconception_code": "ratio_additive_interpretation",
+      "confidence": 0.9,
+      "rationale": "Calculation slip."
+    },
+    {
+      "predicted_response": "30",
+      "misconception_code": "unit_rate_error",
+      "confidence": 0.9,
+      "rationale": "Direct calculation slip."
+    }
+  ],
+  "isomorphic_worked_example": {
+    "stem": "A similar question worked example.",
+    "solution_steps": [
+      {
+        "description": "Step 1",
+        "target_value": "10"
+      }
+    ],
+    "final_answer": "10"
+  },
+  "reasoning_options": [
+    {
+      "option_id": "opt_1",
+      "label": "Found unit part and scaled up"
+    },
+    {
+      "option_id": "opt_2",
+      "label": "Divided directly without summing parts"
+    }
+  ],
+  "misconception_tags": [
+    "ratio_additive_interpretation",
+    "unit_rate_error"
+  ],
+  "reflection": {
+    "prompt_template": "You calculated {student_value}. How could you check your answer?",
+    "options": [
+      {
+        "option_id": "refl_1",
+        "label": "Verify that all components sum back to the total",
+        "sound": true,
+        "feedback": "Great check! Summing the parts confirms the total."
+      },
+      {
+        "option_id": "refl_2",
+        "label": "Subtract the smaller number from the larger",
+        "sound": false,
+        "feedback": "Subtracting does not verify the original total amount."
+      },
+      {
+        "option_id": "refl_3",
+        "label": "Multiply the answer by two",
+        "sound": false,
+        "feedback": "Multiplying does not verify the ratio relationship."
+      }
+    ]
+  },
+  "socratic_prompt_set_id": "socratic_ratio_unitary",
+  "has_diagram": false,
+  "diagram_id": null
+}

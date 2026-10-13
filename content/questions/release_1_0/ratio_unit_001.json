@@ -1,0 +1,157 @@
+{
+  "question_id": "ratio_unit_001",
+  "version": 1,
+  "validation_status": "approved",
+  "publication_status": "published",
+  "flagged": false,
+  "curriculum": {
+    "jurisdiction": "VIC",
+    "year_level": 7,
+    "topic": "Number and Algebra",
+    "subtopic": "Real numbers - Ratio and rate",
+    "curriculum_code": "VC2M7N08",
+    "foundation_curriculum_code": "VC2M6N07"
+  },
+  "skill_id": "ratio_unitary",
+  "subskill": "scaling_given_one_part",
+  "learning_objective": "Find an unknown quantity when given a ratio and the value of one part.",
+  "difficulty": {
+    "band": "intermediate",
+    "estimated_difficulty": 0.4,
+    "reasoning_depth": 2
+  },
+  "title": "Paint Mixing 3:4",
+  "problem_type": "word_problem",
+  "stem": "Red paint and blue paint are mixed in the ratio 3 : 4. If an artist uses 15 litres of red paint, how many litres of blue paint are needed?",
+  "accepted_answer_spec": {
+    "type": "numeric",
+    "canonical_value": "20",
+    "unit": "L",
+    "answer_requires_unit": false,
+    "tolerance": 0,
+    "accepted_forms": [
+      "20",
+      "20 L",
+      "20L"
+    ],
+    "valid_alternatives": [],
+    "rounding_rule": "none"
+  },
+  "solution_steps": [
+    {
+      "step_id": "step_1",
+      "description": "Find the scale multiplier per part using the known red quantity",
+      "target_expression": "15 / 3",
+      "target_value": "5",
+      "unit": "L",
+      "permitted_scaffold_step": "Divide 15 by 3 to find how many litres equal 1 part"
+    },
+    {
+      "step_id": "step_2",
+      "description": "Multiply the multiplier by 4 blue parts",
+      "target_expression": "5 * 4",
+      "target_value": "20",
+      "unit": "L"
+    }
+  ],
+  "alternate_solution_paths": [
+    {
+      "path_id": "primary",
+      "steps": [
+        "step_1",
+        "step_2"
+      ]
+    }
+  ],
+  "method_leak_patterns": {
+    "operations": [
+      "multiply",
+      "divide"
+    ],
+    "step_phrases": [
+      "five litres per part",
+      "multiply by four"
+    ],
+    "blocked_below_level": 4
+  },
+  "scaffold_probes": [
+    {
+      "probe_id": "probe_1",
+      "kind": "value",
+      "min_level": 1,
+      "template": "If 3 parts of red equal 15 litres, how many litres is 1 part?",
+      "expected_expression": "15 / 3",
+      "expected_value": "5",
+      "unit": "L",
+      "counts_as_step_id": "step_1"
+    }
+  ],
+  "misconception_predictions": [
+    {
+      "predicted_response": "16",
+      "misconception_code": "ratio_additive_interpretation",
+      "confidence": 0.9,
+      "rationale": "Student noted 4 is 1 more than 3, so added 1 to 15 (15 + 1 = 16)."
+    },
+    {
+      "predicted_response": "11.25",
+      "misconception_code": "scale_direction_error",
+      "confidence": 0.9,
+      "rationale": "Student multiplied by 3/4 instead of 4/3."
+    }
+  ],
+  "isomorphic_worked_example": {
+    "stem": "Sand and gravel are mixed 2 : 5. If 8 kg of sand is used, how much gravel is needed?",
+    "solution_steps": [
+      {
+        "description": "1 part = 8 \u00f7 2 = 4 kg",
+        "target_value": "4"
+      },
+      {
+        "description": "Gravel = 4 \u00d7 5 = 20 kg",
+        "target_value": "20"
+      }
+    ],
+    "final_answer": "20"
+  },
+  "reasoning_options": [
+    {
+      "option_id": "opt_scale",
+      "label": "Multiplied 15 by 4/3"
+    },
+    {
+      "option_id": "opt_add",
+      "label": "Added 1 to 15 because 4 is 1 more than 3"
+    }
+  ],
+  "misconception_tags": [
+    "ratio_additive_interpretation",
+    "scale_direction_error"
+  ],
+  "reflection": {
+    "prompt_template": "You found that {student_value} litres of blue paint are needed. Why did additive reasoning (adding 1) fail here?",
+    "options": [
+      {
+        "option_id": "refl_1",
+        "label": "Ratios describe multiplicative relationships, so we must multiply or divide by a scale factor",
+        "sound": true,
+        "feedback": "Spot on! Ratios always scale through multiplication or division, not addition."
+      },
+      {
+        "option_id": "refl_2",
+        "label": "Because blue paint is heavier than red paint",
+        "sound": false,
+        "feedback": "The weights of the paints do not affect the mathematical ratio."
+      },
+      {
+        "option_id": "refl_3",
+        "label": "Because 15 is an odd number",
+        "sound": false,
+        "feedback": "Ratios work the same way regardless of whether quantities are odd or even."
+      }
+    ]
+  },
+  "socratic_prompt_set_id": "socratic_ratio_unit",
+  "has_diagram": false,
+  "diagram_id": null
+}

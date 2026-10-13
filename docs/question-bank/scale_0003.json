@@ -1,0 +1,152 @@
+{
+  "question_id": "scale_0003",
+  "version": 1,
+  "validation_status": "approved",
+  "publication_status": "published",
+  "flagged": false,
+  "curriculum": {
+    "jurisdiction": "VIC",
+    "year_level": 7,
+    "topic": "Number and Algebra",
+    "subtopic": "Real numbers - Ratio and rate",
+    "curriculum_code": "VC2M7N08"
+  },
+  "skill_id": "scale_drawing",
+  "subskill": "scale_drawing",
+  "learning_objective": "Calculate actual distances using linear map scales.",
+  "difficulty": {
+    "band": "intermediate",
+    "estimated_difficulty": 0.45,
+    "reasoning_depth": 3
+  },
+  "title": "Map scale 1 cm to 4 km (Transfer)",
+  "problem_type": "word_problem",
+  "stem": "A trail map has a scale of 1 cm to 4 km. Two campsites are 5.5 cm apart on the map. What is the actual distance in kilometres?",
+  "accepted_answer_spec": {
+    "type": "numeric",
+    "canonical_value": "22",
+    "unit": "km",
+    "answer_requires_unit": false,
+    "tolerance": 0,
+    "accepted_forms": [
+      "22",
+      "22 km"
+    ],
+    "valid_alternatives": [],
+    "rounding_rule": "none"
+  },
+  "solution_steps": [
+    {
+      "step_id": "step_1",
+      "description": "Scale factor per 1 cm",
+      "target_expression": "4",
+      "target_value": "4",
+      "unit": "km",
+      "permitted_scaffold_step": "Note that 1 cm represents 4 km."
+    },
+    {
+      "step_id": "step_2",
+      "description": "Multiply distance by 4",
+      "target_expression": "5.5 * 4",
+      "target_value": "22",
+      "unit": "km"
+    }
+  ],
+  "alternate_solution_paths": [
+    {
+      "path_id": "primary",
+      "steps": [
+        "step_1",
+        "step_2"
+      ]
+    }
+  ],
+  "method_leak_patterns": {
+    "operations": [
+      "divide",
+      "multiply",
+      "add"
+    ],
+    "step_phrases": [
+      "find one part",
+      "sum the parts"
+    ],
+    "blocked_below_level": 4
+  },
+  "scaffold_probes": [
+    {
+      "probe_id": "p1",
+      "kind": "value",
+      "min_level": 1,
+      "template": "How many kilometres does 1 cm represent?",
+      "expected_expression": "4",
+      "expected_value": "4",
+      "unit": "km",
+      "counts_as_step_id": "step_1"
+    }
+  ],
+  "misconception_predictions": [
+    {
+      "predicted_response": "9.5",
+      "misconception_code": "ratio_additive_interpretation",
+      "confidence": 0.9,
+      "rationale": "Added 5.5 + 4."
+    },
+    {
+      "predicted_response": "1.375",
+      "misconception_code": "scale_direction_error",
+      "confidence": 0.9,
+      "rationale": "Divided 5.5 / 4."
+    }
+  ],
+  "isomorphic_worked_example": {
+    "stem": "A similar question worked example.",
+    "solution_steps": [
+      {
+        "description": "Step 1",
+        "target_value": "10"
+      }
+    ],
+    "final_answer": "10"
+  },
+  "reasoning_options": [
+    {
+      "option_id": "opt_1",
+      "label": "Found unit part and scaled up"
+    },
+    {
+      "option_id": "opt_2",
+      "label": "Divided directly without summing parts"
+    }
+  ],
+  "misconception_tags": [
+    "ratio_additive_interpretation",
+    "scale_direction_error"
+  ],
+  "reflection": {
+    "prompt_template": "You calculated {student_value}. How could you check your answer?",
+    "options": [
+      {
+        "option_id": "refl_1",
+        "label": "Verify that all components sum back to the total",
+        "sound": true,
+        "feedback": "Great check! Summing the parts confirms the total."
+      },
+      {
+        "option_id": "refl_2",
+        "label": "Subtract the smaller number from the larger",
+        "sound": false,
+        "feedback": "Subtracting does not verify the original total amount."
+      },
+      {
+        "option_id": "refl_3",
+        "label": "Multiply the answer by two",
+        "sound": false,
+        "feedback": "Multiplying does not verify the ratio relationship."
+      }
+    ]
+  },
+  "socratic_prompt_set_id": "socratic_scale_drawing",
+  "has_diagram": false,
+  "diagram_id": null
+}

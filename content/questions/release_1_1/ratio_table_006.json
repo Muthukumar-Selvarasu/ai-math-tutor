@@ -1,0 +1,152 @@
+{
+  "question_id": "ratio_table_006",
+  "version": 1,
+  "validation_status": "approved",
+  "publication_status": "published",
+  "flagged": false,
+  "curriculum": {
+    "jurisdiction": "VIC",
+    "year_level": 7,
+    "topic": "Number and Algebra",
+    "subtopic": "Real numbers - Ratio and rate",
+    "curriculum_code": "VC2M7N08"
+  },
+  "skill_id": "ratio_table_representation",
+  "subskill": "ratio_table_representation",
+  "learning_objective": "Represent and solve ratio sharing problems using a ratio table.",
+  "difficulty": {
+    "band": "intermediate",
+    "estimated_difficulty": 0.45,
+    "reasoning_depth": 3
+  },
+  "title": "Ratio table representation - 42",
+  "problem_type": "word_problem",
+  "stem": "Ratio table mix 3 gravel : 7 sand. To make 60 kg, how much sand?",
+  "accepted_answer_spec": {
+    "type": "numeric",
+    "canonical_value": "42",
+    "unit": "kg",
+    "answer_requires_unit": false,
+    "tolerance": 0,
+    "accepted_forms": [
+      "42",
+      "42 kg"
+    ],
+    "valid_alternatives": [],
+    "rounding_rule": "none"
+  },
+  "solution_steps": [
+    {
+      "step_id": "step_1",
+      "description": "Calculate unit or intermediate part",
+      "target_expression": "10",
+      "target_value": "10",
+      "unit": "kg",
+      "permitted_scaffold_step": "Find the intermediate parts value."
+    },
+    {
+      "step_id": "step_2",
+      "description": "Calculate final requested quantity",
+      "target_expression": "6",
+      "target_value": "42",
+      "unit": "kg"
+    }
+  ],
+  "alternate_solution_paths": [
+    {
+      "path_id": "primary",
+      "steps": [
+        "step_1",
+        "step_2"
+      ]
+    }
+  ],
+  "method_leak_patterns": {
+    "operations": [
+      "divide",
+      "multiply",
+      "add"
+    ],
+    "step_phrases": [
+      "find one part",
+      "sum the parts"
+    ],
+    "blocked_below_level": 4
+  },
+  "scaffold_probes": [
+    {
+      "probe_id": "probe_1",
+      "kind": "value",
+      "min_level": 1,
+      "template": "What is the intermediate value for this calculation?",
+      "expected_expression": "10",
+      "expected_value": "10",
+      "unit": "kg",
+      "counts_as_step_id": "step_1"
+    }
+  ],
+  "misconception_predictions": [
+    {
+      "predicted_response": "47",
+      "misconception_code": "ratio_additive_interpretation",
+      "confidence": 0.9,
+      "rationale": "Calculation slip."
+    },
+    {
+      "predicted_response": "39",
+      "misconception_code": "unit_rate_error",
+      "confidence": 0.9,
+      "rationale": "Direct calculation slip."
+    }
+  ],
+  "isomorphic_worked_example": {
+    "stem": "A similar question worked example.",
+    "solution_steps": [
+      {
+        "description": "Step 1",
+        "target_value": "10"
+      }
+    ],
+    "final_answer": "10"
+  },
+  "reasoning_options": [
+    {
+      "option_id": "opt_1",
+      "label": "Found unit part and scaled up"
+    },
+    {
+      "option_id": "opt_2",
+      "label": "Divided directly without summing parts"
+    }
+  ],
+  "misconception_tags": [
+    "ratio_additive_interpretation",
+    "unit_rate_error"
+  ],
+  "reflection": {
+    "prompt_template": "You calculated {student_value}. How could you check your answer?",
+    "options": [
+      {
+        "option_id": "refl_1",
+        "label": "Verify that all components sum back to the total",
+        "sound": true,
+        "feedback": "Great check! Summing the parts confirms the total."
+      },
+      {
+        "option_id": "refl_2",
+        "label": "Subtract the smaller number from the larger",
+        "sound": false,
+        "feedback": "Subtracting does not verify the original total amount."
+      },
+      {
+        "option_id": "refl_3",
+        "label": "Multiply the answer by two",
+        "sound": false,
+        "feedback": "Multiplying does not verify the ratio relationship."
+      }
+    ]
+  },
+  "socratic_prompt_set_id": "socratic_ratio_table_representation",
+  "has_diagram": false,
+  "diagram_id": null
+}

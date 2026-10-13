@@ -4,6 +4,7 @@ import { getQuestion } from "../../../lib/question-loader";
 import {
   recommendNextQuestion,
   isQuestionApprovedAndPublished,
+  getApprovedPublishedQuestion,
 } from "../../../lib/practice-planner";
 import { createErrorResponse } from "../../../lib/error-response";
 
@@ -29,26 +30,11 @@ export async function POST(request) {
       body.recommended = true;
     } else if (body.question_id) {
       targetQuestionId = body.question_id;
-      const q = getQuestion(targetQuestionId);
+      const isDiagramWithheldTest = targetQuestionId === "ratio_diagram_withheld_001";
+      const q = isDiagramWithheldTest ? getQuestion(targetQuestionId) : getApprovedPublishedQuestion(targetQuestionId);
 
       if (!q) {
-        return createErrorResponse(404, "not_found", "Question not found");
-      }
-
-      // Special allowance: ratio_diagram_withheld_001 tests diagram-withholding handling in STU-08
-      const isDiagramWithheldTest = targetQuestionId === "ratio_diagram_withheld_001";
-
-      if (!isDiagramWithheldTest) {
-        // Enforce published and approved status
-        const isDraft =
-          q.validation_status === "draft" ||
-          q.validation_status === "rejected" ||
-          q.publication_status === "draft";
-        const isFlagged = Boolean(q.flagged);
-
-        if (isDraft || isFlagged) {
-          return createErrorResponse(404, "not_found", "Question is not approved and published");
-        }
+        return createErrorResponse(404, "not_found", "Question is not approved and published");
       }
     } else {
       targetQuestionId = "ratio_share_001";

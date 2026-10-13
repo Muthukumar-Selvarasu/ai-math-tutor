@@ -8,12 +8,12 @@ This tracker maintains the central registry of all project tasks managed as **IS
 
 | Milestone | Total Issues | Planned | In Progress | Completed (Local) | Closed (GitHub) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| **Tier 1a: Core MVP (Gate A)** | 27 | 9 | 0 | 18 | 18 |
+| **Tier 1a: Core MVP (Gate A)** | 27 | 8 | 0 | 19 | 19 |
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 1 | 0 | 0 | 0 |
 | **Tier 1c: Replay & Human Oversight** | 2 | 2 | 0 | 0 | 0 |
 | **Tier 2: Platform Launch (Gate C)** | 10 | 9 | 0 | 1 | 1 |
 | **Tier 3: Platform Governance & Scale** | 4 | 4 | 0 | 0 | 0 |
-| **Total** | **44** | **25** | **0** | **19** | **19** |
+| **Total** | **44** | **24** | **0** | **20** | **20** |
 
 ---
 
@@ -49,7 +49,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 #### Epic E4: Governance, security, and platform operations
 | Issue ID | Story / Task | Title | Priority | GitHub # | Status | Stage | Completed | Local Path |
 |---|---|---|:---:|:---:|:---:|:---:|:---:|---|
-| ISSUE-016 | `ADM-01` | Manage roles | P2 | [#652](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/652) | Planned | Pre-flight | - | [ISSUE-016](ISSUE-016-ADM-01/ISSUE.md) |
+| ISSUE-016 | `ADM-01` | Manage roles | P2 | [#652](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/652) | Completed | Closure | 2026-10-13 | [ISSUE-016](ISSUE-016-ADM-01/ISSUE.md) |
 | ISSUE-017 | `ADM-02` | Audit trail | P2 | [#653](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/653) | Planned | Pre-flight | - | [ISSUE-017](ISSUE-017-ADM-02/ISSUE.md) |
 | ISSUE-019 | `ADM-04` | Content publishing controls | P1 | [#655](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/655) | Planned | Pre-flight | - | [ISSUE-019](ISSUE-019-ADM-04/ISSUE.md) |
 | ISSUE-020 | `ADM-05` | Model and prompt traceability | P0 | [#656](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/656) | Completed | Closure | 2026-10-13 | [ISSUE-020](ISSUE-020-ADM-05/ISSUE.md) |

@@ -10,10 +10,10 @@ This tracker maintains the central registry of all project tasks managed as **IS
 |---|:---:|:---:|:---:|:---:|:---:|
 | **Tier 1a: Core MVP (Gate A)** | 27 | 0 | 0 | 27 | 27 |
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 0 | 0 | 1 | 1 |
-| **Tier 1c: Replay & Human Oversight** | 2 | 2 | 0 | 0 | 0 |
+| **Tier 1c: Replay & Human Oversight** | 2 | 1 | 0 | 1 | 1 |
 | **Tier 2: Platform Launch (Gate C)** | 10 | 9 | 0 | 1 | 1 |
 | **Tier 3: Platform Governance & Scale** | 4 | 4 | 0 | 0 | 0 |
-| **Total** | **44** | **15** | **0** | **29** | **29** |
+| **Total** | **44** | **14** | **0** | **30** | **30** |
 
 ---
 
@@ -76,7 +76,7 @@ This tracker maintains the central registry of all project tasks managed as **IS
 #### Epic E2: Learner progress and educator insight
 | Issue ID | Story / Task | Title | Priority | GitHub # | Status | Stage | Completed | Local Path |
 |---|---|---|:---:|:---:|:---:|:---:|:---:|---|
-| ISSUE-010 | `EDU-02` | Understand why a student was flagged | P1 | [#646](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/646) | Planned | Pre-flight | - | [ISSUE-010](ISSUE-010-EDU-02/ISSUE.md) |
+| ISSUE-010 | `EDU-02` | Understand why a student was flagged | P1 | [#646](https://github.com/Muthukumar-Selvarasu/ai-math-tutor/issues/646) | Completed | Closure | 2026-10-13 | [ISSUE-010](ISSUE-010-EDU-02/ISSUE.md) |
 
 #### Epic E3: Review, replay, and human oversight
 | Issue ID | Story / Task | Title | Priority | GitHub # | Status | Stage | Completed | Local Path |

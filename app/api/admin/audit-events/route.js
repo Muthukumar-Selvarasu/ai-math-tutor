@@ -48,3 +48,31 @@ export async function GET(request) {
     return NextResponse.json({ error: "internal_error", message: err.message }, { status: 500 });
   }
 }
+
+export async function POST() {
+  return NextResponse.json(
+    { error: "method_not_allowed", message: "Audit trail is append-only: direct mutation is rejected by database permissions and policy" },
+    { status: 405 }
+  );
+}
+
+export async function PUT() {
+  return NextResponse.json(
+    { error: "method_not_allowed", message: "Audit trail is append-only: updates are rejected by database permissions and policy" },
+    { status: 405 }
+  );
+}
+
+export async function DELETE() {
+  return NextResponse.json(
+    { error: "method_not_allowed", message: "Audit trail is append-only: deletes are rejected by database permissions and policy" },
+    { status: 405 }
+  );
+}
+
+export async function PATCH() {
+  return NextResponse.json(
+    { error: "method_not_allowed", message: "Audit trail is append-only: updates are rejected by database permissions and policy" },
+    { status: 405 }
+  );
+}

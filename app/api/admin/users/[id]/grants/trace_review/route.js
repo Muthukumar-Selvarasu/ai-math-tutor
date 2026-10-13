@@ -3,6 +3,7 @@ import {
   authenticateRequest,
   authorizeRoute,
   getAppUserById,
+  getAppUserByClerkId,
   updateAppUserGrants,
 } from "../../../../../../../lib/auth.js";
 import { logAuditEvent } from "../../../../../../../lib/audit-trail.js";
@@ -32,7 +33,7 @@ export async function PUT(request, { params }) {
     }
 
     const { id } = await params;
-    const targetUser = getAppUserById(id);
+    const targetUser = getAppUserById(id) || getAppUserByClerkId(id);
     if (!targetUser) {
       return NextResponse.json(
         { error: "not_found", message: `User ${id} not found` },
@@ -48,13 +49,13 @@ export async function PUT(request, { params }) {
       );
     }
 
-    const updatedUser = updateAppUserGrants(id, "trace_review", "grant");
+    const updatedUser = updateAppUserGrants(targetUser.id, "trace_review", "grant");
 
     logAuditEvent({
       event_type: "trace_review_granted",
       actor_user_id: authResult.user.id,
       action: "grant_trace_review",
-      details: { target_user_id: id },
+      details: { target_user_id: targetUser.id },
       previous_value: targetUser.grants,
       new_value: updatedUser.grants,
     });
@@ -84,7 +85,7 @@ export async function DELETE(request, { params }) {
     }
 
     const { id } = await params;
-    const targetUser = getAppUserById(id);
+    const targetUser = getAppUserById(id) || getAppUserByClerkId(id);
     if (!targetUser) {
       return NextResponse.json(
         { error: "not_found", message: `User ${id} not found` },
@@ -99,13 +100,13 @@ export async function DELETE(request, { params }) {
       );
     }
 
-    const updatedUser = updateAppUserGrants(id, "trace_review", "revoke");
+    const updatedUser = updateAppUserGrants(targetUser.id, "trace_review", "revoke");
 
     logAuditEvent({
       event_type: "trace_review_revoked",
       actor_user_id: authResult.user.id,
       action: "revoke_trace_review",
-      details: { target_user_id: id },
+      details: { target_user_id: targetUser.id },
       previous_value: targetUser.grants,
       new_value: updatedUser.grants,
     });

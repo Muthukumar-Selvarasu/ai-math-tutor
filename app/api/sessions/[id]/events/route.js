@@ -159,6 +159,14 @@ export async function POST(request, { params }) {
       }
       return createErrorResponse(500, "internal_error", "Simulated crash before turn persist", { requestId });
     }
+    if (error.message && error.message.includes("emergency_maintenance")) {
+      return createErrorResponse(
+        503,
+        "service_unavailable",
+        error.message.replace("emergency_maintenance: ", ""),
+        { retryable: true, retry_after_s: 30, requestId }
+      );
+    }
     if (error.message && error.message.includes("transition_not_allowed")) {
       return createErrorResponse(409, "transition_not_allowed", error.message, { requestId });
     }

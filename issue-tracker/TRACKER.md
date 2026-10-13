@@ -8,12 +8,12 @@ This tracker maintains the central registry of all project tasks managed as **IS
 
 | Milestone | Total Issues | Planned | In Progress | Completed (Local) | Closed (GitHub) |
 |---|:---:|:---:|:---:|:---:|:---:|
-| **Tier 1a: Core MVP (Gate A)** | 27 | 5 | 0 | 22 | 22 |
+| **Tier 1a: Core MVP (Gate A)** | 27 | 0 | 0 | 27 | 27 |
 | **Tier 1b: Protocols & Scale (Gate B)** | 1 | 1 | 0 | 0 | 0 |
 | **Tier 1c: Replay & Human Oversight** | 2 | 2 | 0 | 0 | 0 |
 | **Tier 2: Platform Launch (Gate C)** | 10 | 9 | 0 | 1 | 1 |
 | **Tier 3: Platform Governance & Scale** | 4 | 4 | 0 | 0 | 0 |
-| **Total** | **44** | **21** | **0** | **23** | **23** |
+| **Total** | **44** | **16** | **0** | **28** | **28** |
 
 ---
 
